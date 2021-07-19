@@ -36,7 +36,7 @@ Incomplete, In development
  P&T: [1/1]
  ~~~
  
- # Graveyard Game View
+ # Graveyard View
   
  ~~~
  [Player_name_one] 
