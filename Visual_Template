@@ -1,0 +1,43 @@
+ Phase: [Beginning/Untap Step] 
+ ▶️ Player_name: [HEALTH:20] 
+ Player_name: [HEALTH:20] 
+ 
+ Deck[60] Graveyard[0] Hand[7]
+ Hand: 🔳🔳🔳🔳🔳🔳🔳
+ Mana : 🟪 ⬛⬛
+ Field: 🟫🟫 ⬛
+        🗡️
+        🛡️        
+ Field: 🟫🟫🟫
+ Mana : 🟪🟪 ⬛
+ Hand: 🟧🟫🟪🟫🔍🟪🟧
+ Deck[60] Graveyard[0] Hand[7]
+ 
+ -[Info]----------------------
+ Name: Lorem Ipsum
+ Type: Creature
+ cost:✴️[2] 🔵[3]
+ effect: None
+ Power: 1
+ taughness: 1
+ 
+ 
+ 
+ 
+ #Symbols:
+ # Tapped ⬛
+ # Artefact Or Enchantment ⬜
+ # Creature 🟫
+ # Instant or Sorcery 🟧
+ # 🔍 Cursor/Slection
+ # Colorless ✴️
+ # Attacking 🗡️
+ # Blocking 🛡️
+ 
+ # Mana card 🟪
+ #Back 🔳
+ 
+ # https://www.youtube.com/watch?v=V4rYwsBMKxs
+ # Phase: beginning, first_main, combat, second_main, ending
+ # Steps: Beginning(Untap, Draw) Main(Land, Spells) Combat(Attackers, Blockers, damage) Second(Land, Spells) Ending(Cleanup)
+ 
