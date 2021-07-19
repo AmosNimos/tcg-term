@@ -34,14 +34,6 @@ class Card:
 		self.name = namegenerator.gen();
 		self.taped = False;
 	
-	def draw_card(source, selected):
-		# Remove selected card from deck or graveyard array and add it to hand array
-	
-	def discard_card(source, selected):
-		# Remove selected card from hand or field array and add it to graveyard array
-	
-	def resurect_card
-	
 	
 # Cursor selection	
 class selection: 
@@ -59,6 +51,19 @@ class Player:
 		self.mana_zone = mana_zone
 		self.field_zone = field_zone
 		self.graveyard = graveyard
+		
+	def select_card(source, player):
+		# Here a card can be selected from source array by player
+		## This process should be automated when playing against the machine.
+		### Exception may need to be applied in a way or another, like the card type or color, or cost, or inded (position) in the source array.
+		return selection
+	
+	def move_card(source, selected, destination):
+		# Card zone change	
+		## (Basically a function to move a card from any zone, to any zone if, an effect or situation require it.)
+		### zone = graveuard, hand. field, deck...
+		#### Remove selected card from source (zone) array and add it to destination (zone) array.
+
 class Field:
 	def __init__(self, mana):
 
@@ -76,9 +81,7 @@ def get_input():
 # Main game loop
 while True:
 	
-# card zone change
-## (Basically their should be a function to move a card from any zone, to any zone if, an effect or situation require it.)
-### zone = graveuard, hand. field, deck...	
+
 
 
 
