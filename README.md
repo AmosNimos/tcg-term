@@ -11,7 +11,7 @@ Incomplete, In development
  Turn: [Player_name_one]
  Phase: [Beginning/Untap Step] 
 
- ▶️ [Player_name]: Health[20] Deck[60]
+ ▶️ [Player_name_one]: Health[20] Deck[60]
  
  Hand:  🔳🔳🔳🔳🔳🔳🔳[7] 
  Graveyard: 💀[0]
@@ -39,7 +39,7 @@ Incomplete, In development
  # Graveyard Game View
   
  ~~~
- [Player_name] 
+ [Player_name_one] 
  Graveyard: 🟧🟫🟪🟫🔍🟧[6]
  Field: ⚔️
  
