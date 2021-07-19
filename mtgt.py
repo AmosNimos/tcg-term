@@ -13,10 +13,11 @@ import pyttsx3
 # Vars
 ## Rules Variables
 deckSize = 60;
-initial_health = 20
+initial_health = 20;
 
 # Game Variables 
-colors = ["[RED 🔴]","[Green 🟢]","[White ⚪]","Black ⚫","[Blue 🔵]"];
+colorless = "🔷";
+colors = ["[White ⚪]","[Blue 🔵]","Black ⚫","[RED 🔴]","[Green 🟢]"];
 
 # Class
 ## Cards class
@@ -29,7 +30,8 @@ class Card:
 		self.attack = attack;
 		self.deffence = deffence;
 		self.color = color;
-		self.type=card_type;
+		self.type=card_type; # Sorcery, Land, Enchantment, Creature...
+		self.kind=kind; # Human, Dinosaur Avatar, Vampire...
 		self.cost = cost;
 		self.name = namegenerator.gen();
 		self.taped = False;
@@ -62,8 +64,8 @@ class Player:
 		# Card zone change	
 		## (Basically a function to move a card from any zone, to any zone if, an effect or situation require it.)
 		### zone = graveuard, hand. field, deck...
-		#### Remove selected card from source (zone) array and add it to destination (zone) array.
-
+		#### Remove selected card from source (zone) array and add it to destination (zone) array.		
+		
 class Field:
 	def __init__(self, mana):
 
@@ -78,6 +80,30 @@ def get_input():
 		for e in input_generator:
 			return e
 
+# Take an array of card and return an array containing only the card coresponding to the argument given	
+def exception(array,max_cost,min_cost,card_type,in_name,max_power,min_power,max_taughness,min_taughness):
+	picked = []
+	
+	# Only pick cards between max_cost and min_cost. (default 0,12 for all cost)
+	for x in array:
+		for cost_index in range(len(x.cost)):
+			if x.cost[cost_index] < max_cost and x.cost[cost_index] > min_cost:
+				picked.append(x)
+	
+	# Replace the array with the new selection of cards.
+	array = picked
+	
+	# Only pick cards of X type.
+	if card_type != None:
+		for x in array:
+			if x.type == card_type:
+				picked.append(x)
+				
+	# Replace the array with the new selection of cards.
+	array = picked
+	
+	return array
+		
 # Main game loop
 while True:
 	
