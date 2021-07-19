@@ -1,17 +1,19 @@
- Phase: [Beginning/Untap Step] 
- ▶️ Player_name: [HEALTH:20] 
- Player_name: [HEALTH:20] 
+ Phase: [Beginning/Untap Step] Turn: [Player_name_one]
+
+ ▶️ [Player_name]: Health[20] Deck[60]
+ Hand:  🔳🔳🔳🔳🔳🔳🔳[7] 
+ Graveyard: 🪦[0]
  
- Deck[60] Graveyard[0] Hand[7]
- Hand: 🔳🔳🔳🔳🔳🔳🔳
- Mana : 🟪 ⬛⬛
+ Mana:  🟪 ⬛⬛
  Field: 🟫🟫 ⬛
         🗡️
         🛡️        
  Field: 🟫🟫🟫
- Mana : 🟪🟪 ⬛
- Hand: 🟧🟫🟪🟫🔍🟪🟧
- Deck[60] Graveyard[0] Hand[7]
+ Mana:  🟪🟪 ⬛
+ 
+ Graveyard: 🪦[0]
+ Hand:  🟧🟫🟪🟫🔍🟧[6]
+ [Player_name_two]: Health[20] Deck[60]
  
  -[Info]----------------------
  Name: Lorem Ipsum
