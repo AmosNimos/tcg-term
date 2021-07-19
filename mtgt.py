@@ -39,7 +39,8 @@ class Card:
 	
 # Cursor selection	
 class selection: 
-	def __init__(self, x, y, over, selected):		
+	def __init__(self, x, y, over, selected):
+		
 # Player 
 ## (Don't forget to add an extra deck)	
 ## (You can use 2D array to stack card in the same place.)
@@ -65,10 +66,8 @@ class Player:
 		## (Basically a function to move a card from any zone, to any zone if, an effect or situation require it.)
 		### zone = graveuard, hand. field, deck...
 		#### Remove selected card from source (zone) array and add it to destination (zone) array.		
-		
-class Field:
-	def __init__(self, mana):
 
+# Combine all visual element layout in a single string variable and print it to the terminal to display frame.
 def draw_frame(top,mid,end):
 	frame = top + mid + end;
 	print(frame)
