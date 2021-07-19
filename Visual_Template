@@ -16,7 +16,7 @@
  -[Info]----------------------
  Name: Lorem Ipsum
  Type: Creature
- cost:+[2] 🔵[3]
+ cost: 🔵[3] [+2]
  effect: None
  Power: 1
  taughness: 1
