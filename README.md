@@ -39,8 +39,7 @@ Incomplete, In development
  # Graveyard Game View
   
  ~~~
- [Player_name]:
- Grave yard, Viewing
+ [Player_name] 
  Graveyard: 🟧🟫🟪🟫🔍🟧[6]
  Field: ⚔️
  
