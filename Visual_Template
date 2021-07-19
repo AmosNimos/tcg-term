@@ -16,7 +16,7 @@
  -[Info]----------------------
  Name: Lorem Ipsum
  Type: Creature
- cost:✴️[2] 🔵[3]
+ cost:+[2] 🔵[3]
  effect: None
  Power: 1
  taughness: 1
@@ -30,7 +30,7 @@
  # Creature 🟫
  # Instant or Sorcery 🟧
  # 🔍 Cursor/Slection
- # Colorless ✴️
+ # Colorless +
  # Attacking 🗡️
  # Blocking 🛡️
  
