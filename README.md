@@ -11,7 +11,7 @@ Incomplete, In development
 # Help Needed!
 I really want to play an mtg alternative on linux so please do your best to contribute clear, organized and well commented code.
 
-![WE NEED YOU](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.opforum.org.uk%2Fwp-content%2Fuploads%2F2016%2F08%2Fwe-need-you-e1471614771105.png&f=1&nofb=1)
+![WE NEED YOU](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.fau.edu%2Fsas%2Fimages%2FSAS%2520Volunteer%2520sign11.jpg&f=1&nofb=1)
 
 
 
