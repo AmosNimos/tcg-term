@@ -1,5 +1,5 @@
 # TOP Priority
-1. Card generation
+1. Card generation (mana cost, power and taughness)
 2. Deck generation
 3. Player initialisation
 4. Game initialisation
