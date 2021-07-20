@@ -1,6 +1,6 @@
 # mtg-term
 
-A minimalistic pen source mtg-like game made in python that can be played on a terminal emulator.
+A minimalistic open source mtg-like game made in python that can be played on a terminal emulator.
 The first goal to be realistic in scope is to have a playable single player game, with simple generated card, that have reccurent simple effect like "flying".
 Then add complexity, and maybe in the far long distant future a form of multiplayer.
 
