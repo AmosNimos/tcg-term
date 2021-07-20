@@ -2,7 +2,7 @@
 It is a minimalistic, open-source, mtg-like game, made in python, that can be played on most terminal emulator on linux.
 The first goal to be realistic in scope, is to have a playable single player game, with simple generated card, that have simple [__Keyword ability__](https://mtg.fandom.com/wiki/Keyword_ability) effect. Then once completed, add complexity progressivelly, and maybe in the far long distant future a form of multiplayer.
 
-[Magic](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2016%2F04%2F10%2F315469-Magic_The_Gathering-fantasy_art-heroes-warrior.jpg&f=1&nofb=1)
+![Magic](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2016%2F04%2F10%2F315469-Magic_The_Gathering-fantasy_art-heroes-warrior.jpg&f=1&nofb=1)
 
 ## Project state:
 
