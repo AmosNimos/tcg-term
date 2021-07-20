@@ -22,7 +22,7 @@
 21. The option to save deck.
 22. More complex card effect.
 23. The option to modify and build your own deck.
-24. More complex game AI.
+24. More complex game AI. (Singularity 🤖☢️)
 
 
 ## general task
