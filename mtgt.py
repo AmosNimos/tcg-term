@@ -89,16 +89,23 @@ def get_input():
 	with Input(keynames='curses') as input_generator:
 		for e in input_generator:
 			return e
-# Cost color ratio
+# color Cost ratio
 def cost_ratio():
+	
+	# The ratio is based on 1 over the x_color_ratio value.
+	# If the value is equal to 0 the card will have the following X amounth of color mana cost diversity.
+	# Otherwise it will try the following ratio in order 
+	# if none of the value return 0 then the card will be colorless.
+	
 	one_color_ratio = 4
 	two_color_ratio = 6
 	tree_color_ratio = 8
 	four_color_ratio = 10
 	five_color_ratio = 15
+	six_color_ratio = 20
 	
 	if random.randrange(0,one_color_ratio) == 0:
-		#One color attribute
+		#One color attribute (excluding colorless)
 		return 1
 	elif random.randrange(0,two_color_ratio) == 0:
 		#Two color attribute
@@ -109,6 +116,12 @@ def cost_ratio():
 	elif random.randrange(0,four_color_ratio) == 0:
 		#four color attribute
 		return 4
+	elif random.randrange(0,five_color_ratio) == 0:
+		#five color attribute
+		return 5
+	elif random.randrange(0,six_color_ratio) == 0:
+		#six color attribute (all color atribute, including colorless)
+		return 6 
 	else random.randrange(0,no_color_ratio) == 0: 
 		#No color attribute
 		return 0
