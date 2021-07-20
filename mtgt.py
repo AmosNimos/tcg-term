@@ -89,12 +89,34 @@ def get_input():
 	with Input(keynames='curses') as input_generator:
 		for e in input_generator:
 			return e
-
+# Cost color ratio
+def cost_ratio():
+	one_color_ratio = 4
+	two_color_ratio = 6
+	tree_color_ratio = 8
+	four_color_ratio = 10
+	five_color_ratio = 15
+	
+	if random.randrange(0,one_color_ratio) == 0:
+		#One color attribute
+		return 1
+	elif random.randrange(0,two_color_ratio) == 0:
+		#Two color attribute
+		return 2
+	elif random.randrange(0,tree_color_ratio) == 0:
+		#Tree color attribute
+		return 3
+	elif random.randrange(0,four_color_ratio) == 0:
+		#four color attribute
+		return 4
+	else random.randrange(0,no_color_ratio) == 0: 
+		#No color attribute
+		return 0
+	
 # Generate deck
 for x in range(deck_size):
-	# 🚫⚪🔵⚫🔴🟢];
+	# Color order 🚫⚪🔵⚫🔴🟢
 	cost = []
-	card_color_cost 
 	#(id, power, toughness, color, cost, color_cost)
 	deck.append(cardMonster(x, randrange(0,20), randrange(0,10),randrange(0,singAmount),cost));		
 		
