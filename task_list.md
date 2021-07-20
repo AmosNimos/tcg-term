@@ -2,23 +2,37 @@
 1. Card generation
 2. Deck generation
 3. Player initialisation
-4. game initialisation
-5. display
-6. cursor movement
-7. selection information field
-8. draw cards
-9. placing mana card on the field
-10. tap/untap mana card
-11. summon creature on the field
-12. attacking the opponent directly 
-13. tap/untap creature
-14. turn
-15. oponnent turn
-16. block opponent attack
-17. opponent block your attack
-18. monster can be destroyed and send to graveyard
-19. if life =0 or card in deck = 0 game over state.
-20. keyword ability
+4. Game initialisation
+5. Display
+6. Cursor movement
+7. Selection information field
+8. Draw cards
+9. Placing mana card on the field
+10. Tap/untap mana card
+11. Summon creature on the field
+12. Attacking the opponent directly 
+13. Tap/untap creature
+14. Turn
+15. Oponnent turn
+16. Block opponent attack
+17. Opponent block your attack
+18. Monster can be destroyed and send to graveyard
+19. If life =0 or card in deck = 0 game over state.
+20. Keyword ability.
+21. The option to save deck.
+22. More complex card effect.
+23. The option to modify and create your own deck.
+
 
 ## general task
-- None so far
+- A start menu.
+- No-Emoji mode, text only mode.
+
+### potential task idea?
+- Saved score and match analitics, (Max direct damage, last hit, max damage to creature, creature destroyed, card played etc...)
+- A default deck for each color type?
+- Unlock one card of you randomly generated oppenent deck, when winning against the AI as a way to gain new card?
+- Multi player? online?
+- Sound effect?
+- The option to create your own card?
+
