@@ -8,12 +8,14 @@ The first goal to be realistic in scope, is to have a playable single player gam
 
 Incomplete, In development
 
+<!--
 # Help Needed!
 I really want to play an mtg-like alternative game on linux, so please do your best to contribute if you can!
 This project only accept clear, organized and well commented code.
 You can also submit suggestion and idea, as long as they are unambiguous and well developed.
 
 ![WE NEED YOU](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.fau.edu%2Fsas%2Fimages%2FSAS%2520Volunteer%2520sign11.jpg&f=1&nofb=1)
+-->
 
 # Main Game View
  
