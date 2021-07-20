@@ -12,29 +12,33 @@ import pyttsx3
 
 # Vars
 ## Rules Variables
-deckSize = 60;
+deck_size = 60;
 initial_health = 20;
 
 # Game Variables 
-colorless = "🔷";
-colors = ["[White ⚪]","[Blue 🔵]","Black ⚫","[RED 🔴]","[Green 🟢]"];
+player_turn=[]
+colors = ["[White ⚪]","[Blue 🔵]","Black ⚫","[RED 🔴]","[Green 🟢]","[Colorless 🚫]"];
 
 # Class
 ## Cards class
 ### Creature, Land and other card type card class
 ### (Color cost could be stored in an array with five index of integer representing the color cost, and an extra index for the color less cost.)
-
 class Card:
 	def __init__(self, self_id, attack, deffence, color, cost, card_type):
 		self.self_id = self_id;
 		self.attack = attack;
 		self.deffence = deffence;
 		self.color = color;
-		self.type=card_type; # Sorcery, Land, Enchantment, Creature...
-		self.kind=kind; # Human, Dinosaur Avatar, Vampire...
+		self.type = card_type; # Sorcery, Land, Enchantment, Creature...
+		self.kind = kind; # Human, Dinosaur Avatar, Vampire...
 		self.cost = cost;
 		self.name = namegenerator.gen();
 		self.taped = False;
+		
+		#Calculate the total mana cost of the card
+		for cost_index in range(len(this.cost)):
+			total_cost+=this.cost[cost_index]
+		self.total_cost = total_cost;
 	
 	
 # Cursor selection	
@@ -46,7 +50,8 @@ class selection:
 ## (You can use 2D array to stack card in the same place.)
 ### (Might be a better idea to separate the field variable from the player class init function.)
 class Player:
-	def __init__(self, self_id, deck, hand, health, mana_zone, field_zone, graveyard):
+	def __init__(self, name, self_id, deck, hand, health, mana_zone, field_zone, graveyard):
+		self.name = name
 		self.self_id = self_id
 		self.deck = deck 
 		self.hand = hand
@@ -69,8 +74,14 @@ class Player:
 
 # Combine all visual element layout in a single string variable and print it to the terminal to display frame.
 def draw_frame(top,mid,end):
-	frame = top + mid + end;
+	("Turn: ["++"]")
+		
 	print(frame)
+# Initialise the game parameter
+def Game_init():
+	# Select who will start
+	player_turn=random.randrange(0,1);
+	
 
 # Functions
 ## Return keypress input from curtsies
@@ -79,6 +90,14 @@ def get_input():
 		for e in input_generator:
 			return e
 
+# Generate deck
+for x in range(deck_size):
+	# 🚫⚪🔵⚫🔴🟢];
+	cost = []
+	card_color_cost 
+	#(id, power, toughness, color, cost, color_cost)
+	deck.append(cardMonster(x, randrange(0,20), randrange(0,10),randrange(0,singAmount),cost));		
+		
 # Take an array of card and return an array containing only the card coresponding to the argument given	
 def exception(array,max_cost,min_cost,card_type,in_name,max_power,min_power,max_taughness,min_taughness):
 	picked = []
