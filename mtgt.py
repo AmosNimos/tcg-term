@@ -39,6 +39,16 @@ class Card:
 		for cost_index in range(len(this.cost)):
 			total_cost+=this.cost[cost_index]
 		self.total_cost = total_cost;
+		
+	def Generate():
+		ratio = cost_ratio()
+		for x in ratio:
+			# if not all mana color are used, select them randomly until the amounth is equal to the color ratio
+			cost_colors = random.randint(0,len(self.cost))
+			# Then for each of those color add a random value the total cost must be under 16
+			self.cost[]
+			# base the power and taughness base on the cost
+		
 	
 	
 # Cursor selection	
