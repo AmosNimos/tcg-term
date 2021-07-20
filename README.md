@@ -1,7 +1,6 @@
-# mtg-term
-
-A minimalistic open source mtg-like game made in python that can be played on a terminal emulator.
-The first goal to be realistic in scope is to have a playable single player game, with simple generated card, that have simple [__Keyword ability__](https://mtg.fandom.com/wiki/Keyword_ability) effect.
+# What is mtg-term?
+It is a minimalistic, open-source, mtg-like game, made in python, that can be played on most terminal emulator on linux.
+The first goal to be realistic in scope, is to have a playable single player game, with simple generated card, that have simple [__Keyword ability__](https://mtg.fandom.com/wiki/Keyword_ability) effect.
 
 Then add complexity, and maybe in the far long distant future a form of multiplayer.
 
