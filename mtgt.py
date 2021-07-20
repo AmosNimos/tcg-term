@@ -38,18 +38,7 @@ class Card:
 		#Calculate the total mana cost of the card
 		for cost_index in range(len(this.cost)):
 			total_cost+=this.cost[cost_index]
-		self.total_cost = total_cost;
-		
-	def Generate():
-		ratio = cost_ratio()
-		for x in ratio:
-			# if not all mana color are used, select them randomly until the amounth is equal to the color ratio
-			cost_colors = random.randint(0,len(self.cost))
-			# Then for each of those color add a random value the total cost must be under 16
-			self.cost[]
-			# base the power and taughness base on the cost
-		
-	
+		self.total_cost = total_cost;	
 	
 # Cursor selection	
 class selection: 
@@ -82,6 +71,59 @@ class Player:
 		### zone = graveuard, hand. field, deck...
 		#### Remove selected card from source (zone) array and add it to destination (zone) array.		
 
+### Function about card generation
+
+def Generate_cost():
+	# NOTE: (This function is way too big, if you know how to simplify it and make it clearer and shorter, feel free to suggest a your change to this project.)
+	
+	# Color order 🚫⚪🔵⚫🔴🟢
+	final_cost = [0,0,0,0,0,0]; 
+	ratio = cost_ratio()
+	max_cost = 16
+	min_cost = 1
+	
+	if ratio >= 6:
+		# If all mana color including colorless are in the ratio, select a random value to each.
+		# Limitation, the total mana cannot exceede 16.
+		# not all 16 mana need to be used each time, quite the contrary.
+		# to avoid this, each time we add a random value between 1 and 1+max_cost, we substract it from max_cost.
+		# We then substract the result to our remaining cost to distribute.
+		
+		# Remove the minimum cost multiplied by the amounth of color index in the array. since it will be added by default
+		max_cost -= min_cost * final_cost
+		
+		# Loop for each index of the final_cost.
+		for cost_index in len(final_cost):
+			current_cost = random.randint(0,max_cost)
+			max_cost - current_cost
+			final_cost[cost_index] = min_cost+current_cost; 
+	
+		# shuffle the cost array.
+		random.shuffle(final_cost)
+		
+		return final_cost
+	
+	else:	
+		# If NOT all mana color including colorless are in the ratio, select a random value to each equal to the ratio of color.
+		# Limitation, the total mana cannot exceede 16.
+		# to avoid this, each time we add a random value between 1 and 1+max_cost, we substract it from max_cost.
+		# We then substract the result to our remaining cost to distribute.
+		
+		# Remove the minimum cost multiplied by the amounth of color index in the array. since it will be added by default
+		max_cost -= min_cost * ratio
+		
+		# Loop for ratio amounth of index in the final_cost array and add a random value.
+		for cost_index in ratio:
+			current_cost = random.randint(0,max_cost)
+			max_cost - current_cost
+			final_cost[cost_index] = min_cost+current_cost; 
+	
+		# shuffle the cost array.
+		random.shuffle(final_cost)
+		
+		return final_cost
+		
+		
 # Combine all visual element layout in a single string variable and print it to the terminal to display frame.
 def draw_frame(top,mid,end):
 	("Turn: ["++"]")
