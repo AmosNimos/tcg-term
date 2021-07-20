@@ -1,9 +1,19 @@
 # mtg-term
+
 A minimalistic pen source mtg-like game made in python that can be played on a terminal emulator.
+The first goal to be realistic in scope is to have a playable single player game, with simple generated card, that have reccurent simple effect like "flying".
+Then add complexity, and maybe in the far long distant future a form of multiplayer.
 
 ## Project state:
 
 Incomplete, In development
+
+# Help Needed!
+I really want to play an mtg alternative on linux so please do your best to contribute clear, organized and well commented code.
+
+![WE NEED YOU](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.opforum.org.uk%2Fwp-content%2Fuploads%2F2016%2F08%2Fwe-need-you-e1471614771105.png&f=1&nofb=1)
+
+
 
 # Main Game View
  
