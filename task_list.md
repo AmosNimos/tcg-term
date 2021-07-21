@@ -24,15 +24,16 @@
 23. The option to modify and build your own deck.
 24. More complex game AI. (Singularity 🤖☢️)
 
-
 ## general task
 - A start menu.
-- No-Emoji mode, text only mode.
+- No-Emoji mode, text only mode
+- Reacreate actuall mtg card.
 
 ### potential task idea?
 - Saved score and match analitics, (Max direct damage, last hit, max damage to creature, creature destroyed, card played etc...)
 - A default deck for each color type?
 - Unlock one card of you randomly generated oppenent deck, when winning against the AI as a way to gain new card?
+- Unlock a 15 card pack when winning matches.
 - Multi player? online?
 - Sound effect?
 - The option to create your own card?
