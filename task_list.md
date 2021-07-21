@@ -28,6 +28,7 @@
 - A start menu.
 - No-Emoji mode, text only mode
 - Reacreate actuall mtg card.
+- card shop
 
 ### potential task idea?
 - Saved score and match analitics, (Max direct damage, last hit, max damage to creature, creature destroyed, card played etc...)
