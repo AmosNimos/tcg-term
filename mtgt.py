@@ -29,16 +29,18 @@ class selection:
 ### Creature, Land and other card type card class
 ### (Color cost could be stored in an array with five index of integer representing the color cost, and an extra index for the color less cost.)
 class Card:
-	def __init__(self, self_id, attack, deffence, color, cost, card_type):
+	def __init__(self, self_id, attack, deffence, cost, card_type):
 		self.self_id = self_id;
 		self.attack = attack;
 		self.deffence = deffence;
-		self.color = color;
 		self.type = card_type; # Sorcery, Land, Enchantment, Creature...
 		self.kind = kind; # Human, Dinosaur Avatar, Vampire...
 		self.cost = cost;
 		self.name = namegenerator.gen();
 		self.taped = False;
+		
+		# Make a function to calculate what color the card is based on the mana cost array
+		self.color = color;
 		
 		#Calculate the total mana cost of the card
 		for cost_index in range(len(this.cost)):
@@ -134,16 +136,33 @@ def gen_deck():
 		for cost_index in range(len(new_cost)):
 			total_cost+=new_cost[cost_index]
 		
-		new_card = Card(attack, deffence, color, cost, card_type)
+		# Maximum value online reference
+		# https://www.reddit.com/r/EDH/comments/ogiko4/low_cost_high_power_creatures/
+		# power + taughness limit:
+		# 10 for a 2 mana
+		# 5 for a 1 mana
+		# 12 for a 3 mana
+		# 15 for a 4 mana
+		# 18 for a 5 mana
+		# these value and formula can be change if needed.
+		
+		# Their need to be a functio to regulate the some of both
+		# like while p+t > limit, random(0,1) if 1 p-1, esle t-1
+		power = random(0,total_cost*2+round(total_cost/2))
+		taughness = random(0,total_cost*2+round(total_cost/2))
+		
+		# Some self adverse effect can also increase a card default attack and taughness, to compensate.
+		new_card = Card(power, taughness, color, cost, card_type)
 		# append card to the player_1 deck.
 		players[0].deck.append(new_card)
 		
-# Generate deck v01 incomplete
-for x in range(deck_size):
-	# Color order 🚫⚪🔵⚫🔴🟢
-	cost = []
-	#(id, power, toughness, color, cost, color_cost)
-	deck.append(cardMonster(x, randrange(0,20), randrange(0,10),randrange(0,singAmount),cost));	
+		# OLD Generate deck test, incomplete
+		# Will probably be removed.
+		for x in range(deck_size):
+			# Color order 🚫⚪🔵⚫🔴🟢
+			cost = []
+			#(id, power, toughness, color, cost, color_cost)
+			deck.append(cardMonster(x, randrange(0,20), randrange(0,10),randrange(0,singAmount),cost));	
 		
 # Combine all visual element layout in a single string variable and print it to the terminal to display frame.
 def draw_frame(top,mid,end):
