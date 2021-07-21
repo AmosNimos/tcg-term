@@ -136,23 +136,34 @@ def gen_deck():
 		for cost_index in range(len(new_cost)):
 			total_cost+=new_cost[cost_index]
 		
-		# Maximum value online reference
+		# Maximum value based on the following, online reference.
 		# https://www.reddit.com/r/EDH/comments/ogiko4/low_cost_high_power_creatures/
 		# power + taughness limit:
-		# 10 for a 2 mana
 		# 5 for a 1 mana
+		# 10 for a 2 mana
 		# 12 for a 3 mana
 		# 15 for a 4 mana
 		# 18 for a 5 mana
-		# these value and formula can be change if needed.
+		# These value and formula can be change in the limiters array if needed, to be more similar to the original game.
+		limiters = [5,10,12,15,18]
+		cost_limit = limiters[Total_cost]
 		
-		# Their need to be a functio to regulate the some of both
-		# like while p+t > limit, random(0,1) if 1 p-1, esle t-1
+		# Generate 
 		power = random(0,total_cost*2+round(total_cost/2))
 		taughness = random(0,total_cost*2+round(total_cost/2))
 		
+		# Function to regulate the somme of both powerr and taughness based on the mana cost
+		# like while p+t > limit, random(0,1) if 1 p-1, esle t-1
+		while power + taughness > cost_limit:
+			# Choose what atribute to debuff.
+			if random.randint(0,1) == 1:
+				power-=1;
+			else:
+				taughness-=1;
+			
+		
 		# Some self adverse effect can also increase a card default attack and taughness, to compensate.
-		new_card = Card(power, taughness, color, cost, card_type)
+		new_card = Card(power, taughness, cost, card_type)
 		# append card to the player_1 deck.
 		players[0].deck.append(new_card)
 		
