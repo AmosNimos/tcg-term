@@ -29,7 +29,7 @@ class selection:
 ### Creature, Land and other card type card class
 ### (Color cost could be stored in an array with five index of integer representing the color cost, and an extra index for the color less cost.)
 class Card:
-	def __init__(self, self_id, attack, deffence, cost, card_type):
+	def __init__(self, self_id, power, taughness, cost, card_type):
 		self.self_id = self_id;
 		self.attack = attack;
 		self.deffence = deffence;
@@ -39,7 +39,8 @@ class Card:
 		self.name = namegenerator.gen();
 		self.taped = False;
 		
-		# Make a function to calculate what color the card is based on the mana cost array
+		# Make a function to calculate what color the card is based on the mana cost array.
+		# IF, their is a need for it in the game otherwise just ignore it.
 		self.color = color;
 		
 		#Calculate the total mana cost of the card
@@ -52,7 +53,7 @@ class Card:
 ## (You can use 2D array to stack card in the same place.)
 ### (Might be a better idea to separate the field variable from the player class init function.)
 class Player:
-	def __init__(self, name, self_id, deck, hand, health, mana_zone, field_zone, graveyard):
+	def __init__(self, name, self_id, deck, hand, health, mana_zone, field_zone, graveyard, Playable):
 		self.name = name
 		self.self_id = self_id
 		self.deck = deck 
@@ -128,13 +129,19 @@ def Generate_cost():
 
 # Generate deck
 def gen_deck():
+	temp_deck = []
 	
 	# for each player, Loop trough for each card in the deck and generate them, and append them to deck.
 	for card in range(deck_size):
+		
 		#Calculate the total mana cost of the card
 		new_cost = Generate_cost()
 		for cost_index in range(len(new_cost)):
 			total_cost+=new_cost[cost_index]
+		
+		# Generate 
+		power = random(0,total_cost*2+round(total_cost/2))
+		taughness = random(0,total_cost*2+round(total_cost/2))
 		
 		# Maximum value based on the following, online reference.
 		# https://www.reddit.com/r/EDH/comments/ogiko4/low_cost_high_power_creatures/
@@ -145,12 +152,9 @@ def gen_deck():
 		# 15 for a 4 mana
 		# 18 for a 5 mana
 		# These value and formula can be change in the limiters array if needed, to be more similar to the original game.
+		# Some self adverse effect can also increase a card initial default power and taughness, to compensate.
 		limiters = [5,10,12,15,18]
 		cost_limit = limiters[Total_cost]
-		
-		# Generate 
-		power = random(0,total_cost*2+round(total_cost/2))
-		taughness = random(0,total_cost*2+round(total_cost/2))
 		
 		# Function to regulate the somme of both powerr and taughness based on the mana cost
 		# like while p+t > limit, random(0,1) if 1 p-1, esle t-1
@@ -160,28 +164,33 @@ def gen_deck():
 				power-=1;
 			else:
 				taughness-=1;
+		
+		
 			
 		
-		# Some self adverse effect can also increase a card default attack and taughness, to compensate.
-		new_card = Card(power, taughness, cost, card_type)
-		# append card to the player_1 deck.
-		players[0].deck.append(new_card)
+		# To begin with all the card witll be creature.
+		new_card = Card(power, taughness, new_cost, "creature")
+		# append card to the temporary deck variable.
+		temp_deck.append(new_card)
+	
+	return temp_deck
 		
-		# OLD Generate deck test, incomplete
-		# Will probably be removed.
-		for x in range(deck_size):
-			# Color order 🚫⚪🔵⚫🔴🟢
-			cost = []
-			#(id, power, toughness, color, cost, color_cost)
-			deck.append(cardMonster(x, randrange(0,20), randrange(0,10),randrange(0,singAmount),cost));	
 		
 # Combine all visual element layout in a single string variable and print it to the terminal to display frame.
 def draw_frame(top,mid,end):
 	("Turn: ["++"]")
 		
 	print(frame)
+	
 # Initialise the game parameter
 def Game_init():
+	# Generate both player decks
+	first_deck = gen_deck();
+	second_deck = gen_deck();
+	# Generate Players.
+	#(name, self_id, deck, hand, health, mana_zone, field_zone, graveyard, Playable):
+	players[0] = Player("Main_player",first_deck,initial_health,[],[],[], False)
+	players[0] = Player("Ai_player",second_deck,initial_health,[],[],[], False)
 	# Select who will start
 	player_turn=random.randrange(0,1);
 	
