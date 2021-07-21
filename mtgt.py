@@ -19,6 +19,10 @@ initial_health = 20;
 player_turn=[]
 colors = ["[White ⚪]","[Blue 🔵]","Black ⚫","[RED 🔴]","[Green 🟢]","[Colorless 🚫]"];
 
+# Cursor selection	
+class selection: 
+	def __init__(self, x, y, over, selected):
+
 # Class
 ## Cards class
 ### Creature, Land and other card type card class
@@ -39,10 +43,6 @@ class Card:
 		for cost_index in range(len(this.cost)):
 			total_cost+=this.cost[cost_index]
 		self.total_cost = total_cost;	
-	
-# Cursor selection	
-class selection: 
-	def __init__(self, x, y, over, selected):
 		
 # Player 
 ## (Don't forget to add an extra deck)	
@@ -70,7 +70,13 @@ class Player:
 		## (Basically a function to move a card from any zone, to any zone if, an effect or situation require it.)
 		### zone = graveuard, hand. field, deck...
 		#### Remove selected card from source (zone) array and add it to destination (zone) array.		
-
+	
+	# Generate deck
+	def gen_deck():
+		# Not sure if that should be inside of the player class?
+		for card in deck_size:
+			self.deck.append()
+			
 ### Function about card generation
 
 def Generate_cost():
