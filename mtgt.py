@@ -16,8 +16,9 @@ deck_size = 60;
 initial_health = 20;
 
 # Game Variables 
-player_turn=[]
-colors = ["[White ⚪]","[Blue 🔵]","Black ⚫","[RED 🔴]","[Green 🟢]","[Colorless 🚫]"];
+players = []; # A list containing all player object.
+player_turn = 0; # Why is this an array? I forgot.
+colors = ["[White ⚪]","[Blue 🔵]","Black ⚫","[RED 🔴]","[Green 🟢]","[Colorless 🚫]"]; # Not sure this will have a use case?
 
 # Cursor selection	
 class selection: 
@@ -71,14 +72,8 @@ class Player:
 		### zone = graveuard, hand. field, deck...
 		#### Remove selected card from source (zone) array and add it to destination (zone) array.		
 	
-	# Generate deck
-	def gen_deck():
-		# Not sure if that should be inside of the player class?
-		for card in deck_size:
-			self.deck.append()
 			
 ### Function about card generation
-
 def Generate_cost():
 	# NOTE: (This function is way too big, if you know how to simplify it and make it clearer and shorter, feel free to suggest a your change to this project.)
 	
@@ -128,7 +123,27 @@ def Generate_cost():
 		random.shuffle(final_cost)
 		
 		return final_cost
+
+# Generate deck
+def gen_deck():
+	
+	# for each player, Loop trough for each card in the deck and generate them, and append them to deck.
+	for card in range(deck_size):
+		#Calculate the total mana cost of the card
+		new_cost = Generate_cost()
+		for cost_index in range(len(new_cost)):
+			total_cost+=new_cost[cost_index]
 		
+		new_card = Card(attack, deffence, color, cost, card_type)
+		# append card to the player_1 deck.
+		players[0].deck.append(new_card)
+		
+# Generate deck v01 incomplete
+for x in range(deck_size):
+	# Color order 🚫⚪🔵⚫🔴🟢
+	cost = []
+	#(id, power, toughness, color, cost, color_cost)
+	deck.append(cardMonster(x, randrange(0,20), randrange(0,10),randrange(0,singAmount),cost));	
 		
 # Combine all visual element layout in a single string variable and print it to the terminal to display frame.
 def draw_frame(top,mid,end):
@@ -147,6 +162,7 @@ def get_input():
 	with Input(keynames='curses') as input_generator:
 		for e in input_generator:
 			return e
+		
 # color Cost ratio
 def cost_ratio():
 	
@@ -182,14 +198,7 @@ def cost_ratio():
 		return 6 
 	else random.randrange(0,no_color_ratio) == 0: 
 		#No color attribute
-		return 0
-	
-# Generate deck
-for x in range(deck_size):
-	# Color order 🚫⚪🔵⚫🔴🟢
-	cost = []
-	#(id, power, toughness, color, cost, color_cost)
-	deck.append(cardMonster(x, randrange(0,20), randrange(0,10),randrange(0,singAmount),cost));		
+		return 0	
 		
 # Take an array of card and return an array containing only the card coresponding to the argument given	
 def exception(array,max_cost,min_cost,card_type,in_name,max_power,min_power,max_taughness,min_taughness):
