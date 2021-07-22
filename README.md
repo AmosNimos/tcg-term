@@ -62,7 +62,22 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
  P&T: [1/1]
  ~~~
   
+ # Card shop
  
+ > Don't worry you buy game with in game point, which can be won by winning game.
+ > No ingame purchasses XD
+~~~
+[Cards: 15x]:
+  📦[🚫] [Cost: 150🪙]
+  📦[⚪] [Cost: 250🪙]
+🔍 📦[🔵] [Cost: 250🪙]
+  📦[⚫] [Cost: 250🪙]
+  📦[🔴] [Cost: 250🪙]
+  📦[🟢] [Cost: 250🪙]
+ 
+Exit: ❌
+~~~
+
  
  # Symbols emoji and therm used
  
@@ -72,7 +87,7 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
  Artefact Or Enchantment ⬜
  Creature 🟫
  Instant or Sorcery 🟧
- Cursor/Slection 🔍
+ Cursor/Slection 🔍 (Alternative cursor idea 👇👆👉🤚 )
  Colorless +
  Attacking 🗡️
  Blocking 🛡️
