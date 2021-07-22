@@ -212,6 +212,19 @@ def Game_init():
 	player_turn=random.randint(0,1);
 	
 
+
+# This function is for creating color pack
+# generate card in the card variable 
+"""
+def color_pack:
+	while pack < pack_size: 
+		if card.card_type == "land" and card.color == pack_color:
+			pack.append(card)
+		elif card.card_type == "creature" and cost[pack_color_index] > 0:
+			pack.append(card)
+			
+"""
+
 # Functions
 ## Return keypress input from curtsies
 def get_input():
@@ -283,7 +296,6 @@ def exception(array,max_cost,min_cost,card_type,in_name,max_power,min_power,max_
 # Main game loop
 #while True:
 	
-
 
 
 
