@@ -63,7 +63,7 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
  P&T: [1/1]
  ~~~
   
- # Card shop
+ # Card shop view
  
  > Don't worry you buy game with in game point, which can be won by winning game.
  > No ingame purchasses XD
@@ -76,7 +76,18 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
   📦[🔴] [Cost: 250🪙]
   📦[🟢] [Cost: 250🪙]
  
-Exit Shop: ❌
+  🚪[MAIN MENU]
+~~~
+
+# Settings view
+~~~
+Settings:
+ 🔍 Text Only [Off]
+ ⚙️ Sound Effect [Off]
+ ⚙️ Text Color [On]
+ 
+ 🚪[MAIN MENU]
+ 
 ~~~
 
  
@@ -88,7 +99,7 @@ Exit Shop: ❌
  Artefact Or Enchantment ⬜
  Creature 🟫
  Instant or Sorcery 🟧
- Cursor/Slection 🔍 (Alternative cursor idea 👇👆👉🤚 )
+ Cursor/Slection 🔍 (Alternative cursor idea 👇👆👉🤚💠 )
  Colorless +
  Attacking 🗡️
  Blocking 🛡️
