@@ -75,7 +75,7 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
   📦[🔴] [Cost: 250🪙]
   📦[🟢] [Cost: 250🪙]
  
-Exit: ❌
+Exit Shop: ❌
 ~~~
 
  
