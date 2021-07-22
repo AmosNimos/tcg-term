@@ -18,7 +18,6 @@ initial_health = 20;
 # Game Variables 
 players = []; # A list containing all player object.
 player_turn = 0; # Why is this an array? I forgot.
-colors = ["[White ⚪]","[Blue 🔵]","Black ⚫","[RED 🔴]","[Green 🟢]","[Colorless 🚫]"]; # Not sure this will have a use case?
 
 # Cursor selection	
 #class selection: 
@@ -29,13 +28,14 @@ colors = ["[White ⚪]","[Blue 🔵]","Black ⚫","[RED 🔴]","[Green 🟢]","[
 ### Creature, Land and other card type card class
 ### (Color cost could be stored in an array with five index of integer representing the color cost, and an extra index for the color less cost.)
 class Card:
-	def __init__(self, self_id, power, taughness, cost, color, card_type):
+	def __init__(self, self_id, power, taughness, cost, total_cost, color, card_type, card_kind):
 		self.self_id = self_id;
-		self.attack = attack;
-		self.deffence = deffence;
+		self.power = power;
+		self.taughness = taughness;
 		self.type = card_type; # Sorcery, Land, Enchantment, Creature...
-		self.kind = kind; # Human, Dinosaur Avatar, Vampire...
+		self.kind = card_kind; # Human, Dinosaur Avatar, Vampire...
 		self.cost = cost;
+		self.total_cost = total_cost;
 		self.name = namegenerator.gen();
 		self.taped = False;
 		
@@ -44,18 +44,14 @@ class Card:
 
 		# I need this variable for mana/plane.
 		self.color = color;
-		
-		#Calculate the total mana cost of the card
-		for cost_index in range(len(this.cost)):
-			total_cost+=this.cost[cost_index]
-		self.total_cost = total_cost;	
+			
 		
 # Player 
 ## (Don't forget to add an extra deck)	
 ## (You can use 2D array to stack card in the same place.)
 ### (Might be a better idea to separate the field variable from the player class init function.)
 class Player:
-	def __init__(self, name, self_id, deck, hand, health, mana_zone, field_zone, graveyard, Playable):
+	def __init__(self, name, self_id, deck, health, hand, mana_zone, field_zone, graveyard, Playable):
 		self.name = name
 		self.self_id = self_id
 		self.deck = deck 
@@ -85,58 +81,80 @@ def Generate_cost():
 	# Color order 🚫⚪🔵⚫🔴🟢
 	final_cost = [0,0,0,0,0,0]; 
 	ratio = cost_ratio()
-	max_cost = 16
+	print("card colors: "+str(ratio))
+	if ratio > 0:
+		max_cost = 15/ratio
+	else:
+		max_cost = 15
+	print("max_cost_before:"+str(max_cost))
 	min_cost = 1
+
 	
-	if ratio >= 6:
-		# If all mana color including colorless are in the ratio, select a random value to each.
-		# Limitation, the total mana cannot exceede 16.
-		# not all 16 mana need to be used each time, quite the contrary.
-		# to avoid this, each time we add a random value between 1 and 1+max_cost, we substract it from max_cost.
-		# We then substract the result to our remaining cost to distribute.
-		
-		# Remove the minimum cost multiplied by the amounth of color index in the array. since it will be added by default
-		max_cost -= min_cost * final_cost
-		
-		# Loop for each index of the final_cost.
-		for cost_index in len(final_cost):
-			current_cost = random.randint(0,max_cost)
-			max_cost - current_cost
-			final_cost[cost_index] = min_cost+current_cost; 
-	
-		# shuffle the cost array.
-		random.shuffle(final_cost)
-		
-		return final_cost
-	
+	if ratio == 0:
+		print("r0")
+		current_cost = randint(1, round(15/randint(1,4))); 
+		# making larger cost less likely 
+		for x in range(current_cost):
+			maximum_limit = randint(2,4);
+			if randint(0,17-current_cost) == 0 and current_cost>maximum_limit:
+				current_cost -= randint(1,maximum_limit);
+		final_cost[0]
 	else:	
 		# If NOT all mana color including colorless are in the ratio, select a random value to each equal to the ratio of color.	
 		# Remove the minimum cost multiplied by the amounth of color index in the array. since it will be added by default
-		max_cost -= min_cost * ratio
 		
 		# Loop for ratio amounth of index in the final_cost array and add a random value.
-		for cost_index in ratio:
-			current_cost = random.randint(0,max_cost)
-			max_cost - current_cost
-			final_cost[cost_index] = min_cost+current_cost; 
+		for cost_index in range(ratio):
+			print("max="+str(max_cost))
+			current_cost = randint(1, round(max_cost));
+			# making larger cost less likely 
+			# this is way overcomplicated for no reason, please help me
+			for x in range(current_cost):
+				maximum_limit = randint(2,4);
+				if randint(0,17-current_cost) == 0 and current_cost>randint(2,4):
+					current_cost -= randint(1,randint(2,4));
+			max_cost -= current_cost;
+			if max_cost < 1:
+				max_cost = 1;
+				if final_cost[cost_index-1]>1:
+					final_cost[cost_index-1]=round(final_cost[cost_index-1]/2)
+			final_cost[cost_index] = current_cost; 
 	
 		# shuffle the cost array.
-		random.shuffle(final_cost)
+		shuffle(final_cost)
 		
-		return final_cost
+	return final_cost
 
 # Generate deck
-def gen_creature():
-	
+def gen_creature(card_index):
+	cost_limit=0
+
 	# for each player, Loop trough for each card in the deck and generate them, and append them to deck.
 	#Calculate the total mana cost of the card
-	new_cost = Generate_cost()
+	new_cost = Generate_cost();
+	total_cost=0;
 	for cost_index in range(len(new_cost)):
 		total_cost+=new_cost[cost_index]
+
+	print("total_cost: "+str(total_cost))
+	print("color: [🚫,⚪,🔵,⚫,🔴,🟢]")
+	print("cost : "+str(new_cost))
+	limiters = [4,8,10,12,14,16,18,20,22,24,25,26,27,28,29,30,32]
+	cost_limit = limiters[total_cost]
+	print(cost_limit)
 	
 	# Generate 
-	power = random(0,total_cost*2+round(total_cost/2))
-	taughness = random(0,total_cost*2+round(total_cost/2))
+	power = randint(0,total_cost*2+round(total_cost/2))
+	taughness = randint(0,total_cost*2+round(total_cost/2))
+
+	# Function to regulate the somme of both powerr and taughness based on the mana cost
+	# like while p+t > limit, random(0,1) if 1 p-1, esle t-1
+	while power + taughness > cost_limit:
+		# Choose what atribute to debuff.
+		if randint(0,1) == 1:
+			power-=1;
+		else:
+			taughness-=1;
 	
 	# Maximum value based on the following, online reference.
 	# https://www.reddit.com/r/EDH/comments/ogiko4/low_cost_high_power_creatures/
@@ -144,50 +162,10 @@ def gen_creature():
 	# These value and formula can be change in the limiters array if needed, to be more similar to the original game.
 	# Some self adverse effect can also increase a card initial default power and taughness, to compensate.
 	# From 1 mana to 5 in this array, so far no creature cost 0 mana.
-	limiters = [5,10,12,15,18]
-	cost_limit = limiters[Total_cost]
 	
-	# Function to regulate the somme of both powerr and taughness based on the mana cost
-	# like while p+t > limit, random(0,1) if 1 p-1, esle t-1
-	while power + taughness > cost_limit:
-		# Choose what atribute to debuff.
-		if random.randint(0,1) == 1:
-			power-=1;
-		else:
-			taughness-=1;
-	
-	return Card(power, taughness, new_cost, "creature")
+	return Card(card_index, power, taughness, new_cost, total_cost, None, "creature", "Vampire")
 	
 def gen_land():
-	
-	# for each player, Loop trough for each card in the deck and generate them, and append them to deck.
-	#Calculate the total mana cost of the card
-	new_cost = Generate_cost()
-	for cost_index in range(len(new_cost)):
-		total_cost+=new_cost[cost_index]
-	
-	# Generate 
-	power = random(0,total_cost*2+round(total_cost/2))
-	taughness = random(0,total_cost*2+round(total_cost/2))
-	
-	# Maximum value based on the following, online reference.
-	# https://www.reddit.com/r/EDH/comments/ogiko4/low_cost_high_power_creatures/
-	# power + taughness limit:
-	# These value and formula can be change in the limiters array if needed, to be more similar to the original game.
-	# Some self adverse effect can also increase a card initial default power and taughness, to compensate.
-	# From 1 mana to 5 in this array, so far no creature cost 0 mana.
-	limiters = [5,10,12,15,18]
-	cost_limit = limiters[Total_cost]
-	
-	# Function to regulate the somme of both powerr and taughness based on the mana cost
-	# like while p+t > limit, random(0,1) if 1 p-1, esle t-1
-	while power + taughness > cost_limit:
-		# Choose what atribute to debuff.
-		if random.randint(0,1) == 1:
-			power-=1;
-		else:
-			taughness-=1;
-	
 	return Card(None, None, None, "Land")	
 		
 # Combine all visual element layout in a single string variable and print it to the terminal to display frame.
@@ -199,17 +177,20 @@ def Game_init():
 	# Generate both player decks
 	temp_deck = []
 	for card in range(deck_size):
-		new_card = gen_creature()
+		new_card = gen_creature(card)
 		temp_deck.append(new_card)
 	
 	first_deck = temp_deck
 	second_deck = temp_deck
 	# Generate Players.
 	#(name, self_id, deck, hand, health, mana_zone, field_zone, graveyard, Playable):
-	players[0] = Player("Main_player",first_deck,initial_health,[],[],[], False)
-	players[0] = Player("Ai_player",second_deck,initial_health,[],[],[], False)
+	new_player = Player("Main_player",0,first_deck,initial_health,None, None,None,None, True)
+	players.append(new_player)
+	new_player = Player("Ai_player",1,second_deck,initial_health,None, None,None,None, False)
+	players.append(new_player)
 	# Select who will start
-	player_turn=random.randint(0,1);
+	player_turn=randint(0,1);
+	os.system('clear')
 	
 
 
@@ -240,34 +221,34 @@ def cost_ratio():
 	# Otherwise it will try the following ratio in order 
 	# if none of the value return 0 then the card will be colorless.
 	
-	one_color_ratio = 4
-	two_color_ratio = 6
-	tree_color_ratio = 8
-	four_color_ratio = 10
-	five_color_ratio = 15
-	six_color_ratio = 20
+	one_color_ratio = 2
+	two_color_ratio = 8
+	tree_color_ratio = 25
+	four_color_ratio = 50
+	five_color_ratio = 75
+	six_color_ratio = 100
 	
-	if random.randint(0,one_color_ratio) == 0:
+	if randint(0,one_color_ratio) == 0:
 		#One color attribute (excluding colorless)
 		return 1
-	elif random.randint(0,two_color_ratio) == 0:
+	elif randint(0,two_color_ratio) == 0:
 		#Two color attribute
 		return 2
-	elif random.randint(0,tree_color_ratio) == 0:
+	elif randint(0,tree_color_ratio) == 0:
 		#Tree color attribute
 		return 3
-	elif random.randint(0,four_color_ratio) == 0:
+	elif randint(0,four_color_ratio) == 0:
 		#four color attribute
 		return 4
-	elif random.randint(0,five_color_ratio) == 0:
+	elif randint(0,five_color_ratio) == 0:
 		#five color attribute
 		return 5
-	elif random.randint(0,six_color_ratio) == 0:
+	elif randint(0,six_color_ratio) == 0:
 		#six color attribute (all color atribute, including colorless)
 		return 6 
 	else: 
 		#No color attribute
-		return 0	
+		return randint(randint(0,1),4+randint(0,2))	
 		
 # Take an array of card and return an array containing only the card coresponding to the argument given	
 def exception(array,max_cost,min_cost,card_type,in_name,max_power,min_power,max_taughness,min_taughness):
@@ -293,9 +274,44 @@ def exception(array,max_cost,min_cost,card_type,in_name,max_power,min_power,max_
 	
 	return array
 		
+# emoji idea for the card pack "📗📦🎴"
+# Game ui: Main_menu, Battle, Card_shop, Deck_edit. 
+
+#Temporary value
+card_in_pack = 15
+key_pressed = ""
+card_un_pack = 0
 # Main game loop
-#while True:
+
+Game_init();
+while True:
+	colors = ["🚫","⚪","🔵","⚫","🔴","🟢"]; 
+
+	if card_in_pack > 0:
+		if key_pressed == "a":
+			os.system('clear')
+			card_in_pack -=1;
+			card_un_pack +=1 ;
+		print("📦["+str(card_in_pack)+"] "+"🎴"*card_un_pack);
+		print("  [Info]--------------------------------------");
+		card_name = str(players[0].deck[card_un_pack].name)
+		card_power = str(players[0].deck[card_un_pack].power)
+		card_taughness = str(players[0].deck[card_un_pack].taughness)
+		card_cost = ""
+		if players[0].deck[card_un_pack].cost[0]>0:
+			card_cost += colors[0]+"["+str(players[0].deck[card_un_pack].cost[0])+"]"
+		for x in range(len(players[0].deck[card_un_pack].cost)-1):
+			card_cost += str(players[0].deck[card_un_pack].cost[x+1]*colors[x+1])
+		card_name = str(players[0].deck[card_un_pack].name)
+		print("Name: "+card_name)
+		print("Name: "+card_power)
+		print("Name: "+card_taughness)
+		print("Name: "+card_cost)
+	# Unpacking card test
+	key_pressed = get_input();
+
 	
+
 
 
 
