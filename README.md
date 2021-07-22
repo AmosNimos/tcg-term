@@ -43,6 +43,7 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
  Name: [Lorem Ipsum]
  Cost: 🔵🔵🔵[3] 🚫🚫[2]
  Type: Creature
+ Rarity: Mythic rare 🌟
  Effect: [ ... ]
  P&T: [1/1]
  ~~~
@@ -94,6 +95,11 @@ Exit Shop: ❌
  Colorless 🚫
  Mana card 🟪
  Back 🔳
+ Mytic Rare 🌟
+ Rare ⭐
+ Uncomun 🥇
+
+ 
  
  Therm: P&T = Power and Taughness
  ~~~
