@@ -97,7 +97,7 @@ Filter: Name[🅰] Cost[🪙] Power[🗡️] Taughness[🛡️] Color[🚫]
   
  # Card shop view
  
- > Don't worry you buy game with in game point, which can be won by winning game.
+ > Don't worry you buy the cards with in game point, which can be won by winning game.
  > No ingame purchasses XD
 ~~~
 [Cards: 15x]:
