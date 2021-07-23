@@ -45,30 +45,40 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
  Type: Creature
  Rarity: Mythic rare 🌟
  Effect: [ ... ]
- P&T: [1/1]
+ Power: 🗡️[1]
+ Taughness: 🛡️[1]
  ~~~
  
  # Deck Edit
  ~~~
-[Creature]
+Filter: Name[🅰] Cost[🪙] Power[🗡️] Taughness[🛡️] Color[🚫]
+[Deck]
 🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫
 🟫🟫🟫🟫🔍🟫🟫🟫🟫🟫
-🟫🟫🟫🟫
-
-[Sorceries and instants]
-🟧🟧🟧🟧🟧
-
-[Artifacts]
-⬜⬜⬜
-
-[Enchantments]
-⬜⬜
-
-[Lands]
-🟪🟪🟪🟪🟪🟪
+🟫🟫🟫🟫🟧🟧🟧🟧🟧🟧
+🟧🟧🟧🟪🟪🟪🟪🟪🟪🟪
 🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪
-🟪🟪🟪🟪🟪🟪🟪🟪
+🟪🟪🟪🟪🟪🟪🟪
 
+[Sideboard]
+🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫
+🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫
+🟫🟫🟫🟫🟧🟧🟧🟧🟧🟧
+🟧🟧🟧🟪🟪🟪🟪🟪🟪🟪
+🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪
+🟪🟪🟪🟪🟪🟪🟪
+
+ -[Info]----------------------
+ Name: [Lorem Ipsum]
+ Cost: 🔵🔵🔵[3] 🚫🚫[2]
+ Type: Creature
+ Effect: [ ... ]
+ Power: 1
+ taughness: 1
+ 
+❌[REMOVE]
+ -----------------------------
+ 
 🚪[MAIN MENU]
 ~~~
 
@@ -82,7 +92,8 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
  Cost: 🔵🔵🔵[3] 🚫🚫[2]
  Type: Creature
  Effect: [ ... ]
- P&T: [1/1]
+ Power: 1
+ taughness: 1
  ~~~
   
  # Card shop view
@@ -118,9 +129,8 @@ Settings:
  ~~~
  Symbols:
  Tapped ⬛
- Artefact Or Enchantment ⬜
  Creature 🟫
- Instant or Sorcery 🟧
+ Instant or Sorcery Or Artefact Or Enchantment 🟧
  Cursor/Slection 🔍 (Alternative cursor idea 👇👆👉🤚💠 )
  Colorless +
  Attacking 🗡️
