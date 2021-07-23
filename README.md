@@ -17,7 +17,7 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
 ![WE NEED YOU](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.fau.edu%2Fsas%2Fimages%2FSAS%2520Volunteer%2520sign11.jpg&f=1&nofb=1)
 
 # Main Game View
- 
+ > I am still not sure what is the best way to display the mana cost.
  ~~~
  Turn: [Player_name_one]
  Phase: [Beginning/Untap Step] 
@@ -41,7 +41,7 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
  
  -[Info]----------------------
  Name: [Lorem Ipsum]
- Cost: 🔵🔵🔵[3] 🚫🚫[2]
+ Cost: 🚫[2] 🔵🔵🔵 
  Type: Creature
  Rarity: Mythic rare 🌟
  Effect: [ ... ]
@@ -70,7 +70,7 @@ Filter: Name[🅰] Cost[🪙] Power[🗡️] Taughness[🛡️] Color[🚫]
 
  -[Info]----------------------
  Name: [Lorem Ipsum]
- Cost: 🔵🔵🔵[3] 🚫🚫[2]
+ Cost: 🚫🚫[2] 🔵🔵🔵[3]
  Type: Creature
  Effect: [ ... ]
  Power: 1
@@ -89,11 +89,10 @@ Filter: Name[🅰] Cost[🪙] Power[🗡️] Taughness[🛡️] Color[🚫]
  
  -[Info]----------------------
  Name: [Lorem Ipsum]
- Cost: 🔵🔵🔵[3] 🚫🚫[2]
- Type: Creature
+ Cost: 🚫[2] 🔵[3]
+ Type: [Creature]
  Effect: [ ... ]
- Power: 1
- taughness: 1
+ P/T: [1/1]
  ~~~
   
  # Card shop view
