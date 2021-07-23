@@ -212,7 +212,25 @@ def get_input():
 	with Input(keynames='curses') as input_generator:
 		for e in input_generator:
 			return e
-		
+def rarity_ratio:
+	if randint(0,1000) == 0 :
+		# Value suggestion
+		# Can be 6 color creature (including colorless)
+		# with a max cost of 15
+		return "mythic rare"
+	elif randint(0,500) == 0 :
+		# Can be 5 color creature (including colorless)
+		# with a max cost of 12
+		return "rare"
+	elif randint(0,100) == 0 :
+		# Can be 4 color creature (including colorless)
+		# with a max cost of 10
+		return "uncomon"
+	else:
+		# Cannot be more then 3 color creature (including colorless)
+		# 9 max cost
+		return "common"
+	
 # color Cost ratio
 def cost_ratio():
 	
