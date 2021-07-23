@@ -48,8 +48,30 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
  P&T: [1/1]
  ~~~
  
- # Graveyard View
-  
+ # Deck Edit
+ ~~~
+[Creature]
+🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫
+🟫🟫🟫🟫🔍🟫🟫🟫🟫🟫
+🟫🟫🟫🟫
+
+[Sorceries and instants]
+🟧🟧🟧🟧🟧
+
+[Artifacts]
+⬜⬜⬜
+
+[Enchantments]
+⬜⬜
+
+[Lands]
+🟪🟪🟪🟪🟪🟪
+🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪
+🟪🟪🟪🟪🟪🟪🟪🟪
+
+🚪[MAIN MENU]
+~~~
+
  ~~~
  [Player_name_one] 
  Graveyard: 🟧🟫🟪🟫🔍🟧[6]
