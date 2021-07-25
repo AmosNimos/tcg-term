@@ -150,6 +150,26 @@ Settings:
  Therm: P&T = Power and Taughness
  ~~~
  
+ # Game default key bindings
+ 
+ ~~~
+ 
+ ## An option to customise or swap these default key bindings should be profided in the form of a config file or settings page, eventually.
+ 
+ # Options
+ w = want selection (select what is selected by the cursor)
+ a = action (attacking/blocking/activating a spell)
+ s = skip (will skip to the next phase)
+ d = end turn (will skip all remaining phases)
+ 
+ # Move cursor
+ h = left
+ j = down
+ k = up
+ l = right
+ 
+ ~~~
+ 
  # Info on phase and stuff
  ~~~
  https://www.youtube.com/watch?v=V4rYwsBMKxs
@@ -157,5 +177,5 @@ Settings:
  Steps: Beginning(Untap, Draw) Main(Land, Spells) Combat(Attackers, Blockers, damage) Second(Land, Spells) Ending(Cleanup)
  ~~~
  
-
+### You feed back is welcome.
 
