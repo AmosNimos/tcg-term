@@ -6,7 +6,7 @@ The first goal to be realistic in scope, is to have a playable single player gam
 
 ## Project state:
 
-Incomplete, In development
+🔧 🚧🚧🚧 Incomplete, In development 🚧🚧🚧 👷
 
 # Help Needed!
 I really want to play an mtg-like alternative game on linux, so please do your best to contribute if you can!
