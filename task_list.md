@@ -1,3 +1,14 @@
+## Update
+
+### Card Generation
+I decided to ignore generating balanced logical card for now, and just make random ones with no patterns instead, this is to be able to advance the project faster, once the basic play mechanic will be working, then ill just go back to adjusting the generation process and fix it.
+
+#### steps of Generation
+- Rarity influence cost which influence power and taughness which in turn influence the available effect which can also influence the power and taughness.
+
+
+
+
 # TOP Priority
 1. Card generation (mana cost, power and taughness)
 2. Deck generation
@@ -24,13 +35,13 @@
 23. The option to modify and build your own deck.
 24. More complex game AI. (Singularity 🤖☢️)
 
-## general task
+## General task
 - A start menu.
 - No-Emoji mode, text only mode
 - Reacreate actuall mtg card.
 - card shop
 
-### potential task idea?
+### Potential task idea?
 - Saved score and match analitics, (Max direct damage, last hit, max damage to creature, creature destroyed, card played etc...)
 - A default deck for each color type?
 - Unlock one card of you randomly generated oppenent deck, when winning against the AI as a way to gain new card?
