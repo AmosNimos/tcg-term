@@ -1,15 +1,22 @@
 ## Update
 
 ### Card Generation
-I decided to ignore generating balanced logical card for now, and just make random ones with no patterns instead, this is to be able to advance the project faster, once the basic play mechanic will be working, then ill just go back to adjusting the generation process and fix it.
+I decided to ignore generating balanced logical card for now, and just make random ones with no patterns instead, this is to be able to advance the project faster, once the basic play mechanic will be working, then ill just go back to adjusting the generation process and fix it 🔨.
+
+### New Philosophy
+💋 K.I.S (Keep it simple stupid, a new script will be made and added, following this philosophy, the current script will be kept as a backup reference to some idea.)
+
+> 📜 It is far easier to complexify that which is simple, then simplify that which is complex ~ Amos Nimos 2021
 
 #### steps of Generation
-- Rarity influence cost which influence power and taughness which in turn influence the available effect which can also influence the power and taughness.
+Rarity influence ➡️ cost which influence ➡️ power and taughness which in turn influence ➡️ the available effect which can also influence ↔️ the power and taughness.
 
 
 
 
-# TOP Priority
+
+
+# TOP Priority ⭐
 1. Card generation (mana cost, power and taughness)
 2. Deck generation
 3. Player initialisation
