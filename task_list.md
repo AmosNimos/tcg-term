@@ -8,7 +8,7 @@ I decided to ignore generating balanced logical card for now, and just make rand
 
 > 📜 It is far easier to complexify that which is simple, then simplify that which is complex ~ Amos Nimos 2021
 
-#### steps of Generation
+#### adcance steps of card Generation
 Rarity influence ➡️ cost which influence ➡️ power and taughness which in turn influence ➡️ the available effect which can also influence ↔️ the power and taughness.
 
 
