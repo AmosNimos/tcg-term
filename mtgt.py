@@ -1,3 +1,9 @@
+## Currently on hold for enitre rework.
+
+### You can still submit suggestion, code and contribution. but keep in mind that most of this code down their will be updated.
+
+"""
+
 # Imports
 from random import randint
 from random import shuffle
@@ -327,6 +333,8 @@ while True:
 		print("Name: "+card_cost)
 	# Unpacking card test
 	key_pressed = get_input();
+	
+"""
 
 	
 
