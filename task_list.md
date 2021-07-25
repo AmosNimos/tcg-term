@@ -43,6 +43,7 @@ Rarity influence ➡️ cost which influence ➡️ power and taughness which in
 24. More complex game AI. (Singularity 🤖☢️)
 
 ## General task
+- Cost to duplicate card equivalant to __rarity__, each card can only be duplicated 3 times for a total of 4 copy.
 - A start menu.
 - No-Emoji mode, text only mode
 - Reacreate actuall mtg card.
