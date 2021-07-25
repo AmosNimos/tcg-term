@@ -4,6 +4,7 @@ The first goal to be realistic in scope, is to have a playable single player gam
 
 ![Magic](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2016%2F04%2F10%2F315469-Magic_The_Gathering-fantasy_art-heroes-warrior.jpg&f=1&nofb=1)
 
+[blueprint Guide](https://mtg.fandom.com/wiki)
 ## Project state:
 
 🔧 🚧🚧🚧 Incomplete, In development 🚧🚧🚧 👷
@@ -150,13 +151,13 @@ Settings:
  Therm: P&T = Power and Taughness
  ~~~
  
- # Game default key bindings
+ # Game default key bindings 🖱️⌨️
  
  ~~~
  
  ## An option to customise or swap these default key bindings should be profided in the form of a config file or settings page, eventually.
  
- # Options
+ # Controlle options
  w = want selection (select what is selected by the cursor)
  a = action (attacking/blocking/activating a spell)
  s = skip (will skip to the next phase)
