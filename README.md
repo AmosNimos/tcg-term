@@ -28,7 +28,7 @@ You can also submit suggestion and idea, as long as they are unambiguous and wel
  Graveyard: 💀[0]
  
  Mana:  🟪 ⬛⬛
- Field: 🟫🟫 ⬛
+ Field: 🟫🟫[2] ⬛
         🗡️
         🛡️        
  Field: 🟫🟫🟫
@@ -72,11 +72,13 @@ Filter: Name[🅰] Cost[🪙] Power[🗡️] Taughness[🛡️] Color[🚫]
  Name: [Lorem Ipsum]
  Cost: 🚫🚫[2] 🔵🔵🔵[3]
  Type: Creature
+ Rarity: Mythic rare 🌟
  Effect: [ ... ]
  Power: 1
  taughness: 1
+ Copy: 3/4
  
-❌[REMOVE]
+❌[REMOVE] 👥[Duplicate][Cost: 1000🪙]
  -----------------------------
  
 🚪[MAIN MENU]
@@ -140,6 +142,8 @@ Settings:
  Mytic Rare 🌟
  Rare ⭐
  Uncomun 🥇
+ 
+ I also found these character emoji: 🧙🧙‍♀️🧙‍♂️🧝🧝‍♀️🧝‍♂️🧛🧛‍♀️🧛‍♂️🧟🧟‍♀️🧟‍♂️
 
  
  
