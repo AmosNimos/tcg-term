@@ -18,20 +18,16 @@ class Land()
 		supertype = "Basic"
 		rarity
 
-
-		# I need this variable for mana/plane.
-		def __init__(self, color ):
-			self.color = color;
+		def change_color(color):
+			self.color = color
 
 		def gen_color():
-			# the none cololor is for colorless mana.
+			# the __none__ color is for colorless mana.
+
+			#Select the mana color
 			color_id = randint(0,5)
 			colors=["none","basic","white","blue","red","green"]
-			name=["Wastes","Plains","Island","Swamp","Mountain","Forest"]
+			names=["Wastes","Plains","Island","Swamp","Mountain","Forest"]
 
-			self.Name
-
-
-
-
-## Gem fimction
+			self.Name = names[color_id]
+			self.color = colors[color_id]
