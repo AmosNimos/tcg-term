@@ -26,8 +26,14 @@ class Land()
 
 			#Select the mana color
 			color_id = randint(0,5)
-			colors=["none","basic","white","blue","red","green"]
+			colors=["none","white","blue","black","red","green"]
 			names=["Wastes","Plains","Island","Swamp","Mountain","Forest"]
 
 			self.Name = names[color_id]
 			self.color = colors[color_id]
+
+
+
+
+
+
