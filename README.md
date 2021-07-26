@@ -165,13 +165,6 @@ Settings:
  
  ~~~
  
- # Info on phase and stuff
- ~~~
- https://www.youtube.com/watch?v=V4rYwsBMKxs
- Phase: beginning, first_main, combat, second_main, ending
- Steps: Beginning(Untap, Draw) Main(Land, Spells) Combat(Attackers, Blockers, damage) Second(Land, Spells) Ending(Cleanup)
- ~~~
- 
 # Help Needed!
 I really want to play an mtg-like alternative game on linux, so please do your best to contribute if you can!
 Read the task-list to see the priority.
