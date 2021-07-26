@@ -178,7 +178,5 @@ Settings:
  Steps: Beginning(Untap, Draw) Main(Land, Spells) Combat(Attackers, Blockers, damage) Second(Land, Spells) Ending(Cleanup)
  ~~~
  
-### You feed back is welcome.
-
-> I found this similar project saddly i could not get it to work on my machine, maybe youll have more luck
+> You feed back is welcome.
 
