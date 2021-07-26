@@ -180,3 +180,5 @@ Settings:
  
 ### You feed back is welcome.
 
+> I found this similar project saddly i could not get it to work on my machine, maybe youll have more luck
+
