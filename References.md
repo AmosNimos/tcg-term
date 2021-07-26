@@ -1,3 +1,14 @@
+ 
+ # The order of mana color
+ 1. none
+ 3. white
+ 4. blue
+ 5. black
+ 6. red
+ 7. green
+
+---
+
  # Info on phase and stuff
  ~~~
  https://www.youtube.com/watch?v=V4rYwsBMKxs
