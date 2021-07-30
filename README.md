@@ -3,6 +3,11 @@
 
 (Keep in mind that at the moment, This project is currently undone, and will not work, if you try to lunch it.)
 
+I will probably Reuse some code and thechnics from this previus project of mine.
+It was a verry similar project, and i learn a lot from making it, even do I try to keep this project simple, i do not whish to rush it, and i do not have that much free time to work on it, so things can take some time to take shape.
+
+[RAND-CARD](https://github.com/AmosNimos/rand-card)
+
 # What is mtg-term?
 It is a minimalistic, open-source, mtg-like game, made in python, that can be played on most terminal emulator on linux.
 The first goal to be realistic in scope, is to have a playable single player game, with simple generated card, that have simple [__Keyword ability__](https://mtg.fandom.com/wiki/Keyword_ability) effect. Then once completed, add complexity progressivelly, and maybe in the far long distant future a form of multiplayer.
