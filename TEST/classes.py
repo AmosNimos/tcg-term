@@ -1,21 +1,25 @@
-## Don't worry every part of the code you don't like are just tamporary test
+## Don't worry every part of the code you don't like are just tamporary test, all value hard coded are temporary
 
 from arrays import creature_kinds
 import random
 ## Cards class
 class Creature():
-	def __init__(self, power, taughness, cost, card_kind):
-		self.power = power;
-		self.taughness = taughness;
-		self.kind = card_kind; # Human, Dinosaur Avatar, Vampire...
-		self.cost = cost;
-		self.name = creature_kinds[random.randint(0,len(creature_kinds))] + " of the " + creature_kinds[random.randint(0,len(creature_kinds))]
-		self.taped = False;
+	name = creature_kinds[random.randint(0,len(creature_kinds))] + " of the " + creature_kinds[random.randint(0,len(creature_kinds))]
+	symbol = "#"
+	supertype = "Creature"
+	tapped = False;
+	kind = creature_kinds[random.randint(0,len(creature_kinds))]; # Human, Dinosaur Avatar, Vampire...
+	power = 1;
+	taughness = 1;
+	cost = [1,0,0,0,0,0];
+	type_line = supertype+" ─ "+Name
+	rarity = "common"
 
 class Land():
 		color = "none"
 		name = "Wastes"
 		supertype = "Basic"
+		symbol = "%"
 
 		def change_color(color):
 			self.color = color
@@ -55,9 +59,9 @@ class Player:
 		
 		for x in range(land_count):
 			self.deck.append(Land())
-		creature_cost = [1,0,0,0,0,0];
+		creature_cost = ;
 		for x in range(creature_count):
-			self.deck.append(Creature(1,1,creature_cost,creature_kinds[random.randint(0,len(creature_kinds))]))
+			self.deck.append(Creature())
 		random.shuffle(self.deck)
 
 """
