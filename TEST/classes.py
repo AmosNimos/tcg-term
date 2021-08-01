@@ -12,7 +12,7 @@ class Creature():
 	power = 1;
 	taughness = 1;
 	cost = [1,0,0,0,0,0];
-	type_line = supertype+" ─ "+Name
+	type_line = supertype+" ─ "+name
 	rarity = "common"
 
 class Land():
@@ -59,7 +59,6 @@ class Player:
 		
 		for x in range(land_count):
 			self.deck.append(Land())
-		creature_cost = ;
 		for x in range(creature_count):
 			self.deck.append(Creature())
 		random.shuffle(self.deck)
