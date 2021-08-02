@@ -14,7 +14,6 @@ def initialisation():
 	return player
 
 def field():
-
 	# local variable
 	creatures_zone = "";
 	permanents_zone = "";
@@ -25,8 +24,9 @@ def field():
 	# ---
 	
 	# Player side of the field
-	for card in player.creatures_zone:
-		creatures_zone += str(card.symbol)
+	for card in range(player.creatures_zone):
+		if player.cursor_x == card and player.cursor_y
+		creatures_zone += str(player.symbol)
 	print(creatures_zone)
 	
 	for card in player.permanents_zone:
