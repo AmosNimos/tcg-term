@@ -18,6 +18,7 @@ The first goal to be realistic in scope, is to have a playable single player gam
 
 # Main Game View
  > I am still not sure what is the best way to display the mana cost.
+ > C: Creatures, P: Permanents, L: Lands.
  ~~~
  Turn: [Player_name_one]
  Phase: [Beginning/Untap Step] 
@@ -27,12 +28,14 @@ The first goal to be realistic in scope, is to have a playable single player gam
  Hand:  🔳🔳🔳🔳🔳🔳🔳[7] 
  Graveyard: 💀[0]
  
- Mana:  🟪 ⬛⬛
- Field: 🟫🟫[2] ⬛
-        🗡️
-        🛡️        
- Field: 🟫🟫🟫
- Mana:  🟪🟪 ⬛
+L: 🟪 ⬛⬛
+P: 🟧
+C: 🟫 🟫[2] ⬛
+   🗡️
+     🛡️🛡️        
+C: 🟫🟫🟫
+P: 🟧🟧
+L: 🟪🟪 ⬛
  
  Graveyard: 💀[6]
  Hand:  🟧🟫🟪🟫🔍🟧[6]
@@ -47,6 +50,40 @@ The first goal to be realistic in scope, is to have a playable single player gam
  Effect: [ ... ]
  Power: 🗡️[1]
  Taughness: 🛡️[1]
+ ~~~
+ 
+ ## Text-only
+ ~~~
+ Turn: [Player_name_one]
+ Phase: [Beginning/Untap Step] 
+
+ > [Player_name_one]: Health[20] Deck[60]
+ 
+ Hand:  #######[7] 
+ Graveyard: [0]
+ 
+L: # %%
+P: #
+C: # #[2] %
+   A
+    BB        
+C: ###
+P: ##
+L: ## %
+ 
+ Graveyard: [6]
+ Hand:  ####@#[6]
+ 
+ [Player_name_two]: Health[20] Deck[60]
+ 
+ -[Info]----------------------
+ Name: [Lorem Ipsum]
+ Cost: None[2] Blue[3] 
+ Type: Creature
+ Rarity: Mythic rare *
+ Effect: [ ... ]
+ Power: 1
+ Taughness: 1
  ~~~
  
  # Deck Edit
