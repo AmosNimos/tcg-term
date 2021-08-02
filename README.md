@@ -19,14 +19,16 @@ The first goal to be realistic in scope, is to have a playable single player gam
 # Main Game View
  > I am still not sure what is the best way to display the mana cost.
  > C: Creatures, P: Permanents, L: Lands.
+ > D: Deck, H: Hand, G: Graveyard.
  ~~~
  Turn: [Player_name_one]
  Phase: [Beginning/Untap Step] 
 
  ▶️ [Player_name_one]: Health[20] Deck[60]
  
- Hand:  🔳🔳🔳🔳🔳🔳🔳[7] 
- Graveyard: 💀[0]
+ D: ⬜[60]
+ H: 🔳🔳🔳🔳🔳🔳🔳[7] 
+ G: 💀[0]
  
 L: 🟪 ⬛⬛
 P: 🟧
@@ -37,10 +39,11 @@ C: 🟫🟫🟫
 P: 🟧🟧
 L: 🟪🟪 ⬛
  
- Graveyard: 💀[6]
- Hand:  🟧🟫🟪🟫🔍🟧[6]
+G: 💀[6]
+H: 🟧🟫🟪🟫🔍🟧[6]
+D: ⬜[60]
  
- [Player_name_two]: Health[20] Deck[60]
+ [Player_name_two]: Health[20] 
  
  -[Info]----------------------
  Name: [Lorem Ipsum]
