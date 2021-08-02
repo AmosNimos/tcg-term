@@ -24,7 +24,7 @@ The first goal to be realistic in scope, is to have a playable single player gam
  Turn: [Player_name_one]
  Phase: [Beginning/Untap Step] 
 
- ▶️ [Player_name_one]: Health[20] Deck[60]
+ ▶️ [Player_name_one]: Health[20]
  
  D: ⬜[60]
  H: 🔳🔳🔳🔳🔳🔳🔳[7] 
