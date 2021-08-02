@@ -16,24 +16,22 @@ class Creature():
 	rarity = "common"
 
 class Land():
-		color = "none"
-		name = "Wastes"
-		supertype = "Basic"
-		symbol = "%"
+	color = "none"
+	name = "Wastes"
+	supertype = "Basic"
+	symbol = "%"
 
-		def change_color(color):
-			self.color = color
+	def change_color(color):
+		self.color = color
 
-		def gen_color():
-			# the __none__ color is for colorless mana.
-
-			#Select the mana color
-			color_id = randint(0,5)
-			colors=["none","white","blue","black","red","green"]
-			names=["Wastes","Plains","Island","Swamp","Mountain","Forest"]
-
-			self.Name = names[color_id]
-			self.color = colors[color_id]
+	def gen_color():
+		# the __none__ color is for colorless mana.
+		#Select the mana color
+		color_id = randint(0,5)
+		colors=["none","white","blue","black","red","green"]
+		names=["Wastes","Plains","Island","Swamp","Mountain","Forest"]
+		self.Name = names[color_id]
+		self.color = colors[color_id]
 
 # Player 
 ## (You can use 2D array to stack card in the same place. and display the amounth of copy with a [x] after the card symbol)
@@ -48,6 +46,8 @@ class Player:
 	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-creature.
 	graveyard = [];
 	deck=[];
+	cursor_x = 0;
+	cursor_x = 0;
 	
 	def __init__(self, name, health):
 		self.name = "Bob Smith",
