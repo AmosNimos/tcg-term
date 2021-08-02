@@ -43,8 +43,9 @@ class Player:
 	collection = [];
 	coin = 0;
 	hand = [];
-	mana_zone = [];
-	field_zone = []; 
+	lands_zone = [];
+	creatures_zone = [];
+	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-creature.
 	graveyard = [];
 	deck=[];
 
