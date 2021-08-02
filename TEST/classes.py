@@ -48,10 +48,19 @@ class Player:
 	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-creature.
 	graveyard = [];
 	deck=[];
-
+	
 	def __init__(self, name, health):
 		self.name = "Bob Smith",
 		self.health = health,
+		
+	def shuffle_deck():
+		random.shuffle(self.deck)
+		
+	def draw(self,amounth):
+		for x in range(amounth):
+			draw = self.deck[-1]
+			self.deck.pop()
+			self.hand.append(draw)
 		
 	def gen_deck(self):
 		# This is just a temporary solution.
