@@ -58,27 +58,27 @@ def field():
 		print(hand+"["+str(len(player.hand))+"]")
 
 		if player.cursor_y == 0:
-			print("#["+str(len(player.deck))+"]")
-		else:
 			print(cursor_symbol+"["+str(len(player.deck))+"]")
+		else:
+			print("#["+str(len(player.deck))+"]")
 			
 		# Movement input
 		print("y:"+str(player.cursor_y)+" x:"+str(player.cursor_x))
 		movement = input("Cursor:")
 		if movement[0] == "y":
-			if isinstance(movement[1], int):
-				player.cursor_y += int(movement[1]);
-			elif movement[1] == "+":
+			if movement[1] == "+":
 				player.cursor_y += int(movement[2]);
 			elif movement[1] == "-":
 				player.cursor_y -= int(movement[2]);
+			elif movement[1] == "=":
+				player.cursor_y = int(movement[2]);
 		elif movement[0] == "x":
-			if isinstance(movement[1], int):
-				player.cursor_x += int(movement[1]);
-			elif movement[1] == "+":
+			if movement[1] == "+":
 				player.cursor_x += int(movement[2]);
 			elif movement[1] == "-":
 				player.cursor_x -= int(movement[2]);
+			elif movement[1] == "=":
+				player.cursor_y = int(movement[2]); 
 	
 player = initialisation();
 field();
