@@ -25,6 +25,7 @@ def field():
 		permanents_zone = "";
 		lands_zone = "";
 		hand = "";
+		card_info=""
 		# here should be AI side of the field
 		# ---
 
@@ -53,15 +54,31 @@ def field():
 		for card in range(len(player.hand)):
 			if player.cursor_x == card and player.cursor_y == 1:
 				hand += cursor_symbol; 
+				if(player.hand[card].supertype == "Creature"):
+					card_info = "Name:"+ str(player.hand[card].name) + "\n" 
+					card_info += "Cost:"+ str(player.hand[card].cost) + "\n"
+					card_info += player.hand[card].supertype + "\n"
+					card_info += "Rarity:" + str(player.hand[card].rarity) + "\n"
+					card_info += "Effect: [...]\n"
+					card_info += "Power:[" + str(player.hand[card].power) + "]\n"
+					card_info += "Power:[" + str(player.hand[card].taughness) + "]\n"
+				else:
+					card_info = "Name:"+ str(player.hand[card].name) + "\n"
+					card_info += player.hand[card].supertype + "\n"
+					
 			else:
 				hand += str(player.hand[card].symbol)
 		print(hand+"["+str(len(player.hand))+"]")
-
+		
 		if player.cursor_y == 0:
 			print(cursor_symbol+"["+str(len(player.deck))+"]")
 		else:
 			print("#["+str(len(player.deck))+"]")
-			
+		
+		# Print Info
+		print("-[Info]----------------------")
+		print(card_info)
+		
 		# Movement input
 		print("y:"+str(player.cursor_y)+" x:"+str(player.cursor_x))
 		movement = input("Cursor:")
@@ -79,6 +96,7 @@ def field():
 				player.cursor_x -= int(movement[2]);
 			elif movement[1] == "=":
 				player.cursor_y = int(movement[2]); 
+				
 	
 player = initialisation();
 field();
