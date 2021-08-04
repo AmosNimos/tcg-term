@@ -47,7 +47,7 @@ class Player:
 	graveyard = [];
 	deck=[];
 	cursor_x = 0;
-	cursor_x = 0;
+	cursor_y = 0;
 	
 	def __init__(self, name, health):
 		self.name = "Bob Smith",
