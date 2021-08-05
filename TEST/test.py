@@ -37,7 +37,7 @@ def field():
 			if player.cursor_x == card and player.cursor_y == 4:
 				creatures_zone += cursor_symbol;
 			else:
-				creatures_zone += str(player.hand[card].symbol)
+				creatures_zone += str(player.creatures_zone[card].symbol)
 		print(creatures_zone)
 
 		# Permanents ⬇️
