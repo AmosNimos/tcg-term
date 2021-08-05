@@ -10,6 +10,7 @@ deck_size = 60;
 initial_health = 20;
 max_hand_size = 7;
 cursor_symbol="@";
+
 def initialisation():
 	player = classes.Player("test", initial_health);
 	player.gen_deck();
@@ -29,29 +30,37 @@ def field():
 		# here should be AI side of the field
 		# ---
 
-		# display Player side of the field & the cursor
+		# display Player side of the field & the cursor -->
+		
+		# Creatyres ⬇️
 		for card in range(len(player.creatures_zone)):
 			if player.cursor_x == card and player.cursor_y == 4:
-				creatures_zone += str(player.symbol)
-			else:
 				creatures_zone += cursor_symbol;
+			else:
+				creatures_zone += str(player.hand[card].symbol)
 		print(creatures_zone)
 
+		# Permanents ⬇️
 		for card in player.permanents_zone:
 			if player.cursor_x == card and player.cursor_y == 3:
-				permanents_zone += str(card.symbol)
-			else:
 				permanents_zone += cursor_symbol;
+			else:
+				permanents_zone += str(card.symbol)
 		print(permanents_zone)
 
+		# Lands ⬇️
 		for card in player.lands_zone:
 			if player.cursor_x == card and player.cursor_y == 2:
-				lands_zone += str(card.symbol)
-			else:
 				lands_zone += cursor_symbol;
+			else:
+				lands_zone += str(card.symbol)
+				
 		print(lands_zone)
 
+		# Hand
 		for card in range(len(player.hand)):
+			if player.cursor_y == 1 and len(player.hand)<1:
+				player.cursor_y-=1;
 			if player.cursor_x == card and player.cursor_y == 1:
 				hand += cursor_symbol; 
 				if(player.hand[card].supertype == "Creature"):
@@ -79,23 +88,35 @@ def field():
 		print("-[Info]----------------------")
 		print(card_info)
 		
-		# Movement input
+		# actions input
 		print("y:"+str(player.cursor_y)+" x:"+str(player.cursor_x))
-		movement = input("Cursor:")
-		if movement[0] == "y":
-			if movement[1] == "+":
-				player.cursor_y += int(movement[2]);
-			elif movement[1] == "-":
-				player.cursor_y -= int(movement[2]);
-			elif movement[1] == "=":
-				player.cursor_y = int(movement[2]);
-		elif movement[0] == "x":
-			if movement[1] == "+":
-				player.cursor_x += int(movement[2]);
-			elif movement[1] == "-":
-				player.cursor_x -= int(movement[2]);
-			elif movement[1] == "=":
-				player.cursor_y = int(movement[2]); 
+		action= input("Cursor:")
+		
+		# Place card
+		if action == "use":
+			selected = player.hand[player.cursor_x]
+			if selected.supertype == "Creature":
+				player.creatures_zone.append(selected);
+				player.hand.pop(player.cursor_x); 
+			else:
+				player.lands_zone.append(selected);
+				player.hand.pop(player.cursor_x); 
+		
+		# Movements 
+		if action[0] == "y":
+			if action[1] == "+":
+				player.cursor_y += int(action[2]);
+			elif action[1] == "-":
+				player.cursor_y -= int(action[2]);
+			elif action[1] == "=":
+				player.cursor_y = int(action[2]);
+		elif action[0] == "x":
+			if action[1] == "+":
+				player.cursor_x += int(action[2]);
+			elif action[1] == "-":
+				player.cursor_x -= int(action[2]);
+			elif action[1] == "=":
+				player.cursor_x = int(action[2]); 
 				
 	
 player = initialisation();
