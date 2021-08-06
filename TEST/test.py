@@ -44,7 +44,7 @@ def field():
 		
 		# Creatyres ⬇️
 		for card in range(len(player.creatures_zone)):
-			if player.cursor_x == card and player.cursor_y == 4:
+			if player.cursor_x == card and player.cursor_y == 5:
 				creatures_zone += cursor_symbol;
 			else:
 				creatures_zone += str(player.creatures_zone[card].symbol)
@@ -52,7 +52,7 @@ def field():
 
 		# Permanents ⬇️
 		for card in player.permanents_zone:
-			if player.cursor_x == card and player.cursor_y == 3:
+			if player.cursor_x == card and player.cursor_y == 4:
 				permanents_zone += cursor_symbol;
 			else:
 				permanents_zone += str(card.symbol)
@@ -60,7 +60,7 @@ def field():
 
 		# Lands ⬇️
 		for card in player.lands_zone:
-			if player.cursor_x == card and player.cursor_y == 2:
+			if player.cursor_x == card and player.cursor_y == 3:
 				lands_zone += cursor_symbol;
 			else:
 				lands_zone += str(card.symbol)		
@@ -70,7 +70,7 @@ def field():
 		for card in range(len(player.hand)):
 			if player.cursor_y == 1 and len(player.hand)<1:
 				player.cursor_y-=1;
-			if player.cursor_x == card and player.cursor_y == 1:
+			if player.cursor_x == card and player.cursor_y == 2:
 				hand += cursor_symbol; 
 				if(player.hand[card].supertype == "Creature"):
 					card_info = "Name:"+ str(player.hand[card].name) + "\n" 
@@ -88,7 +88,7 @@ def field():
 		print(hand+"["+str(len(player.hand))+"]")
 		
 		# Graves
-		if player.cursor_y == 9:
+		if player.cursor_y == 1:
 			print(cursor_symbol+"["+str(len(player.graveyard))+"]")
 		else:
 			print("💀["+str(len(player.graveyard))+"]")
