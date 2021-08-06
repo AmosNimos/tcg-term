@@ -4,22 +4,27 @@ from arrays import creature_kinds
 import random
 ## Cards class
 class Creature():
-	name = creature_kinds[random.randint(0,len(creature_kinds))] + " of the " + creature_kinds[random.randint(0,len(creature_kinds))]
-	symbol = "#"
-	supertype = "Creature"
+	kind = "";
+	name = "";
+	symbol = "#";
+	supertype = "Creature";
 	tapped = False;
-	kind = creature_kinds[random.randint(0,len(creature_kinds))]; # Human, Dinosaur Avatar, Vampire...
 	power = 1;
 	taughness = 1;
 	cost = [1,0,0,0,0,0];
-	type_line = supertype+" ─ "+name
-	rarity = "common"
+	type_line = supertype+" ─ "+name;
+	rarity = "common";
+	
+	def __init__(self):
+		self.kind = creature_kinds[random.randint(0,len(creature_kinds))]; # Human, Dinosaur Avatar, Vampire...
+		self.name = creature_kinds[random.randint(0,len(creature_kinds))] + " of the " + creature_kinds[random.randint(0,len(creature_kinds))]	
+
 
 class Land():
-	color = "none"
-	name = "Wastes"
-	supertype = "Basic"
-	symbol = "%"
+	color = "none";
+	name = "Wastes";
+	supertype = "Basic";
+	symbol = "%";
 
 	def change_color(color):
 		self.color = color
