@@ -26,7 +26,7 @@ def field():
 		permanents_zone = "";
 		lands_zone = "";
 		hand = "";
-		card_info=""
+		card_info="";
 		# here should be AI side of the field
 		# ---
 
@@ -53,11 +53,10 @@ def field():
 			if player.cursor_x == card and player.cursor_y == 2:
 				lands_zone += cursor_symbol;
 			else:
-				lands_zone += str(card.symbol)
-				
+				lands_zone += str(card.symbol)		
 		print(lands_zone)
 
-		# Hand
+		# Hand ⬇️
 		for card in range(len(player.hand)):
 			if player.cursor_y == 1 and len(player.hand)<1:
 				player.cursor_y-=1;
@@ -73,8 +72,7 @@ def field():
 					card_info += "Power:[" + str(player.hand[card].taughness) + "]\n"
 				else:
 					card_info = "Name:"+ str(player.hand[card].name) + "\n"
-					card_info += player.hand[card].supertype + "\n"
-					
+					card_info += player.hand[card].supertype + "\n"		
 			else:
 				hand += str(player.hand[card].symbol)
 		print(hand+"["+str(len(player.hand))+"]")
@@ -88,7 +86,7 @@ def field():
 		print("-[Info]----------------------")
 		print(card_info)
 		
-		# actions input
+		# Actions input
 		print("y:"+str(player.cursor_y)+" x:"+str(player.cursor_x))
 		action= input("Cursor:")
 		
