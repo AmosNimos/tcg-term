@@ -66,6 +66,12 @@ def field():
 				lands_zone += str(card.symbol)		
 		print(lands_zone)
 
+		# Graves
+		if player.cursor_y == 9:
+			print(cursor_symbol+"["+str(len(player.graveyard))+"]")
+		else:
+			print("💀["+str(len(player.graveyard))+"]")
+			
 		# Hand ⬇️
 		for card in range(len(player.hand)):
 			if player.cursor_y == 1 and len(player.hand)<1:
