@@ -97,7 +97,7 @@ def field():
 		if player.cursor_y == 0:
 			print(cursor_symbol+"["+str(len(player.deck))+"]")
 		else:
-			print("#["+str(len(player.deck))+"]")
+			print("⬜["+str(len(player.deck))+"]")
 		
 		# Print Info
 		print("-[Info]----------------------")
