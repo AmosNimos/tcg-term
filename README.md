@@ -8,9 +8,16 @@ It was a verry similar project, and i learn a lot from making it, even do I try 
 
 [RAND-CARD](https://github.com/AmosNimos/rand-card)
 
-# What is mtg-term?
-It is a minimalistic, open-source, mtg-like game, made in python, that can be played on most terminal emulator on linux.
+# What is tcg-term?
+It started as a project to make an mtg alternative game on the linux terminal, but i now aim to include other style of tcg game play mode while avoiding to enfringe on the copy rightable content. 
+
+It is a minimalistic, open-source, tcg-like game, made in python, that can be played on most terminal emulator on linux.
 The first goal to be realistic in scope, is to have a playable single player game, with simple generated card, that have simple [__Keyword ability__](https://mtg.fandom.com/wiki/Keyword_ability) effect. Then once completed, add complexity progressivelly, and maybe in the far long distant future a form of multiplayer.
+
+3 main gamemode "inspired" by:
+- magic
+- pokemon
+- yu-gi-oh
 
 ![TCG](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2Fa8jfAp7woJk%2Fmaxresdefault.jpg&f=1&nofb=1)
 
@@ -212,10 +219,7 @@ Settings:
  
 # Help Needed!
 I really want to play an tcg-like alternative game on linux, so please do your best to contribute if you can!
-3 main gamemode "inspired" by:
-- magic
-- pokemon
-- yu-gi-oh
+
 
 Read the task-list to see the priority.
 This project only accept clear, organized and well commented code.
