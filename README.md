@@ -37,8 +37,8 @@ The first goal to be realistic in scope, is to have a playable single player gam
  ▶️ [Player_name_one]: Health[20]
  
  D: ⬜[60]
- H: 🔳🔳🔳🔳🔳🔳🔳[7] 
  G: 💀[0]
+ H: 🔳🔳🔳🔳🔳🔳🔳[7] 
  
 L: 🟪 ⬛⬛
 P: 🟧
@@ -49,8 +49,8 @@ C: 🟫🟫🟫
 P: 🟧🟧
 L: 🟪🟪 ⬛
  
-G: 💀[6]
 H: 🟧🟫🟪🟫🔍🟧[6]
+G: 💀[6]
 D: ⬜[60]
  
  [Player_name_two]: Health[20] 
