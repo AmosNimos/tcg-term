@@ -18,7 +18,8 @@ The first goal to be realistic in scope, is to have a playable single player gam
 - magic
 - pokemon
 - yu-gi-oh
-- Battle-Cry ( another one of my open source project)
+
+> And maybe a gamemode called __Battle-Cry__ ( Another one of my open source project Here on Github. )
 
 ![TCG](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F699740%2Fpexels-photo-699740.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26fit%3Dcrop%26h%3D627%26w%3D1200&f=1&nofb=1)
 
