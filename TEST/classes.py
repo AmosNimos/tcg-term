@@ -4,6 +4,7 @@ from arrays import creature_kinds
 import random
 ## Cards class
 class Creature():
+	#creature_kinds=["a","b","c"];
 	kind = "";
 	name = "";
 	symbol = "#";
@@ -16,8 +17,8 @@ class Creature():
 	rarity = "common";
 	
 	def __init__(self):
-		self.kind = creature_kinds[random.randint(0,len(creature_kinds))]; # Human, Dinosaur Avatar, Vampire...
-		self.name = creature_kinds[random.randint(0,len(creature_kinds))] + " of the " + creature_kinds[random.randint(0,len(creature_kinds))]	
+		self.kind = creature_kinds[random.randint(0,len(creature_kinds)-1)]; # Human, Dinosaur Avatar, Vampire...
+		self.name = creature_kinds[random.randint(0,len(creature_kinds)-1)] + " of the " + creature_kinds[random.randint(0,len(creature_kinds)-1)]	
 
 
 class Land():
@@ -78,7 +79,41 @@ class Player:
 			self.deck.append(Creature())
 		random.shuffle(self.deck)
 
-"""
+
 class AI:
-	def __init__(self, name, self_id, deck, health, hand_size):	
-"""
+	#side_board = []
+	collection = [];
+	coin = 0;
+	hand = [];
+	lands_zone = [];
+	creatures_zone = [];
+	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-creature.
+	graveyard = [];
+	deck=[];
+	cursor_x = 0;
+	cursor_y = 1;
+	card_back="?"
+	
+	def __init__(self, name, health):
+		self.name = "BOT",
+		self.health = health,
+		
+	def shuffle_deck():
+		random.shuffle(self.deck)
+		
+	def draw(self,amounth):
+		for x in range(amounth):
+			draw = self.deck[-1]
+			self.deck.pop()
+			self.hand.append(draw)
+		
+	def gen_deck(self):
+		# This is just a temporary solution.
+		land_count = 30;
+		creature_count = 30;
+		
+		for x in range(land_count):
+			self.deck.append(Land())
+		for x in range(creature_count):
+			self.deck.append(Creature())
+		random.shuffle(self.deck)
