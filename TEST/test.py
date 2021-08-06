@@ -3,20 +3,27 @@
 import classes
 import random
 import os
+from display_field import display_ai
 
 # Vars
 ## Rules Variables
 deck_size = 60;
 initial_health = 20;
 max_hand_size = 7;
-cursor_symbol="@";
 
 def initialisation():
+	# gen player 
 	player = classes.Player("test", initial_health);
 	player.gen_deck();
 	player.draw(7)
-	print(player.deck[random.randint(0,len(player.deck))].name)
-	return player
+	
+	# gen ai
+	ai = classes.AI("test", initial_health);
+	ai.gen_deck();
+	ai.draw(7)
+	# gen ai
+	
+	return player, ai
 
 def field():
 	while True:
@@ -27,8 +34,11 @@ def field():
 		lands_zone = "";
 		hand = "";
 		card_info="";
+		cursor_symbol="@";
+		
 		# here should be AI side of the field
 		# ---
+		display_ai(ai,player,cursor_symbol);
 
 		# display Player side of the field & the cursor -->
 		
@@ -117,7 +127,7 @@ def field():
 				player.cursor_x = int(action[2]); 
 				
 	
-player = initialisation();
+player, ai = initialisation();
 field();
 
 
