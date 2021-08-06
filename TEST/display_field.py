@@ -6,31 +6,19 @@ def display_ai(ai,player,cursor_symbol):
 		lands_zone = "";
 		hand = "";
 		card_info="";
+	
+		# Deck
+		if player.cursor_y == 10:
+			print(cursor_symbol+"["+str(len(player.deck))+"]")
+		else:
+			print("⬜["+str(len(player.deck))+"]")
+
+		# Gravess
+		if player.cursor_y == 9:
+			print(cursor_symbol+"["+str(len(ai.graveyard))+"]")
+		else:
+			print("💀["+str(len(ai.graveyard))+"]")
 		
-		# Creatyres ⬇️
-		for card in range(len(ai.creatures_zone)):
-			if player.cursor_x == card and player.cursor_y == 5:
-				creatures_zone += cursor_symbol;
-			else:
-				creatures_zone += str(ai.card_back)
-		print(creatures_zone)
-
-		# Permanents ⬇️
-		for card in ai.permanents_zone:
-			if player.cursor_x == card and player.cursor_y == 6:
-				permanents_zone += cursor_symbol;
-			else:
-				permanents_zone += str(ai.card_back)
-		print(permanents_zone)
-
-		# Lands ⬇️
-		for card in ai.lands_zone:
-			if player.cursor_x == card and player.cursor_y == 7:
-				lands_zone += cursor_symbol;
-			else:
-				lands_zone += str(ai.card_back)		
-		print(lands_zone)
-
 		# Hand ⬇️
 		for card in range(len(ai.hand)):
 			if player.cursor_y == 1 and len(ai.hand)<1:
@@ -51,8 +39,29 @@ def display_ai(ai,player,cursor_symbol):
 			else:
 				hand += str(ai.card_back)
 		print(hand+"["+str(len(ai.hand))+"]")
+
+		# Lands ⬇️
+		for card in ai.lands_zone:
+			if player.cursor_x == card and player.cursor_y == 7:
+				lands_zone += cursor_symbol;
+			else:
+				lands_zone += str(ai.card_back)		
+		print(lands_zone)
+
+		# Permanents ⬇️
+		for card in ai.permanents_zone:
+			if player.cursor_x == card and player.cursor_y == 6:
+				permanents_zone += cursor_symbol;
+			else:
+				permanents_zone += str(ai.card_back)
+		print(permanents_zone)
 		
-		if player.cursor_y == 9:
-			print(cursor_symbol+"["+str(len(player.deck))+"]")
-		else:
-			print("#["+str(len(player.deck))+"]")
+		# Creatyres ⬇️
+		for card in range(len(ai.creatures_zone)):
+			if player.cursor_x == card and player.cursor_y == 5:
+				creatures_zone += cursor_symbol;
+			else:
+				creatures_zone += str(ai.card_back)
+		print(creatures_zone)
+
+
