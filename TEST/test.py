@@ -1,5 +1,7 @@
 # It's all temporary for testing, i get sh!t done as fast as i can here.
 
+# summoning star "⍟✪⍟۞"
+
 import classes
 import random
 import os
@@ -34,7 +36,7 @@ def field():
 		lands_zone = "";
 		hand = "";
 		card_info="";
-		cursor_symbol="@";
+		cursor_symbol="🔍";
 		
 		# here should be AI side of the field
 		# ---
@@ -59,11 +61,13 @@ def field():
 		print(permanents_zone)
 
 		# Lands ⬇️
-		for card in player.lands_zone:
-			if player.cursor_x == card and player.cursor_y == 3:
-				lands_zone += cursor_symbol;
-			else:
-				lands_zone += str(card.symbol)		
+		for x in range(len(player.lands_zone)):
+			if player.lands_zone[x] != None:
+				for card in player.lands_zone[x]:
+					if player.cursor_x == card and player.cursor_y == 3:
+						lands_zone += cursor_symbol;
+					else:
+						lands_zone += str(card.symbol)		
 		print(lands_zone)
 			
 		# Hand ⬇️
@@ -108,12 +112,13 @@ def field():
 		action= input("Cursor:")
 		
 		# Place card
-		if action == "use":
+		if action == "summon":
 			selected = player.hand[player.cursor_x]
 			if selected.supertype == "Creature":
 				player.creatures_zone.append(selected);
 				player.hand.pop(player.cursor_x); 
 			else:
+				selected.summon(player);
 
 		
 		# Movements 
