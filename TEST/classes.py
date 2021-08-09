@@ -30,10 +30,11 @@ class Creature():
 				available_land_count[lands_zone[x].color_index]+=1;
 			
 		# 1- check for the card cost
+		"""
 		for x in len(cost):
 			if cost[x] < available_land_count[x]:
 				for x in cost[x]:
-				
+		"""
 		# 2- tap land
 		# 3- remove it self from the hand array
 		# 4- add it self to the field
@@ -59,11 +60,11 @@ class Land():
 		self.color = colors[color_id]
 		self.color_id = color_id
 	
-	def summon(self):
-				# add this land to the lands_zone color index 
-				player.lands_zone[self.color_id].append(self);
-				# remove self from hand array. not sure this methode will work...
-				del self
+	def summon(self,player):
+		# add this land to the lands_zone color index 
+		player.lands_zone[self.color_id].append(self);
+		# remove self from hand array. not sure this methode will work...
+		player.hand.remove(self)
 
 # Player 
 ## (You can use 2D array to stack card in the same place. and display the amounth of copy with a [x] after the card symbol)
