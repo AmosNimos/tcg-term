@@ -114,8 +114,7 @@ def field():
 				player.creatures_zone.append(selected);
 				player.hand.pop(player.cursor_x); 
 			else:
-				player.lands_zone.append(selected);
-				player.hand.pop(player.cursor_x); 
+
 		
 		# Movements 
 		if action[0] == "y":
@@ -136,6 +135,5 @@ def field():
 	
 player, ai = initialisation();
 field();
-
 
 
