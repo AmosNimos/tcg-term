@@ -9,23 +9,42 @@ class Creature():
 	name = "";
 	symbol = "#";
 	supertype = "Creature";
-	tapped = False;
 	power = 1;
 	taughness = 1;
 	cost = [1,0,0,0,0,0];
 	type_line = supertype+" ─ "+name;
 	rarity = "common";
+	tapped = False;
 	
 	def __init__(self):
 		self.kind = creature_kinds[random.randint(0,len(creature_kinds)-1)]; # Human, Dinosaur Avatar, Vampire...
 		self.name = creature_kinds[random.randint(0,len(creature_kinds)-1)] + " of the " + creature_kinds[random.randint(0,len(creature_kinds)-1)]	
 
+	def summon(self,lands_zone):
+
+		
+		# 0- count untap land on the land_zone
+		available_land_count = [0,0,0,0,0]
+		for x in len(lands_zone):
+			if lands_zone[x].tapped == False:
+				available_land_count[lands_zone[x].color_index]+=1;
+			
+		# 1- check for the card cost
+		for x in len(cost):
+			if cost[x] < available_land_count[x]:
+				for x in cost[x]:
+				
+		# 2- tap land
+		# 3- remove it self from the hand array
+		# 4- add it self to the field
 
 class Land():
 	color = "none";
 	name = "Wastes";
+	color_id = 0;
 	supertype = "Basic";
 	symbol = "%";
+	tapped = False;
 
 	def change_color(color):
 		self.color = color
@@ -38,6 +57,13 @@ class Land():
 		names=["Wastes","Plains","Island","Swamp","Mountain","Forest"]
 		self.Name = names[color_id]
 		self.color = colors[color_id]
+		self.color_id = color_id
+	
+	def summon(self):
+				# add this land to the lands_zone color index 
+				player.lands_zone[self.color_id].append(self);
+				# remove self from hand array. not sure this methode will work...
+				del self
 
 # Player 
 ## (You can use 2D array to stack card in the same place. and display the amounth of copy with a [x] after the card symbol)
@@ -47,7 +73,7 @@ class Player:
 	collection = [];
 	coin = 0;
 	hand = [];
-	lands_zone = [];
+	lands_zone = [[],[],[],[],[],[]]; # lands are divided by color in this 2d array. so you can easily know how meny of each color their is with len(lands_zone[index])
 	creatures_zone = [];
 	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-creature.
 	graveyard = [];
