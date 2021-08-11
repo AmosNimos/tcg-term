@@ -2,16 +2,18 @@
 
 from arrays import creature_kinds
 import random
+import sys
+
 ## Cards class
 class Creature():
 	#creature_kinds=["a","b","c"];
 	kind = "";
 	name = "";
 	symbol = "#";
+	cost = [1,0,0,0,0,0];
 	supertype = "Creature";
 	power = 1;
 	taughness = 1;
-	cost = [1,0,0,0,0,0];
 	type_line = supertype+" ─ "+name;
 	rarity = "common";
 	tapped = False;
@@ -20,17 +22,17 @@ class Creature():
 		self.kind = creature_kinds[random.randint(0,len(creature_kinds)-1)]; # Human, Dinosaur Avatar, Vampire...
 		self.name = creature_kinds[random.randint(0,len(creature_kinds)-1)] + " of the " + creature_kinds[random.randint(0,len(creature_kinds)-1)]	
 
-	def summon(self,player):
 
+	def summon(self,player):
 		# If their is eneugh land to cover the card cost tapp them
-		for color_index in range(len(cost)):
-			if len(player.lands_zone[color_index]) > self.cost[color_index]:
+		for color_index in range(len(self.cost)):
+			if len(player.lands_zone[color_index]) >= self.cost[color_index]:
 				for land in range(self.cost[color_index]):
-					player.lands_zone[x][land].tap();
-				player.creatures_zone.append(self);
-				player.hand.remove(self)			
+					player.lands_zone[color_index][land].tap();		
 			else:
 				return 0
+		player.creatures_zone.append(self);
+		player.hand.remove(self)	
 				
 		# 0- count untap land on the land_zone
 		# 1- check for the card cost
@@ -76,7 +78,8 @@ class Player:
 	collection = [];
 	coin = 0;
 	hand = [];
-	lands_zone = [[],[],[],[],[],[]]; # lands are divided by color in this 2d array. so you can easily know how meny of each color their is with len(lands_zone[index])
+	# the last array in the lands_zone array is for tapped land.
+	lands_zone = [[],[],[],[],[],[],[]]; # lands are divided by color in this 2d array. so you can easily know how meny of each color their is with len(lands_zone[index])
 	creatures_zone = [];
 	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-creature.
 	graveyard = [];
