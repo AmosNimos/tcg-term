@@ -10,7 +10,7 @@ class Creature():
 	kind = "";
 	name = "";
 	symbol = "#";
-	cost = [1,0,0,0,0,0];
+	cost = [1,0,0,0,0];
 	supertype = "Creature";
 	power = 1;
 	taughness = 1;
@@ -25,14 +25,25 @@ class Creature():
 
 	def summon(self,player):
 		# If their is eneugh land to cover the card cost tapp them
+		payed_cost = [0,0,0,0,0];
 		for color_index in range(len(self.cost)):
 			if len(player.lands_zone[color_index]) >= self.cost[color_index]:
-				for land in range(self.cost[color_index]):
-					player.lands_zone[color_index][land].tap();		
+				for land in range(len(player.lands_zone[color_index])):
+					if player.lands_zone[color_index][land].tapped == False:
+						player.lands_zone[color_index][land].tap();
+						if self.cost[color_index] > payed_cost[color_index]:
+							payed_cost[color_index] +=1;		
 			else:
 				return 0
-		player.creatures_zone.append(self);
-		player.hand.remove(self)	
+		if payed_cost == self.cost:
+			player.creatures_zone.append(self);
+			player.hand.remove(self)	
+		else:
+			print("insufficient lands")
+			print(payed_cost)
+			print("<")
+			print(self.cost)
+			input()
 				
 		# 0- count untap land on the land_zone
 		# 1- check for the card cost
@@ -54,6 +65,8 @@ class Land():
 	def tap(self):
 		self.tapped=True;
 		self.symbol="x"
+		
+		
 		
 	def gen_color():
 		# the __none__ color is for colorless mana.
@@ -79,7 +92,8 @@ class Player:
 	coin = 0;
 	hand = [];
 	# the last array in the lands_zone array is for tapped land.
-	lands_zone = [[],[],[],[],[],[],[]]; # lands are divided by color in this 2d array. so you can easily know how meny of each color their is with len(lands_zone[index])
+	lands_zone = [[],[],[],[],[],[]]; # lands are divided by color in this 2d array. so you can easily know how meny of each color their is with len(lands_zone[index])
+	tapped_lands = [];
 	creatures_zone = [];
 	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-creature.
 	graveyard = [];
