@@ -114,11 +114,7 @@ def field():
 		# Place card
 		if action == "summon":
 			selected = player.hand[player.cursor_x]
-			if selected.supertype == "Creature":
-				player.creatures_zone.append(selected);
-				player.hand.pop(player.cursor_x); 
-			else:
-				selected.summon(player);
+			selected.summon(player);
 
 		
 		# Movements 
