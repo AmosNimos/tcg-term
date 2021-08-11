@@ -5,6 +5,9 @@
 import classes
 import random
 import os
+#from curties import Input
+from key_input.key_input import Input
+
 from display_field import display_ai
 
 # Vars
@@ -134,8 +137,19 @@ def field():
 				player.cursor_x = int(action[2]); 
 				
 	
-player, ai = initialisation();
-field();
+#player, ai = initialisation();
+#field();
+
+## Return keypress input from curtsies
+def get_input():
+	#keynames='curses'
+	with Input() as input_generator:
+		for e in input_generator:
+			return e
+			
+while True:
+	key_pressed = get_input();
+	print("pressed: "+str(key_pressed))
 
 
 
