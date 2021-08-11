@@ -16,6 +16,13 @@ deck_size = 60;
 initial_health = 20;
 max_hand_size = 7;
 
+## Return keypress input
+def get_input():
+	#keynames='curses'
+	with Input() as input_generator:
+		for e in input_generator:
+			return e
+
 def initialisation():
 	# gen player 
 	player = classes.Player("test", initial_health);
@@ -31,15 +38,18 @@ def initialisation():
 	return player, ai
 
 def field():
+	# local variable
+	console_text =""
+	cursor_symbol="🔍";
+	creatures_zone = "";
+	permanents_zone = "";
+	lands_zone = "";
+	hand = "";
+	card_info="";
+	
 	while True:
 		os.system('clear')
-		# local variable
-		creatures_zone = "";
-		permanents_zone = "";
-		lands_zone = "";
-		hand = "";
-		card_info="";
-		cursor_symbol="🔍";
+
 		
 		# here should be AI side of the field
 		# ---
@@ -48,6 +58,7 @@ def field():
 		# display Player side of the field & the cursor -->
 		
 		# Creatyres ⬇️
+		creatures_zone= ""
 		for card in range(len(player.creatures_zone)):
 			if player.cursor_x == card and player.cursor_y == 5:
 				creatures_zone += cursor_symbol;
@@ -63,7 +74,8 @@ def field():
 				permanents_zone += str(card.symbol)
 		print(permanents_zone)
 
-		# Lands ⬇️
+		# display lands_zone ⬇️
+		lands_zone= "" # reset string
 		for x in range(len(player.lands_zone)):
 			if player.lands_zone[x] != None:
 				for card in player.lands_zone[x]:
@@ -73,7 +85,8 @@ def field():
 						lands_zone += str(card.symbol)		
 		print(lands_zone)
 			
-		# Hand ⬇️
+		# display hand ⬇️
+		hand="" # reset string
 		for card in range(len(player.hand)):
 			if player.cursor_y == 1 and len(player.hand)<1:
 				player.cursor_y-=1;
@@ -110,46 +123,62 @@ def field():
 		print("-[Info]----------------------")
 		print(card_info)
 		
-		# Actions input
+		# Cursor location
 		print("y:"+str(player.cursor_y)+" x:"+str(player.cursor_x))
-		action= input("Cursor:")
+			
+		# Print Console
+		print(console_text)	
 		
-		# Place card
-		if action == "summon":
+		key_pressed = get_input();
+		if key_pressed == "w":
+			player.cursor_y += 1;
+			console_text = ""
+		if key_pressed == "a":
+			player.cursor_x -= 1;
+			console_text = ""
+		if key_pressed == "s":
+			player.cursor_y -= 1;
+			console_text = ""
+		if key_pressed == "d":
+			player.cursor_x += 1;
+			console_text = ""
+		if key_pressed == "h":	
+			console_text = "Summoning " + str(player.hand[player.cursor_x].name)
 			selected = player.hand[player.cursor_x]
 			selected.summon(player);
-
-		
-		# Movements 
-		if action[0] == "y":
-			if action[1] == "+":
-				player.cursor_y += int(action[2]);
-			elif action[1] == "-":
-				player.cursor_y -= int(action[2]);
-			elif action[1] == "=":
-				player.cursor_y = int(action[2]);
-		elif action[0] == "x":
-			if action[1] == "+":
-				player.cursor_x += int(action[2]);
-			elif action[1] == "-":
-				player.cursor_x -= int(action[2]);
-			elif action[1] == "=":
-				player.cursor_x = int(action[2]); 
-				
+		if key_pressed == "j":	
+			console_text = "Draw" 
+			selected = player.draw();
 	
-#player, ai = initialisation();
-#field();
-
-## Return keypress input from curtsies
-def get_input():
-	#keynames='curses'
-	with Input() as input_generator:
-		for e in input_generator:
-			return e
+player, ai = initialisation();
+field();
 			
-while True:
-	key_pressed = get_input();
-	print("pressed: "+str(key_pressed))
+def action_system():
+# Action input system
+	action= input("Cursor:")
+	
+	# Place card
+	if action == "summon":
+		selected = player.hand[player.cursor_x]
+		selected.summon(player);
+
+	
+	# Movements 
+	if action[0] == "y":
+		if action[1] == "+":
+			player.cursor_y += int(action[2]);
+		elif action[1] == "-":
+			player.cursor_y -= int(action[2]);
+		elif action[1] == "=":
+			player.cursor_y = int(action[2]);
+	elif action[0] == "x":
+		if action[1] == "+":
+			player.cursor_x += int(action[2]);
+		elif action[1] == "-":
+			player.cursor_x -= int(action[2]);
+		elif action[1] == "=":
+			player.cursor_x = int(action[2]); 
+
 
 
 

@@ -108,7 +108,13 @@ class Player:
 	def shuffle_deck():
 		random.shuffle(self.deck)
 		
-	def draw(self,amounth):
+	def draw(self,*args):
+		# If an argument is given it will use it as the draw amouth, 
+		# otherwise it will default to 1.
+		if len(args)>0:
+			amounth = args[0]
+		else:
+			amounth = 1 
 		for x in range(amounth):
 			draw = self.deck[-1]
 			self.deck.pop()
