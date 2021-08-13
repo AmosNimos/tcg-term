@@ -1,6 +1,10 @@
 # It's all temporary for testing, i get sh!t done as fast as i can here.
 
-# summoning star "⍟✪⍟۞"
+# Non emoji
+# summoning star "⍟✪۞✦✧★☆✯✡︎✩✫✬✭✮✶✷✵✸✹"
+# card "🂠"
+# Dice "⚀ ⚁ ⚂ ⚃ ⚄ ⚅"
+# Cursor "➔" 
 
 import classes
 import random
@@ -39,7 +43,6 @@ def initialisation():
 
 def field():
 	# local variable
-	console_text =""
 	cursor_symbol="🔍";
 	creatures_zone = "";
 	permanents_zone = "";
@@ -76,20 +79,25 @@ def field():
 
 		# display lands_zone ⬇️
 		lands_zone= "" # reset string
+		land_index = 0;
 		for x in range(len(player.lands_zone)):
 			if player.lands_zone[x] != None:
 				for card in player.lands_zone[x]:
-					if player.cursor_x == card and player.cursor_y == 3:
-						lands_zone += cursor_symbol;
-					else:
-						lands_zone += str(card.symbol)		
+					if player.cursor_x == land_index and player.cursor_y == 3:
+						#land_index +=1
+						#lands_zone += str(cursor_symbol);
+						lands_zone+="➔"
+					#else:
+					land_index +=1
+					lands_zone += str(card.symbol)
+						
 		print(lands_zone)
 			
 		# display hand ⬇️
 		hand="" # reset string
 		for card in range(len(player.hand)):
 			if player.cursor_y == 1 and len(player.hand)<1:
-				player.cursor_y-=1;
+				player.cursor_y=0;
 			if player.cursor_x == card and player.cursor_y == 2:
 				hand += cursor_symbol; 
 				if(player.hand[card].supertype == "Creature"):
@@ -127,27 +135,27 @@ def field():
 		print("y:"+str(player.cursor_y)+" x:"+str(player.cursor_x))
 			
 		# Print Console
-		print(console_text)	
+		print(player.console_text)	
 		
 		key_pressed = get_input();
 		if key_pressed == "w":
 			player.cursor_y += 1;
-			console_text = ""
+			player.console_text = ""
 		if key_pressed == "a":
 			player.cursor_x -= 1;
-			console_text = ""
+			player.console_text = ""
 		if key_pressed == "s":
 			player.cursor_y -= 1;
-			console_text = ""
+			player.console_text = ""
 		if key_pressed == "d":
 			player.cursor_x += 1;
-			console_text = ""
+			player.console_text = ""
 		if key_pressed == "h":	
-			console_text = "Summoning " + str(player.hand[player.cursor_x].name)
+			player.console_text = "Summoning " + str(player.hand[player.cursor_x].name)
 			selected = player.hand[player.cursor_x]
 			selected.summon(player);
 		if key_pressed == "j":	
-			console_text = "Draw" 
+			player.console_text = "Draw" 
 			selected = player.draw();
 	
 player, ai = initialisation();

@@ -4,46 +4,74 @@ from arrays import creature_kinds
 import random
 import sys
 
+# lands_colors = ["🟣", "⚪️", "🔵", "⚫️", "🔴", "🟢"];
+# Permanent = [🟠 🟡 🟤]
+# Creature 
+
+
 ## Cards class
 class Creature():
 	#creature_kinds=["a","b","c"];
 	kind = "";
 	name = "";
-	symbol = "#";
-	cost = [1,0,0,0,0];
+	symbol = "🟧";
+	symbol_char = "%"
+	#cost = [1,0,0,0,0];
 	supertype = "Creature";
 	power = 1;
 	taughness = 1;
 	type_line = supertype+" ─ "+name;
 	rarity = "common";
 	tapped = False;
-	
+		
 	def __init__(self):
+		random.Random()
+		self.cost = [random.randint(0,1),random.randint(0,3),0,0,0]
 		self.kind = creature_kinds[random.randint(0,len(creature_kinds)-1)]; # Human, Dinosaur Avatar, Vampire...
 		self.name = creature_kinds[random.randint(0,len(creature_kinds)-1)] + " of the " + creature_kinds[random.randint(0,len(creature_kinds)-1)]	
-
+		
+		# Initialise card symbol >>
+		creatures_symbols = ["🟪","⬜️","🟦","⬛️","🟥","🟩"]
+		# Check for multi color card
+		costs = []
+		for x in self.cost:
+			if x != 0:
+				costs.append(x)
+		no_duplicates = set(costs)
+		contains_duplicates = len(no_duplicates) != len(costs)
+		# Find the largest cost in the cost array then get it's index then use it as this card color.
+		if contains_duplicates == True:
+			# set the card color to colorless. 
+			self.symbol = creatures_symbols[0];
+		else:
+			self.symbol = creatures_symbols[self.cost.index(max(self.cost))]
+	
 
 	def summon(self,player):
 		# If their is eneugh land to cover the card cost tapp them
 		payed_cost = [0,0,0,0,0];
 		for color_index in range(len(self.cost)):
-			if len(player.lands_zone[color_index]) >= self.cost[color_index]:
+			#count untapped lands
+			untapped_lands=0;
+			for land in range(len(player.lands_zone[color_index])):
+				if player.lands_zone[color_index][land].tapped == False:
+					untapped_lands +=1;
+			if untapped_lands >= self.cost[color_index]:
 				for land in range(len(player.lands_zone[color_index])):
-					if player.lands_zone[color_index][land].tapped == False:
+					# I hate how convoluted this is, but basically it check trough the land zone apropriate color index and as long as the land is untapped and the cost is not fully payed it add it tap it and add it to the payed cost.
+					if player.lands_zone[color_index][land].tapped == False and payed_cost[color_index] < self.cost[color_index]:
 						player.lands_zone[color_index][land].tap();
 						if self.cost[color_index] > payed_cost[color_index]:
 							payed_cost[color_index] +=1;		
 			else:
+				player.console_text = "Insufficient lands to summon " + str(self.name)
 				return 0
+		# Check if their was enaugh untap lands?
 		if payed_cost == self.cost:
 			player.creatures_zone.append(self);
 			player.hand.remove(self)	
 		else:
-			print("insufficient lands")
-			print(payed_cost)
-			print("<")
-			print(self.cost)
-			input()
+			player.console_text = "Insufficient untapped lands to summon " + str(self.name)
 				
 		# 0- count untap land on the land_zone
 		# 1- check for the card cost
@@ -56,7 +84,8 @@ class Land():
 	name = "Wastes";
 	color_id = 0;
 	supertype = "Basic";
-	symbol = "%";
+	symbol = "🟪";
+	symbol_char = "$"
 	tapped = False;
 
 	def change_color(color):
@@ -100,6 +129,7 @@ class Player:
 	deck=[];
 	cursor_x = 0;
 	cursor_y = 2;
+	console_text ="";
 	
 	def __init__(self, name, health):
 		self.name = "Bob Smith",
@@ -128,7 +158,9 @@ class Player:
 		for x in range(land_count):
 			self.deck.append(Land())
 		for x in range(creature_count):
-			self.deck.append(Creature())
+		#[random.randint(0,10),0,0,0,0]
+			card = Creature()
+			self.deck.append(card)
 		random.shuffle(self.deck)
 
 
@@ -167,5 +199,5 @@ class AI:
 		for x in range(land_count):
 			self.deck.append(Land())
 		for x in range(creature_count):
-			self.deck.append(Creature())
+			self.deck.append(Land())
 		random.shuffle(self.deck)
