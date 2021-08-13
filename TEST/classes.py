@@ -46,7 +46,10 @@ class Creature():
 		else:
 			self.symbol = creatures_symbols[self.cost.index(max(self.cost))]
 	
-
+	def tap(self):
+		self.tapped=True;
+		self.symbol="🔳"
+		
 	def summon(self,player):
 		# If their is eneugh land to cover the card cost tapp them
 		payed_cost = [0,0,0,0,0];
@@ -87,25 +90,33 @@ class Land():
 	symbol = "🟪";
 	symbol_char = "$"
 	tapped = False;
-
+	
+	def __init__(self,*args):
+		random.Random()
+		#Manually select color
+		if len(args)>0:
+			color_id = args[0];
+		else:
+			color_id = random.randint(0,5)
+		lands_colors = ["🟣", "⚪️", "🔵", "⚫️", "🔴", "🟢"];
+		colors=["none","white","blue","black","red","green"]
+		names=["Wastes","Plains","Island","Swamp","Mountain","Forest"]
+		self.name = names[color_id]
+		self.color = colors[color_id]
+		self.symbol = lands_colors[color_id]
+		self.color_id = color_id
+		
 	def change_color(color):
 		self.color = color
 
 	def tap(self):
 		self.tapped=True;
-		self.symbol="x"
+		self.symbol="🔳"
 		
-		
-		
-	def gen_color():
+	#def gen_color(self):
 		# the __none__ color is for colorless mana.
 		#Select the mana color
-		color_id = randint(0,5)
-		colors=["none","white","blue","black","red","green"]
-		names=["Wastes","Plains","Island","Swamp","Mountain","Forest"]
-		self.Name = names[color_id]
-		self.color = colors[color_id]
-		self.color_id = color_id
+
 	
 	def summon(self,player):
 		# add this land to the lands_zone respective color index 

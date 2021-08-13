@@ -6,6 +6,9 @@
 # Dice "⚀ ⚁ ⚂ ⚃ ⚄ ⚅"
 # Cursor "➔" 
 
+# Emoji symbol
+# "🌀🔳🔲🔘↩️"
+
 import classes
 import random
 import os
@@ -84,12 +87,11 @@ def field():
 			if player.lands_zone[x] != None:
 				for card in player.lands_zone[x]:
 					if player.cursor_x == land_index and player.cursor_y == 3:
-						#land_index +=1
-						#lands_zone += str(cursor_symbol);
-						lands_zone+="➔"
-					#else:
-					land_index +=1
-					lands_zone += str(card.symbol)
+						land_index +=1
+						lands_zone += str(cursor_symbol);
+					else:
+						land_index +=1
+						lands_zone += str(card.symbol)
 						
 		print(lands_zone)
 			
