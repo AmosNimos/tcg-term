@@ -26,7 +26,7 @@ class Creature():
 		
 	def __init__(self):
 		random.Random()
-		self.cost = [random.randint(1,3),0,0,0,0]
+		self.cost = [random.randint(1,3),random.randint(1,3),random.randint(1,3),random.randint(1,3),random.randint(1,3)]
 		self.kind = creature_kinds[random.randint(0,len(creature_kinds)-1)]; # Human, Dinosaur Avatar, Vampire...
 		self.name = creature_kinds[random.randint(0,len(creature_kinds)-1)] + " of the " + creature_kinds[random.randint(0,len(creature_kinds)-1)]	
 		
@@ -52,23 +52,27 @@ class Creature():
 		
 	def summon(self,player):
 		# If their is eneugh land to cover the card cost tapp them
-		payed_cost = [0,0,0,0,0];
+		payed_cost = [0,0,0,0,0,0];
+		total_lands=0;
+		total_cost=0;
 		for color_index in range(len(self.cost)):
+			# COunt total cost
+			total_cost += self.cost[color_index]
 			#count untapped lands
-			untapped_lands=0;
 			for land in range(len(player.lands_zone[color_index])):
 				if player.lands_zone[color_index][land].tapped == False:
-					untapped_lands +=1;
-			if untapped_lands >= self.cost[color_index]:
+					total_lands +=1;
+		
+		if total_lands >= total_cost:
+			for color_index in range(len(self.cost)):
 				for land in range(len(player.lands_zone[color_index])):
-					# I hate how convoluted this is, but basically it check trough the land zone apropriate color index and as long as the land is untapped and the cost is not fully payed it add it tap it and add it to the payed cost.
 					if player.lands_zone[color_index][land].tapped == False and payed_cost[color_index] < self.cost[color_index]:
 						player.lands_zone[color_index][land].tap();
 						if self.cost[color_index] > payed_cost[color_index]:
 							payed_cost[color_index] +=1;		
-			else:
-				player.console_text = "Insufficient lands to summon " + str(self.name)
-				return 0
+		else:
+			player.console_text = "Insufficient lands to summon " + str(self.name)
+			return 0
 		# Check if their was enaugh untap lands?
 		if payed_cost == self.cost:
 			player.creatures_zone.append(self);

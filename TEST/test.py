@@ -79,6 +79,7 @@ def field():
 			for card in range(len(player.creatures_zone)):
 				if player.cursor_x == card and player.cursor_y == creature_y:
 					creatures_zone += cursor_symbol;
+					card_info = str(card.info());
 				else:
 					creatures_zone += str(player.creatures_zone[card].symbol)
 			print(creatures_zone)
