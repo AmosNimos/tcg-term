@@ -1,5 +1,3 @@
-> sorry my collaboration to the project might be delayed, my computer broke, i ordered a new one but until it arrive working on this project might not be easy for me. 
-
 # TCG-TERM
 ![open_TCG_img](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F699740%2Fpexels-photo-699740.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26fit%3Dcrop%26h%3D627%26w%3D1200&f=1&nofb=1)
 
