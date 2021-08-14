@@ -103,8 +103,8 @@ def field():
 			lands_count += len(player.lands_zone[x])
 		#player.console_text = "lands:"+str(lands_count)
 		if lands_count>0:
-			lands_zone= "" # reset string
-			land_index = 0;
+			lands_zone="" # reset string
+			land_index=0;
 			#Wrap the cursor
 			if player.cursor_y == land_y:
 				if player.cursor_x<0:
@@ -119,6 +119,7 @@ def field():
 						if player.cursor_x == land_index and player.cursor_y == land_y:
 							land_index +=1
 							lands_zone += str(cursor_symbol);
+							card_info = str(card.info());
 						else:
 							land_index +=1
 							lands_zone += str(card.symbol)
@@ -140,20 +141,10 @@ def field():
 					player.cursor_y=deck_y;
 				if player.cursor_x == card and player.cursor_y == hand_y:
 					hand += cursor_symbol; 
-					if(player.hand[card].supertype == "Creature"):
-						card_info = "Name:"+ str(player.hand[card].name) + "\n" 
-						card_info += "Cost:"+ str(player.hand[card].cost) + "\n"
-						card_info += player.hand[card].supertype + "\n"
-						card_info += "Rarity:" + str(player.hand[card].rarity) + "\n"
-						card_info += "Effect: [...]\n"
-						card_info += "Power:[" + str(player.hand[card].power) + "]\n"
-						card_info += "Power:[" + str(player.hand[card].taughness) + "]\n"
-					else:
-						card_info = "Name:"+ str(player.hand[card].name) + "\n"
-						card_info += player.hand[card].supertype + "\n"		
+					card_info = str(player.hand[card].info());	
 				else:
-					hand += str(player.hand[card].symbol)
-			print(hand+"["+str(len(player.hand))+"]")
+					hand += str(player.hand[card].symbol);
+			print(hand+"["+str(len(player.hand))+"]");
 		
 		# Graves
 		if len(player.graveyard)>0:

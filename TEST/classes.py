@@ -81,6 +81,15 @@ class Creature():
 		# 2- tap land
 		# 3- remove it self from the hand array
 		# 4- add it self to the field
+	def info(self):
+		card_info = "Name:"+ str(self.name) + "\n" 
+		card_info += "Cost:"+ str(self.cost) + "\n"
+		card_info += self.supertype + "\n"
+		card_info += "Rarity:" + str(self.rarity) + "\n"
+		card_info += "Effect: [...]\n"
+		card_info += "Power:[" + str(self.power) + "]\n"
+		card_info += "Power:[" + str(self.taughness) + "]\n"
+		return card_info
 
 class Land():
 	color = "none";
@@ -106,6 +115,10 @@ class Land():
 		self.symbol = lands_colors[color_id]
 		self.color_id = color_id
 		
+	def info(self):
+		card_info = "Name:"+ str(self.name) + "\n"
+		card_info += self.supertype + "\n"
+		return card_info
 	def change_color(color):
 		self.color = color
 
@@ -167,7 +180,7 @@ class Player:
 		creature_count = 30;
 		
 		for x in range(land_count):
-			self.deck.append(Land(0))
+			self.deck.append(Land())
 		for x in range(creature_count):
 		#[random.randint(0,10),0,0,0,0]
 			card = Creature()
