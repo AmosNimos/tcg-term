@@ -26,7 +26,7 @@ class Creature():
 		
 	def __init__(self):
 		random.Random()
-		self.cost = [random.randint(0,1),random.randint(0,3),0,0,0]
+		self.cost = [random.randint(1,3),0,0,0,0]
 		self.kind = creature_kinds[random.randint(0,len(creature_kinds)-1)]; # Human, Dinosaur Avatar, Vampire...
 		self.name = creature_kinds[random.randint(0,len(creature_kinds)-1)] + " of the " + creature_kinds[random.randint(0,len(creature_kinds)-1)]	
 		
@@ -167,7 +167,7 @@ class Player:
 		creature_count = 30;
 		
 		for x in range(land_count):
-			self.deck.append(Land())
+			self.deck.append(Land(0))
 		for x in range(creature_count):
 		#[random.randint(0,10),0,0,0,0]
 			card = Creature()
