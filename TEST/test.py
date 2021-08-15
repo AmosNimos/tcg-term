@@ -1,3 +1,16 @@
+#ToDo!
+"""
+Make the following function
+(If a zone is empty replace it with the one above.)
+Make all zone 1d array. 
+(devise land in multiple 1d to then add them together when printing.
+Add a zone for tapped Creature
+Add a zone for tapped Lands
+Make a function to return tapped lands from tapped_lands zone to the regular lands_zone
+Maybe put tap creatures and tap lands in the same array?
+"""
+
+
 # It's all temporary for testing, i get sh!t done as fast as i can here.
 
 # Non emoji
