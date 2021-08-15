@@ -2,10 +2,11 @@
 """
 Make the following function
 (If a zone is empty replace it with the one above.)
-Make all zone 1d array. 
+Make all zone 1d array?. 
 (devise land in multiple 1d to then add them together when printing.
 Add a zone for tapped Creature
 Add a zone for tapped Lands
+Make it so that color less mana can be used instead of a color specific mana
 Make a function to return tapped lands from tapped_lands zone to the regular lands_zone
 Maybe put tap creatures and tap lands in the same array?
 """
@@ -72,9 +73,11 @@ def field():
 	graveyard_y=0;
 	deck_y=1;
 	hand_y=2;
-	land_y=3;
-	permanent_y=4;
-	creature_y=5;
+	t_land_y=3;
+	land_y=4;
+	permanent_y=5;
+	t_creature_y=6;
+	creature_y=7;
 	highest_zone = hand_y;
 	lowest_zone = graveyard_y;
 	
@@ -171,6 +174,11 @@ def field():
 							lands_zone += str(card.symbol)
 			print(lands_zone)
 			
+		# Tapped_lands ⬇️
+		if player.cursor_y == t_land_y:
+			for card in player.tapped_lands:
+				lands_zone+=card.symbol;
+			
 		# display hand ⬇️
 		if len(player.hand)>0:
 			hand="" # reset string
@@ -230,8 +238,7 @@ def field():
 		if key_pressed == "d":
 			player.cursor_x += 1;
 			player.console_text = ""
-		if key_pressed == "h":	
-			player.console_text = "Summoning " + str(player.hand[player.cursor_x].name)
+		if key_pressed == "h":
 			selected = player.hand[player.cursor_x]
 			selected.summon(player);
 		if key_pressed == "j":	

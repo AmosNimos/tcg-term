@@ -49,31 +49,32 @@ class Creature():
 		self.tapped=True;
 		self.symbol="🔳"
 		
+	# So far you can only use waiste card to summon waise creatures... this need to be fix some how...
+	# But first let's just make this shit work as, is...
 	def summon(self,player):
-		# If their is eneugh land to cover the card cost tapp them
-		payed_cost = [0,0,0,0,0,0];
-		total_lands=0;
-		total_cost=0;
+		summon=True;
+		payed_cost = [0,0,0,0,0,0]
 		for color_index in range(len(self.cost)):
-			# COunt total cost
-			total_cost += self.cost[color_index]
-			#count untapped lands
-			for land in range(len(player.lands_zone[color_index])):
-				if player.lands_zone[color_index][land].tapped == False:
-					total_lands +=1;
+			# Count total cost
+			if self.cost[color_index]>len(player.lands_zone[color_index]):
+				summon=False
 		
-		if total_lands >= total_cost:
+		# If their is enaugh land of the same color on the field
+		if summon == True:
 			for color_index in range(len(self.cost)):
 				for land in range(len(player.lands_zone[color_index])):
-					if player.lands_zone[color_index][land].tapped == False and payed_cost[color_index] < self.cost[color_index]:
-						player.lands_zone[color_index][land].tap();
+					#Tap the required lands
+					if payed_cost[color_index] < self.cost[color_index]:
+						player.lands_zone[color_index][land].tap(player);
 						if self.cost[color_index] > payed_cost[color_index]:
 							payed_cost[color_index] +=1;	
 			player.creatures_zone.append(self);
-			player.hand.remove(self)	
+			player.hand.remove(self)
+			player.console_text = "Summoning " + str(player.hand[player.cursor_x].name)	
 		else:
-			player.console_text = "Insufficient lands to summon " + str(self.name)
-			return 0
+			player.console_text = "Insufficient lands to summon " + str(player.hand[player.cursor_x].name)
+			
+
 				
 		# 0- count untap land on the land_zone
 		# 1- check for the card cost
@@ -121,9 +122,11 @@ class Land():
 	def change_color(color):
 		self.color = color
 
-	def tap(self):
+	def tap(self,player):
 		self.tapped=True;
 		self.symbol="🔳"
+		player.tapped_lands.append(self);
+		player.lands_zone[self.color_id].remove(self)
 		
 	#def gen_color(self):
 		# the __none__ color is for colorless mana.
@@ -148,6 +151,7 @@ class Player:
 	lands_zone = [[],[],[],[],[],[]]; # lands are divided by color in this 2d array. so you can easily know how meny of each color their is with len(lands_zone[index])
 	tapped_lands = [];
 	creatures_zone = [];
+	tapped_creatures = [];
 	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-creature.
 	graveyard = [];
 	deck=[];
