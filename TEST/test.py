@@ -23,14 +23,6 @@ deck_size = 60;
 initial_health = 20;
 max_hand_size = 7;
 
-#Zones y Index
-graveyard_y=0;
-deck_y=1;
-hand_y=2;
-land_y=3;
-permanent_y=4;
-creature_y=5;
-
 ## Return keypress input
 def get_input():
 	#keynames='curses'
@@ -51,8 +43,10 @@ def initialisation():
 	# gen ai
 	
 	return player, ai
-
+	
 def field():
+
+
 	# local variable
 	cursor_symbol="🔍";
 	creatures_zone = "";
@@ -60,6 +54,16 @@ def field():
 	lands_zone = "";
 	hand = "";
 	card_info="";
+	
+	#Zones y Index
+	graveyard_y=0;
+	deck_y=1;
+	hand_y=2;
+	land_y=3;
+	permanent_y=4;
+	creature_y=5;
+	highest_zone = hand_y;
+	lowest_zone = graveyard_y;
 	
 	while True:
 		os.system('clear')
@@ -71,20 +75,54 @@ def field():
 
 		# display Player side of the field & the cursor -->
 		
+		# Count lands
+		lands_count=0;
+		for x in range(len(player.lands_zone)):
+			lands_count += len(player.lands_zone[x])
+		if lands_count>0:
+			highest_zone = land_y;
+			
 		## Display Zones >>
+		
+		# Wrap Cursor on the y axis >>
+		
+		# If a zone is empty replace it with the one above
+		# I know, this is verry big brain move.
+		if(len(player.permanents_zone)==0):
+			creature_y=4;
+		else: 
+			highest_zone=4;
+			
+		
+		if len(player.permanents_zone)>0 and len(player.creatures_zone)>0 and len(player.hand_zone)>0:
+			highest_zone=5;
+		elif len(player.permanents_zone)>0 or len(player.creatures_zone)>0:
+			highest_zone=4;
+			
+		if player.cursor_y > highest_zone:
+			player.cursor_y = lowest_zone;
+		if player.cursor_y < lowest_zone:
+			player.cursor_y = highest_zone;
 		
 		# Creatures ⬇️
 		if len(player.creatures_zone)>0:
+			highest_zone = creature_y;
+			if player.cursor_y == creature_y:
+				# Wrap the cursor 
+				if player.cursor_x>len(player.creatures_zone)-1:
+					player.cursor_x=0;
+				if player.cursor_x<0:
+					player.cursor_x=len(player.creatures_zone)-1;
+				
 			creatures_zone= ""
 			for card in range(len(player.creatures_zone)):
 				if player.cursor_x == card and player.cursor_y == creature_y:
 					creatures_zone += cursor_symbol;
-					card_info = str(card.info());
+					card_info = str(player.creatures_zone[card].info());
 				else:
 					creatures_zone += str(player.creatures_zone[card].symbol)
 			print(creatures_zone)
-		elif player.cursor_y == creature_y:
-			player.cursor_y = deck_y
+
 
 		# Permanents ⬇️
 		if len(player.permanents_zone)>0:
@@ -94,14 +132,8 @@ def field():
 				else:
 					permanents_zone += str(card.symbol)
 			print(permanents_zone)
-		elif player.cursor_y == permanent_y:
-			player.cursor_y = creature_y
 			
 		# Lands ⬇️
-		# count lands
-		lands_count=0;
-		for x in range(len(player.lands_zone)):
-			lands_count += len(player.lands_zone[x])
 		#player.console_text = "lands:"+str(lands_count)
 		if lands_count>0:
 			lands_zone="" # reset string
@@ -125,8 +157,6 @@ def field():
 							land_index +=1
 							lands_zone += str(card.symbol)
 			print(lands_zone)
-		elif player.cursor_y == land_y:
-			player.cursor_y = permanent_y
 			
 		# display hand ⬇️
 		if len(player.hand)>0:
@@ -146,23 +176,23 @@ def field():
 				else:
 					hand += str(player.hand[card].symbol);
 			print(hand+"["+str(len(player.hand))+"]");
-		
-		# Graves
-		if len(player.graveyard)>0:
-			if player.cursor_y == graveyard_y:
-				player.cursor_x = 0;
-				print(cursor_symbol+"["+str(len(player.graveyard))+"]")
-			else:
-				print("💀["+str(len(player.graveyard))+"]")
-		elif player.cursor_y == graveyard_y:
-			player.cursor_y = deck_y
 			
 		# Deck
-		if player.cursor_y == deck_y:
-			player.cursor_x = 0;
-			print(cursor_symbol+"["+str(len(player.deck))+"]")
+		if len(player.deck)<=0:
+			player.game_over=True;
 		else:
-			print("⬜["+str(len(player.deck))+"]")
+			if player.cursor_y == deck_y:
+				player.cursor_x = 0;
+				print(cursor_symbol+"["+str(len(player.deck))+"]")
+			else:
+				print("⬜["+str(len(player.deck))+"]")
+				
+		# Graves
+		if player.cursor_y == graveyard_y:
+			player.cursor_x = 0;
+			print(cursor_symbol+"["+str(len(player.graveyard))+"]")
+		else:
+			print("💀["+str(len(player.graveyard))+"]")
 		
 		# Print Info
 		print("-[Info]----------------------")
@@ -192,7 +222,6 @@ def field():
 			selected = player.hand[player.cursor_x]
 			selected.summon(player);
 		if key_pressed == "j":	
-			player.console_text = "Draw" 
 			selected = player.draw();
 	
 player, ai = initialisation();

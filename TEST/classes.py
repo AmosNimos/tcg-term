@@ -16,7 +16,6 @@ class Creature():
 	name = "";
 	symbol = "🟧";
 	symbol_char = "%"
-	#cost = [1,0,0,0,0];
 	supertype = "Creature";
 	power = 1;
 	taughness = 1;
@@ -26,7 +25,7 @@ class Creature():
 		
 	def __init__(self):
 		random.Random()
-		self.cost = [random.randint(1,3),random.randint(1,3),random.randint(1,3),random.randint(1,3),random.randint(1,3)]
+		self.cost = [random.randint(0,1),random.randint(0,1),random.randint(0,1),random.randint(0,1),random.randint(0,1),random.randint(0,1)]
 		self.kind = creature_kinds[random.randint(0,len(creature_kinds)-1)]; # Human, Dinosaur Avatar, Vampire...
 		self.name = creature_kinds[random.randint(0,len(creature_kinds)-1)] + " of the " + creature_kinds[random.randint(0,len(creature_kinds)-1)]	
 		
@@ -69,16 +68,12 @@ class Creature():
 					if player.lands_zone[color_index][land].tapped == False and payed_cost[color_index] < self.cost[color_index]:
 						player.lands_zone[color_index][land].tap();
 						if self.cost[color_index] > payed_cost[color_index]:
-							payed_cost[color_index] +=1;		
-		else:
-			player.console_text = "Insufficient lands to summon " + str(self.name)
-			return 0
-		# Check if their was enaugh untap lands?
-		if payed_cost == self.cost:
+							payed_cost[color_index] +=1;	
 			player.creatures_zone.append(self);
 			player.hand.remove(self)	
 		else:
-			player.console_text = "Insufficient untapped lands to summon " + str(self.name)
+			player.console_text = "Insufficient lands to summon " + str(self.name)
+			return 0
 				
 		# 0- count untap land on the land_zone
 		# 1- check for the card cost
@@ -145,6 +140,7 @@ class Land():
 ### (Might be a better idea to separate the field variable from the player class init function.)
 class Player:
 	#side_board = []
+	game_over = False;
 	collection = [];
 	coin = 0;
 	hand = [];
@@ -169,14 +165,17 @@ class Player:
 	def draw(self,*args):
 		# If an argument is given it will use it as the draw amouth, 
 		# otherwise it will default to 1.
-		if len(args)>0:
-			amounth = args[0]
-		else:
-			amounth = 1 
-		for x in range(amounth):
-			draw = self.deck[-1]
-			self.deck.pop()
-			self.hand.append(draw)
+		if self.game_over == False:
+		
+			if len(args)>0:
+				amounth = args[0]
+			else:
+				amounth = 1 
+			self.console_text = "Draw " + str(amounth) + " card."
+			for x in range(amounth):
+				draw = self.deck[-1]
+				self.deck.pop()
+				self.hand.append(draw)
 		
 	def gen_deck(self):
 		# This is just a temporary solution.
