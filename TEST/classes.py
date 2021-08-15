@@ -142,22 +142,34 @@ class Land():
 ## (You can use 2D array to stack card in the same place. and display the amounth of copy with a [x] after the card symbol)
 ### (Might be a better idea to separate the field variable from the player class init function.)
 class Player:
-	#side_board = []
+	
+	# Strings 
+	console_text ="";
+	
+	# Boolean
 	game_over = False;
+	
+	#Array 1D
 	collection = [];
-	coin = 0;
 	hand = [];
-	# the last array in the lands_zone array is for tapped land.
-	lands_zone = [[],[],[],[],[],[]]; # lands are divided by color in this 2d array. so you can easily know how meny of each color their is with len(lands_zone[index])
 	tapped_lands = [];
 	creatures_zone = [];
 	tapped_creatures = [];
 	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-creature.
 	graveyard = [];
 	deck=[];
+	
+	#Array 2D
+	lands_zone = [[],[],[],[],[],[]]; 
+	
+	# Int
+	coins = 0;
 	cursor_x = 0;
 	cursor_y = 2;
-	console_text ="";
+	card_limit = 7;
+	
+	# None/Empty
+	selection = None
 	
 	def __init__(self, name, health):
 		self.name = "Bob Smith",
@@ -180,6 +192,26 @@ class Player:
 				draw = self.deck[-1]
 				self.deck.pop()
 				self.hand.append(draw)
+				
+	def discard(self,*args):
+		# If an argument is given it will use it as the draw amouth, 
+		# otherwise it will default to 1.
+		if len(args)>0:
+			amounth = args[0]
+		else:
+			amounth = 1 
+		self.console_text = "discard " + str(amounth) + " card."
+		for x in range(amounth):
+			player.graveyard[self.selection].append(self);
+			player.hand.remove(self.selection)
+			
+	def turn():
+		
+		# Draw phase
+		draw()
+		#Check hand size limit. 
+		if len(self.hand)>self.card_limit:
+			discard(self.hand-self.card_limit);
 		
 	def gen_deck(self):
 		# This is just a temporary solution.

@@ -57,10 +57,10 @@ def initialisation():
 	# gen ai
 	
 	return player, ai
-	
+
+
+# This function is for displaying the field page on the screen	
 def field():
-
-
 	# local variable
 	cursor_symbol="🔍";
 	creatures_zone = "";
@@ -175,9 +175,14 @@ def field():
 			print(lands_zone)
 			
 		# Tapped_lands ⬇️
-		if player.cursor_y == t_land_y:
+		tapped_zone = ""
+		if len(player.tapped_lands)>0
 			for card in player.tapped_lands:
-				lands_zone+=card.symbol;
+				if player.cursor_y == t_land_y:
+					tapped_zone+=str(cursor_symbol);
+				else:
+					tapped_zone+=card.symbol;
+			print(tapped_zone)
 			
 		# display hand ⬇️
 		if len(player.hand)>0:
