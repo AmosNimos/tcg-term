@@ -1,5 +1,7 @@
 ## Don't worry every part of the code you don't like are just tamporary test, all value hard coded are temporary
 
+# Display field function: i should add all the print together in a single string and return them instead of printing them.
+
 from arrays import creature_kinds
 import random
 import sys
@@ -101,6 +103,7 @@ class Land():
 	tapped = False;
 	
 	def __init__(self,*args):
+	
 		random.Random()
 		#Manually select color
 		if len(args)>0:
@@ -119,6 +122,7 @@ class Land():
 		card_info = "Name:"+ str(self.name) + "\n"
 		card_info += self.supertype + "\n"
 		return card_info
+		
 	def change_color(color):
 		self.color = color
 
@@ -178,6 +182,9 @@ class Player:
 	def shuffle_deck():
 		random.shuffle(self.deck)
 		
+	def select():
+		# This function make the player pick a card from the field and return it.
+		
 	def draw(self,*args):
 		# If an argument is given it will use it as the draw amouth, 
 		# otherwise it will default to 1.
@@ -225,8 +232,154 @@ class Player:
 			card = Creature()
 			self.deck.append(card)
 		random.shuffle(self.deck)
+		
+	def display_field():
+		# String
+		cursor_symbol="🔍";
+		creatures_zone = "";
+		permanents_zone = "";
+		lands_zone = "";
+		hand = "";
+		card_info="";
+		
+		# Int 
+		graveyard_y=0;
+		deck_y=1;
+		hand_y=2;
+		t_land_y=3;
+		land_y=4;
+		permanent_y=5;
+		t_creature_y=6;
+		creature_y=7;
+		highest_zone = hand_y;
+		lowest_zone = graveyard_y;
 
+		# Count lands
+		lands_count=0;
+		for x in range(len(player.lands_zone)):
+			lands_count += len(player.lands_zone[x])
+		if lands_count>0:
+			highest_zone = land_y;
+	
+		# If a zone is empty replace it with the one above
+			# I have not idea how i am suppose to code that shit...
 
+		# Wrap cursor on the y axis
+		if player.cursor_y > highest_zone:
+			player.cursor_y = lowest_zone;
+		if player.cursor_y < lowest_zone:
+			player.cursor_y = highest_zone;
+			
+		# Creatures ⬇️
+		if len(player.creatures_zone)>0:
+			highest_zone = creature_y;
+			if player.cursor_y == creature_y:
+				# Wrap the cursor on the x axis
+				if player.cursor_x>len(player.creatures_zone)-1:
+					player.cursor_x=0;
+				if player.cursor_x<0:
+					player.cursor_x=len(player.creatures_zone)-1;
+			creatures_zone= ""
+			for card in range(len(player.creatures_zone)):
+				if player.cursor_x == card and player.cursor_y == creature_y:
+					creatures_zone += cursor_symbol;
+					card_info = str(player.creatures_zone[card].info());
+				else:
+					creatures_zone += str(player.creatures_zone[card].symbol)
+			print(creatures_zone)
+			
+		# Permanents ⬇️
+		if len(player.permanents_zone)>0:
+			for card in player.permanents_zone:
+				if player.cursor_x == card and player.cursor_y == permanent_y:
+					permanents_zone += cursor_symbol;
+				else:
+					permanents_zone += str(card.symbol)
+			print(permanents_zone)
+			
+		# Lands ⬇️
+		# Since this is a 2D array this part is really hard to keep simple...
+		if lands_count>0:
+			lands_zone="" # reset string
+			land_index=0;
+			# Wrap the cursor on the x axis
+			if player.cursor_y == land_y:
+				if player.cursor_x<0:
+					player.console_text = "lands:"+str(lands_count)
+					player.cursor_x=lands_count-1;
+				if player.cursor_x>lands_count-1:
+					player.console_text = "lands:"+str(lands_count)
+					player.cursor_x = 0
+			for x in range(len(player.lands_zone)):
+				if player.lands_zone[x] != None:
+					for card in player.lands_zone[x]:
+						if player.cursor_x == land_index and player.cursor_y == land_y:
+							land_index +=1
+							lands_zone += str(cursor_symbol);
+							card_info = str(card.info());
+						else:
+							land_index +=1
+							lands_zone += str(card.symbol)
+			print(lands_zone)
+			
+		# Tapped_lands ⬇️
+		if len(player.tapped_lands)>0
+			for card in player.tapped_lands:
+				if player.cursor_y == t_land_y:
+					tapped_zone+=str(cursor_symbol);
+				else:
+					tapped_zone+=card.symbol;
+			print(tapped_zone)
+			
+		# Hand ⬇️
+		if len(player.hand)>0:
+			# Wrap the cursor on the x axis
+			if player.cursor_y == hand_y:
+				if player.cursor_x>len(player.hand)-1:
+					player.cursor_x=0;
+				if player.cursor_x<0:
+					player.cursor_x=len(player.hand)-1;
+			for card in range(len(player.hand)):
+				if player.cursor_y == hand_y and len(player.hand)<1:
+					player.cursor_y=deck_y;
+				if player.cursor_x == card and player.cursor_y == hand_y:
+					hand += cursor_symbol; 
+					card_info = str(player.hand[card].info());	
+				else:
+					hand += str(player.hand[card].symbol);
+			print(hand+"["+str(len(player.hand))+"]");
+			
+		# Deck ⬇️
+		if len(player.deck)<=0:
+			player.game_over=True;
+		else:
+			if player.cursor_y == deck_y:
+				player.cursor_x = 0;
+				print(cursor_symbol+"["+str(len(player.deck))+"]")
+			else:
+				print("⬜["+str(len(player.deck))+"]")
+				
+		# Graves ⬇️
+		if player.cursor_y == graveyard_y:
+			player.cursor_x = 0;
+			print(cursor_symbol+"["+str(len(player.graveyard))+"]")
+		else:
+			print("💀["+str(len(player.graveyard))+"]")
+			
+		# Print Info
+		print("-[Info]----------------------")
+		print(card_info)
+		
+		# Print Console
+		print("-----------------------------")
+		print(player.console_text)	
+		
+		# Debug: Cursor location
+		print("y:"+str(player.cursor_y)+" x:"+str(player.cursor_x))
+					
+
+			
+			
 class AI:
 	#side_board = []
 	collection = [];
