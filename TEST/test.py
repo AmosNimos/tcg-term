@@ -90,6 +90,8 @@ def field():
 		#display_ai(ai,player,cursor_symbol);
 
 		# display Player side of the field & the cursor -->
+		player.display_field();
+		
 		
 		key_pressed = get_input();
 		if key_pressed == "w":
@@ -112,32 +114,6 @@ def field():
 	
 player, ai = initialisation();
 field();
-			
-def action_system():
-# Action input system
-	action= input("Cursor:")
-	
-	# Place card
-	if action == "summon":
-		selected = player.hand[player.cursor_x]
-		selected.summon(player);
-
-	
-	# Movements 
-	if action[0] == "y":
-		if action[1] == "+":
-			player.cursor_y += int(action[2]);
-		elif action[1] == "-":
-			player.cursor_y -= int(action[2]);
-		elif action[1] == "=":
-			player.cursor_y = int(action[2]);
-	elif action[0] == "x":
-		if action[1] == "+":
-			player.cursor_x += int(action[2]);
-		elif action[1] == "-":
-			player.cursor_x -= int(action[2]);
-		elif action[1] == "=":
-			player.cursor_x = int(action[2]); 
 
 
 
