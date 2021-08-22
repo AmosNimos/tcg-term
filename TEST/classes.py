@@ -64,7 +64,19 @@ class Creature():
 	def summon(self,player):
 		summon=True;
 		payed_cost = [0,0,0,0,0,0]
+		
+		
 		for color_index in range(len(self.cost)):
+			untapped_lands = 0;
+			
+			# [NOTE!]
+			# Do i really need a separate tapped card array?
+			
+			#Count untapped lands
+			for land in range(len(player.lands_zone[color_index])):
+				if player.lands_zone[color_index][land].tapped == False:
+					untapped_lands += 1;
+				
 			# Count total cost
 			if self.cost[color_index]>len(player.lands_zone[color_index]):
 				summon=False
@@ -77,14 +89,14 @@ class Creature():
 					if payed_cost[color_index] < self.cost[color_index]:
 						player.lands_zone[color_index][land].tap(player);
 						if self.cost[color_index] > payed_cost[color_index]:
-							payed_cost[color_index] +=1;	
+							payed_cost[color_index] += 1;	
+					
+					
 			player.creatures_zone.append(self);
 			player.hand.remove(self)
 			player.console_text = "Summoning " + str(player.hand[player.cursor_x].name)	
 		else:
 			player.console_text = "Insufficient lands to summon " + str(player.hand[player.cursor_x].name)
-			
-
 				
 		# 0- count untap land on the land_zone
 		# 1- check for the card cost
@@ -134,11 +146,18 @@ class Land():
 	def change_color(color):
 		self.color = color
 
+	def remove(self,player):
+		player.lands_zone[self.color_id].remove(self);
+		
 	def tap(self,player):
 		self.tapped=True;
 		self.symbol="🔳"
+		
+		# [NOTE!]
+		# The "tapped_lands" array could simply be a Integer variable and represent tapped card with a symbol for x
+		# Side effect would be not being able to preview the content of the tap cards
+		
 		player.tapped_lands.append(self);
-		player.lands_zone[self.color_id].remove(self)
 		
 	#def gen_color(self):
 		# the __none__ color is for colorless mana.
@@ -242,6 +261,22 @@ class Player:
 			card = Creature()
 			self.deck.append(card)
 		random.shuffle(self.deck)
+		
+		
+	def debug(self):
+		# Print Console
+		print("-[Console]--------------------")
+		print(self.console_text)	
+		# Debug: Cursor location
+		print("Cursor")
+		print("y:"+str(self.cursor_y)+" x:"+str(self.cursor_x))
+		
+		# Debug: Lands
+		print("Lands")
+		print(self.lands_zone)
+		print("Tapped Lands")
+		print(self.tapped_lands)
+		
 		
 	def display_field(self):
 		# String
@@ -388,12 +423,7 @@ class Player:
 		print("-[Info]----------------------")
 		print(card_info)
 		
-		# Print Console
-		print("-----------------------------")
-		print(self.console_text)	
-		
-		# Debug: Cursor location
-		print("y:"+str(self.cursor_y)+" x:"+str(self.cursor_x))
+		self.debug()
 					
 
 			
