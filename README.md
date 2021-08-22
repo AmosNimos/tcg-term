@@ -33,10 +33,13 @@ The first goal to be realistic in scope, is to have a playable single player gam
 
 [blueprint Guide](https://mtg.fandom.com/wiki)
 
-# Main Game View
+# Concept art
+
  > I am still not sure what is the best way to display the mana cost.
  > C: Creatures, P: Permanents, L: Lands.
  > D: Deck, H: Hand, G: Graveyard.
+
+## Game View
  ~~~
  Turn: [Player_name_one]
  Phase: [Beginning/Untap Step] 
@@ -106,7 +109,7 @@ L: ## %
  Taughness: 1
  ~~~
  
- # Deck Edit
+ # Deck Edit View
  ~~~
 Filter: Name[🅰] Cost[🪙] Power[🗡️] Taughness[🛡️] Color[🚫]
 [Deck]
@@ -154,7 +157,7 @@ Filter: Name[🅰] Cost[🪙] Power[🗡️] Taughness[🛡️] Color[🚫]
  P/T: [1/1]
  ~~~
   
- # Card shop view
+ # Card Shop View
  
  > Don't worry you buy the cards with in game point, which can be won by winning game.
  > No ingame purchasses XD
@@ -170,7 +173,7 @@ Filter: Name[🅰] Cost[🪙] Power[🗡️] Taughness[🛡️] Color[🚫]
   🚪[MAIN MENU]
 ~~~
 
-# Settings view
+# Settings View
 ~~~
 Settings:
  🔍 Text Only [Off]
