@@ -12,6 +12,7 @@
 
 > So far the summoning with color cost and non color is a bigger challange then expected to get working, I am doing my best but so far their is still much to fix. for example being able to use any colors of lands to pay for colorless cost...
 
+> All of this could probably be acheaved with javascript on an html webpage, but i whanted to play on the terminal, so if you wish to adapt the code for a more web based experience feel free to contribute to this project.
 
 I will probably Reuse some code and thechnics from this previus project of mine.
 It was a verry similar project, and i learn a lot from making it, even do I try to keep this project simple, i do not whish to rush it, and i do not have that much free time to work on it, so things can take some time to take shape.
