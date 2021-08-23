@@ -17,6 +17,8 @@
 I will probably Reuse some code and thechnics from this previus project of mine.
 It was a verry similar project, and i learn a lot from making it, even do I try to keep this project simple, i do not whish to rush it, and i do not have that much free time to work on it, so things can take some time to take shape.
 
+![open_TCG_img2](https://www.oddee.com/wp-content/uploads/_media/imgs/articles2/a98929_Pachimon-Kaiju-Cards-930x1002-1.jpg)
+
 [RAND-CARD](https://github.com/AmosNimos/rand-card)
 
 # What is tcg-term?
