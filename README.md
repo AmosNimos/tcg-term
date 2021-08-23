@@ -28,14 +28,15 @@ It is a minimalistic, open-source, tcg-like game, made in python, that can be pl
 The first goal to be realistic in scope, is to have a playable single player game, with simple generated card, that have simple [__Keyword ability__](https://mtg.fandom.com/wiki/Keyword_ability) effect. Then once completed, add complexity progressivelly, and maybe in the far long distant future a form of multiplayer.
 
 3 main gamemode "inspired" by:
-- Magic
+- Mtg
 - P0k3m0n
 - Yu-g!-0h
 
 > And maybe a gamemode called __Battle-Cry__ ( Another one of my open source project Here on Github. )
 
 
-[blueprint Guide](https://mtg.fandom.com/wiki)
+[mtg_wiki](https://mtg.fandom.com/wiki)
+[P0K3M0n](https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Trading_Card_Game)
 
 # Concept art
 
