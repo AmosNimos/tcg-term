@@ -1,14 +1,12 @@
 ## Don't worry every part of the code you don't like are just tamporary test, all value hard coded are temporary
 
 # Display field function: i should add all the print together in a single string and return them instead of printing them.
-
-from arrays import Pokemon_kinds
 import random
 import sys
 
-# Energy_colors = ["🟣", "⚪️", "🔵", "⚫️", "🔴", "🟢"];
-# Trainor/Item/Other = [🟠 🟡 🟤]
-# Pokemon = ["🟪","⬜️","🟦","⬛️","🟥","🟩"]
+# Energy_colors = ["⚪️","🟣", "🔵", "⚫️", "🔴", "🟢", "🟠", "🟤", "🟡"];
+# Trainor/Item/Other = [  ]
+# ["⬜️","🟪","🟦","⬛️","🟥","🟩","🟧","🟫","🟨"]
 
 
 ## Cards class
@@ -24,9 +22,28 @@ class Pokemon():
 	taughness = 1;
 	type_line = supertype+" ─ "+name;
 	rarity = "common";
-		
+	energy = [0,0,0,0,0,0,0,0,0]
+	
 	def __init__(self):
-		random.Random()
+	
+		#Pokemon name generator
+		def gen_name():
+			Vowels = ["a","e","i","o","u"];
+			Consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+			temp_name = ""
+			name_size = random.randint(0,11)
+			x = random.randint(0,1)
+			for index in range(name_size):
+				if x == 0:
+					temp_name+=str(random.choice(Vowels))
+					x = random.randint(0,1)
+				else:
+					temp_name+=str(random.choice(Consonants))
+					x=0
+			return temp_name
+
+		random.Random();
+		
 		multi_color = False;
 		
 		if multi_color == True:
@@ -36,11 +53,9 @@ class Pokemon():
 			temp_cost = [0,0,0,0,0,0]
 			temp_cost[color_id] = random.randint(1,3)
 			self.cost = temp_cost
-		self.kind = Pokemon_kinds[random.randint(0,len(Pokemon_kinds)-1)]; # Human, Dinosaur Avatar, Vampire...
-		self.name = Pokemon_kinds[random.randint(0,len(Pokemon_kinds)-1)] + " of the " + Pokemon_kinds[random.randint(0,len(Pokemon_kinds)-1)]	
 		
 		# Initialise card symbol >>
-		Pokemons_symbols = ["🟪","⬜️","🟦","⬛️","🟥","🟩"]
+		Pokemons_symbols = ["⬜️","🟪","🟦","⬛️","🟥","🟩","🟧","🟫","🟨"];
 		# Check for multi color card
 		costs = []
 		for x in self.cost:
@@ -92,7 +107,7 @@ class Pokemon():
 							payed_cost[color_index] += 1;	
 					
 					
-			player.Pokemons_zone.append(self);
+			player.bench_zone.append(self);
 			player.hand.remove(self)
 			player.console_text = "Summoning " + str(player.hand[player.cursor_x].name)	
 		else:
@@ -184,15 +199,10 @@ class Player:
 	#Array 1D
 	collection = [];
 	hand = [];
-	tapped_Energy = [];
-	Pokemons_zone = [];
-	tapped_Pokemons = [];
-	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-Pokemon.
+	bench_zone = [];
+	battle_zone = None;
 	graveyard = [];
-	deck=[];
-	
-	#Array 2D
-	Energy_zone = [[],[],[],[],[],[]]; 
+	deck=[]; 
 	
 	# Int
 	coins = 0;
@@ -282,34 +292,21 @@ class Player:
 	def display_field(self):
 		# String
 		cursor_symbol="🔍";
-		Pokemons_zone = "";
-		permanents_zone = "";
-		Energy_zone = "";
-		tapped_Energy_zone = ""
+		bench_zone = "";
+		battle_zone = "";
 		hand = "";
 		card_info="";
 		
 		# Int 
+		# (Zone Index)
+		lowest_zone=0
 		graveyard_y=0;
 		deck_y=1;
 		hand_y=2;
-		t_Energy_y=3;
-		Energy_y=4;
-		permanent_y=5;
-		t_Pokemon_y=6;
-		Pokemon_y=7;
-		highest_zone = 7;
-		lowest_zone = 0;
-
-		# Count Energy
-		Energy_count=0;
-		for x in range(len(self.Energy_zone)):
-			Energy_count += len(self.Energy_zone[x])
-		if Energy_count>0:
-			highest_zone = Energy_y;
-	
-		# If a zone is empty replace it with the one above
-			# I have not idea how i am suppose to code that shit...
+		bench_y=3;
+		battle_y
+		highest_zone = 3
+		
 
 		# Wrap cursor on the y axis
 		if self.cursor_y > highest_zone:
@@ -317,75 +314,36 @@ class Player:
 		if self.cursor_y < lowest_zone:
 			self.cursor_y = highest_zone;
 			
-		# Pokemons ⬇️
-		if len(self.Pokemons_zone)>0:
-			highest_zone = Pokemon_y;
+		# battle_zone ⬇️
+		if battle_zone!=None:
 			if self.cursor_y == Pokemon_y:
 				# Wrap the cursor on the x axis
-				if self.cursor_x>len(self.Pokemons_zone)-1:
+					self.cursor_x=0;
+			battle_zone="";
+					battle_zone += cursor_symbol;
+					card_info = str(self.battle_zone[card].info());
+				else:
+					battle_zone = str(self.battle_zone.symbol)
+			print(bench_zone)
+			
+		# bench_zone ⬇️
+		if len(self.bench_zone)>0:
+			if self.cursor_y == Pokemon_y:
+				# Wrap the cursor on the x axis
+				if self.cursor_x>len(self.bench_zone)-1:
 					self.cursor_x=0;
 				if self.cursor_x<0:
-					self.cursor_x=len(self.Pokemons_zone)-1;
-			Pokemons_zone= ""
-			for card in range(len(self.Pokemons_zone)):
-				if self.cursor_x == card and self.cursor_y == Pokemon_y:
-					Pokemons_zone += cursor_symbol;
-					card_info = str(self.Pokemons_zone[card].info());
+					self.cursor_x=len(self.bench_zone)-1;
+			bench_zone= ""
+			for card in range(len(self.bench_zone)):
+				if self.cursor_x == card:
+					bench_zone += cursor_symbol;
+					card_info = str(self.bench_zone[card].info());
 				else:
-					Pokemons_zone += str(self.Pokemons_zone[card].symbol)
-			print(Pokemons_zone)
+					bench_zone += str(self.bench_zone[card].symbol)
+			print(bench_zone)
 			
-		# Permanents ⬇️
-		if len(self.permanents_zone)>0:
-			for card in self.permanents_zone:
-				if self.cursor_x == card and self.cursor_y == permanent_y:
-					permanents_zone += cursor_symbol;
-				else:
-					permanents_zone += str(card.symbol)
-			print(permanents_zone)
-			
-		# Energy ⬇️
-		# Since this is a 2D array this part is really hard to keep simple...
-		if Energy_count>0:
-			Energy_zone="" # reset string
-			Energy_index=0;
-			# Wrap the cursor on the x axis
-			if self.cursor_y == Energy_y:
-				if self.cursor_x<0:
-					self.console_text = "Energy:"+str(Energy_count)
-					self.cursor_x=Energy_count-1;
-				if self.cursor_x>Energy_count-1:
-					self.console_text = "Energy:"+str(Energy_count)
-					self.cursor_x = 0
-			for x in range(len(self.Energy_zone)):
-				if self.Energy_zone[x] != None:
-					for card in self.Energy_zone[x]:
-						if self.cursor_x == Energy_index and self.cursor_y == Energy_y:
-							Energy_index +=1
-							Energy_zone += str(cursor_symbol);
-							card_info = str(card.info());
-						else:
-							Energy_index +=1
-							Energy_zone += str(card.symbol)
-			print(Energy_zone)
-			
-		# Tapped_Energy ⬇️
-		if self.cursor_y == t_Energy_y:
-		# Wrap the cursor on the Y axis
-			if self.cursor_x>len(tapped_Energy_zone)-1:
-				self.cursor_x=0;
-			if self.cursor_x<0:
-				self.cursor_x=len(tapped_Energy_zone)		
-		if len(self.tapped_Energy)>0:
-			for card in range(len(self.tapped_Energy)):
-				if self.cursor_y == t_Energy_y and self.cursor_x == card:
-						tapped_Energy_zone+=str(cursor_symbol);
-						card_info = str(self.tapped_Energy[card].info());
-				else:
-					tapped_Energy_zone+=self.tapped_Energy[card].symbol;
-			print(tapped_Energy_zone)
-			
-		# Hand ⬇️
+		# hand_zone ⬇️
 		if len(self.hand)>0:
 			# Wrap the cursor on the x axis
 			if self.cursor_y == hand_y:
@@ -403,7 +361,7 @@ class Player:
 					hand += str(self.hand[card].symbol);
 			print(hand+"["+str(len(self.hand))+"]");
 			
-		# Deck ⬇️
+		# deck_zone ⬇️
 		if len(self.deck)<=0:
 			self.game_over=True;
 		else:
@@ -413,7 +371,7 @@ class Player:
 			else:
 				print("⬜["+str(len(self.deck))+"]")
 				
-		# Graves ⬇️
+		# graves_zone ⬇️
 		if self.cursor_y == graveyard_y:
 			self.cursor_x = 0;
 			print(cursor_symbol+"["+str(len(self.graveyard))+"]")
@@ -435,7 +393,7 @@ class AI:
 	coin = 0;
 	hand = [];
 	Energy_zone = [];
-	Pokemons_zone = [];
+	bench_zone = [];
 	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-Pokemon.
 	graveyard = [];
 	deck=[];
