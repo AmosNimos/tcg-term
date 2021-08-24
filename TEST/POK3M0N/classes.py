@@ -304,7 +304,7 @@ class Player:
 		deck_y=1;
 		hand_y=2;
 		bench_y=3;
-		battle_y
+		battle_y=4;
 		highest_zone = 3
 		
 
@@ -315,20 +315,20 @@ class Player:
 			self.cursor_y = highest_zone;
 			
 		# battle_zone ⬇️
-		if battle_zone!=None:
-			if self.cursor_y == Pokemon_y:
+		if self.battle_zone!=None:
+			if self.cursor_y == battle_y:
 				# Wrap the cursor on the x axis
-					self.cursor_x=0;
-			battle_zone="";
-					battle_zone += cursor_symbol;
-					card_info = str(self.battle_zone[card].info());
-				else:
-					battle_zone = str(self.battle_zone.symbol)
+				self.cursor_x=0;
+				battle_zone="";
+				battle_zone = cursor_symbol;
+				card_info = str(self.battle_zone[card].info());
+			else:
+				battle_zone = str(self.battle_zone.symbol)
 			print(bench_zone)
 			
 		# bench_zone ⬇️
 		if len(self.bench_zone)>0:
-			if self.cursor_y == Pokemon_y:
+			if self.cursor_y == bench_y:
 				# Wrap the cursor on the x axis
 				if self.cursor_x>len(self.bench_zone)-1:
 					self.cursor_x=0;
