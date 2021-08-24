@@ -83,18 +83,6 @@ class Pokemon():
 		
 		for color_index in range(len(self.cost)):
 			untapped_Energy = 0;
-			
-			# [NOTE!]
-			# Do i really need a separate tapped card array?
-			
-			#Count untapped Energy
-			for Energy in range(len(player.Energy_zone[color_index])):
-				if player.Energy_zone[color_index][Energy].tapped == False:
-					untapped_Energy += 1;
-				
-			# Count total cost
-			if self.cost[color_index]>len(player.Energy_zone[color_index]):
-				summon=False
 		
 		# If their is enaugh Energy of the same color on the field
 		if summon == True:
@@ -119,7 +107,7 @@ class Pokemon():
 		# 3- remove it self from the hand array
 		# 4- add it self to the field
 	def info(self):
-		card_info += color_name[self.color_id] + color_symbol[self.color_id] + "\n"
+		#card_info += color_name[self.color_id] + color_symbol[self.color_id] + "\n"
 		card_info = "Name:"+ str(self.name) + "\n" 
 		card_info += "HP:[" + str(self.HP) + "]\n"
 		card_info += "Rarity:" + str(self.rarity) + "\n"
@@ -146,9 +134,9 @@ class Energy():
 			color_id = args[0];
 		else:
 			color_id = random.randint(0,5)
-		Energy_colors = ["🟣", "⚪️", "🔵", "⚫️", "🔴", "🟢"];
+		Energy_colors = ["⚪️","🟢", "🔴", "🔵", "🟡", "🟣", "🟠", "⚫️", "🟤"];
+		names=["colorless","Grass","Fire","Water","Lightning","Psychic","Fighting","Darkness","Metal","Fairy"]
 		colors=["none","white","blue","black","red","green"]
-		names=["Wastes","Plains","IsEnergy","Swamp","Mountain","Forest"]
 		self.name = names[color_id]
 		self.color = colors[color_id]
 		self.symbol = Energy_colors[color_id]
@@ -282,12 +270,6 @@ class Player:
 		print("Cursor")
 		print("y:"+str(self.cursor_y)+" x:"+str(self.cursor_x))
 		
-		# Debug: Energy
-		print("Energy")
-		print(self.Energy_zone)
-		print("Tapped Energy")
-		print(self.tapped_Energy)
-		
 		
 	def display_field(self):
 		# String
@@ -392,7 +374,6 @@ class AI:
 	collection = [];
 	coin = 0;
 	hand = [];
-	Energy_zone = [];
 	bench_zone = [];
 	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-Pokemon.
 	graveyard = [];
