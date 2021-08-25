@@ -27,10 +27,11 @@ It started as a project to make an mtg alternative game on the linux terminal, b
 It is a minimalistic, open-source, tcg-like game, made in python, that can be played on most terminal emulator on linux.
 The first goal to be realistic in scope, is to have a playable single player game, with simple generated card, that have simple [__Keyword ability__](https://mtg.fandom.com/wiki/Keyword_ability) effect. Then once completed, add complexity progressivelly, and maybe in the far long distant future a form of multiplayer.
 
-3 main gamemode "inspired" by:
+I aim to have 4 main gamemode "inspired" by:
 - Mtg
 - P0k3m0n
 - Yu-g!-0h
+- Force of will
 
 > And maybe a gamemode called __Battle-Cry__ ( Another one of my open source project Here on Github. )
 
