@@ -10,102 +10,58 @@ import sys
 
 
 ## Cards class
-class Pokemon():
-	#Pokemon_kinds=["a","b","c"];
+class pokemon():
+	#pokemon_kinds=["a","b","c"];
 	kind = "";
 	name = "";
-	symbol = "🟧";
+	symbol = "⬜️";
 	color_id = 0
 	symbol_char = "%"
-	supertype = "Pokemon";
+	supertype = "pokemon";
 	HP = 1;
 	taughness = 1;
 	type_line = supertype+" ─ "+name;
-	rarity = "common";
+	rarity = 0;
+	rarity_type = ["Common","Uncommon","Rare","Holo Rare", "Reverse Holo", "Full Art", "Secret Rare", "Rainbow Rare", "Promo"]
 	energy = [0,0,0,0,0,0,0,0,0]
 	
+	# Phrase
+	summon_phrase = "let's go!"
+	
 	def __init__(self):
-	
-		#Pokemon name generator
-		def gen_name():
-			Vowels = ["a","e","i","o","u"];
-			Consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
-			temp_name = ""
-			name_size = random.randint(0,11)
-			x = random.randint(0,1)
-			for index in range(name_size):
-				if x == 0:
-					temp_name+=str(random.choice(Vowels))
-					x = random.randint(0,1)
-				else:
-					temp_name+=str(random.choice(Consonants))
-					x=0
-			return temp_name
-
+		
 		random.Random();
-		
-		multi_color = False;
-		
-		if multi_color == True:
-			self.cost = [random.randint(0,1),random.randint(0,1),random.randint(0,1),random.randint(0,1),random.randint(0,1),random.randint(0,1)]
-		else:
-			color_id = random.randint(0,5)
-			temp_cost = [0,0,0,0,0,0]
-			temp_cost[color_id] = random.randint(1,3)
-			self.cost = temp_cost
-		
+			
+		self.name=self.gen_name()
+		self.rarity = random.randint(0,3)
 		# Initialise card symbol >>
-		Pokemons_symbols = ["⬜️","🟪","🟦","⬛️","🟥","🟩","🟧","🟫","🟨"];
-		# Check for multi color card
-		costs = []
-		for x in self.cost:
-			if x != 0:
-				costs.append(x)
-		no_duplicates = set(costs)
-		contains_duplicates = len(no_duplicates) != len(costs)
-		# Find the largest cost in the cost array then get it's index then use it as this card color.
-		if contains_duplicates == True:
-			# set the card color to colorless. 
-			self.symbol = Pokemons_symbols[0];
-		else:
-			self.symbol = Pokemons_symbols[self.cost.index(max(self.cost))]
-	
-	def tap(self):
-		self.tapped=True;
-		self.symbol="🔳"
+		pokemons_symbols = ["⬜️","🟪","🟦","⬛️","🟥","🟩","🟧","🟫","🟨"];
+		self.color_id = random.randint(0,len(pokemons_symbols)-1)
+		self.symbol = pokemons_symbols[self.color_id]
 		
-	# So far you can only use waiste card to summon waise Pokemons... this need to be fix some how...
-	# But first let's just make this shit work as, is...
 	def summon(self,player):
-		summon=True;
-		payed_cost = [0,0,0,0,0,0]
-		
-		
-		for color_index in range(len(self.cost)):
-			untapped_Energy = 0;
-		
-		# If their is enaugh Energy of the same color on the field
-		if summon == True:
-			for color_index in range(len(self.cost)):
-				for Energy in range(len(player.Energy_zone[color_index])):
-					#Tap the required Energy
-					if payed_cost[color_index] < self.cost[color_index]:
-						player.Energy_zone[color_index][Energy].tap(player);
-						if self.cost[color_index] > payed_cost[color_index]:
-							payed_cost[color_index] += 1;	
-					
-					
 			player.bench_zone.append(self);
 			player.hand.remove(self)
-			player.console_text = "Summoning " + str(player.hand[player.cursor_x].name)	
-		else:
-			player.console_text = "Insufficient Energy to summon " + str(player.hand[player.cursor_x].name)
-				
-		# 0- count untap Energy on the Energy_zone
-		# 1- check for the card cost
-		# 2- tap Energy
-		# 3- remove it self from the hand array
-		# 4- add it self to the field
+			player.console_text = str(player.hand[player.cursor_x].name) + self.summon_phrase
+			
+	#pokemon name generator
+	def gen_name(self):
+		Vowels = ["a","e","i","o","u"];
+		Consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+		temp_name = ""
+		name_size = random.randint(3,9)
+		x = random.randint(0,1)
+		for index in range(name_size):
+			if x == 0:
+				temp_name+=str(random.choice(Vowels))
+				x = random.randint(0,1)
+			else:
+				temp_name+=str(random.choice(Consonants))
+				x=0
+			# Make the first letter Uppercase
+			temp_name = temp_name[0].upper() + temp_name[1:]
+		return temp_name
+			
 	def info(self):
 		#card_info += color_name[self.color_id] + color_symbol[self.color_id] + "\n"
 		card_info = "Name:"+ str(self.name) + "\n" 
@@ -251,13 +207,13 @@ class Player:
 	def gen_deck(self):
 		# This is just a temporary solution.
 		Energy_count = 30;
-		Pokemon_count = 30;
+		pokemon_count = 30;
 		
 		for x in range(Energy_count):
 			self.deck.append(Energy())
-		for x in range(Pokemon_count):
+		for x in range(pokemon_count):
 		#[random.randint(0,10),0,0,0,0]
-			card = Pokemon()
+			card = pokemon()
 			self.deck.append(card)
 		random.shuffle(self.deck)
 		
@@ -375,7 +331,7 @@ class AI:
 	coin = 0;
 	hand = [];
 	bench_zone = [];
-	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-Pokemon.
+	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-pokemon.
 	graveyard = [];
 	deck=[];
 	cursor_x = 0;
@@ -398,10 +354,10 @@ class AI:
 	def gen_deck(self):
 		# This is just a temporary solution.
 		Energy_count = 30;
-		Pokemon_count = 30;
+		pokemon_count = 30;
 		
 		for x in range(Energy_count):
 			self.deck.append(Energy())
-		for x in range(Pokemon_count):
+		for x in range(pokemon_count):
 			self.deck.append(Energy())
 		random.shuffle(self.deck)
