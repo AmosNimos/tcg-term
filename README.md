@@ -28,10 +28,10 @@ It is a minimalistic, open-source, tcg-like game, made in python, that can be pl
 The first goal to be realistic in scope, is to have a playable single player game, with simple generated card, that have simple [__Keyword ability__](https://mtg.fandom.com/wiki/Keyword_ability) effect. Then once completed, add complexity progressivelly, and maybe in the far long distant future a form of multiplayer.
 
 I aim to have 4 main gamemode "inspired" by:
-- Mtg
+- M4g!c
 - P0k3m0n
 - Yu-g!-0h
-- Force of will
+- F0rc3 0f w!ll
 
 > And maybe a gamemode called __Battle-Cry__ ( Another one of my open source project Here on Github. )
 
