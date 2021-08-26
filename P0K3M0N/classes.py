@@ -41,7 +41,7 @@ class pokemon():
 		Vowels = ["a","e","i","o","u"];
 		Consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
 		temp_name = ""
-		name_size = random.randint(3,9)
+		name_size = random.randint(2,6)
 		x = random.randint(0,1)
 		for index in range(name_size):
 			if x == 0:
@@ -129,7 +129,7 @@ class Player:
 	# Strings 
 	console_text ="";
 	## Phrase
-	summon_phrase = "let's go!"
+	summon_phrase = " let's go!"
 	
 	# Boolean
 	game_over = False;
@@ -147,14 +147,17 @@ class Player:
 	cursor_x = 0;
 	cursor_y = 2;
 	energy_use = 0; # How meny energy can the player still use this turn. (normally 1 per turn)
-	
+	## Zones
 	lowest_y=0
 	graveyard_y=0;
 	deck_y=1;
 	hand_y=2;
 	bench_y=3;
 	battle_y=4;
-	highest_y = 3
+	highest_y = 4
+	
+	## Max
+	max_bench = 5
 	
 	# None/Empty
 	selection = None
@@ -173,10 +176,21 @@ class Player:
 		
 	def summon(self,selected):
 			if self.cursor_y == self.hand_y:
-				self.bench_zone.append(selected);
-				self.hand.remove(selected)
-				self.console_text = str(self.hand[self.cursor_x].name) + self.summon_phrase
-		
+				#Place Pokemon from hand_zone to bench_zone
+				if len(self.bench_zone) < self.max_bench:
+					self.bench_zone.append(selected);
+					self.hand.remove(selected)
+					self.console_text = str(selected.name) + self.summon_phrase
+				else:
+					self.console_text = "Your bench zone is already full!"
+			if self.cursor_y == self.bench_y:
+				#Place Pokemon from bench_zone to battle_zone.
+				if self.battle_zone==None:
+					self.battle_zone=selected;
+					self.bench_zone.remove(selected)
+					self.console_text = str(selected.name) + self.summon_phrase
+				else:
+					self.console_text = str(self.battle_zone.name) + " is already in battle."
 	def draw(self,*args):
 		# This function draw X card from the deck.
 		# If an argument is given it will use it as the draw amouth, 
@@ -264,7 +278,9 @@ class Player:
 				card_info = str(self.battle_zone[card].info());
 			else:
 				battle_zone = str(self.battle_zone.symbol)
-			print(bench_zone)
+			print("["+battle_zone+"]")
+		else:
+			print("[  ]")
 			
 		# bench_zone ⬇️
 		if len(self.bench_zone)>0:
@@ -281,7 +297,11 @@ class Player:
 					card_info = str(self.bench_zone[card].info());
 				else:
 					bench_zone += str(self.bench_zone[card].symbol)
+			for empty in range(self.max_bench-len(self.bench_zone)):
+					bench_zone += "  "
 			print("["+bench_zone+"]")
+		else:
+			print("[          ]")
 			
 		# hand_zone ⬇️
 		if len(self.hand)>0:

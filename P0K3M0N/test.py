@@ -86,7 +86,10 @@ def field():
 			player.cursor_x += 1;
 			player.console_text = ""
 		if key_pressed == "h":
-			selected = player.hand[player.cursor_x]
+			if player.cursor_y == player.hand_y:
+				selected = player.hand[player.cursor_x];
+			elif player.cursor_y == player.bench_y: 
+				selected = player.bench_zone[player.cursor_x];
 			player.summon(selected);
 		if key_pressed == "j":	
 			selected = player.draw();
