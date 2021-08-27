@@ -9,7 +9,6 @@ import sys
 # ["⬜️","🟪","🟦","⬛️","🟥","🟩","🟧","🟫","🟨"]
 
 class move():
-
 	def cost_to_string(self, cost):
 		color_list = ["⚪️","🟣", "🔵", "⚫️", "🔴", "🟢", "🟠", "🟤", "🟡"];
 		cost_string=""
@@ -17,11 +16,22 @@ class move():
 			cost_string += str(color_list[x])*cost[x]
 		return cost_string
 	# This class define one move the pokemon can use and it's effect. 
-	def __init__(self, name, cost, damage):
-		self.name = name
-		self.cost = cost;
-		self.damage = damage;
-		self.cost_string = self.cost_to_string(cost)
+	def __init__(self, pokemon, index):
+		random.Random();
+		temp_cost = [0,0,0,0,0,0,0,0,0]
+		temp_total_cost=0;
+		if pokemon.color_id != 0:
+			temp_cost[0] = random.randint(1-index,4-index)
+			temp_total_cost = temp_cost[0]
+		temp_cost[pokemon.color_id] = random.randint(1+index,5-temp_cost[0])
+		temp_total_cost += temp_cost[pokemon.color_id]
+		name_list=["Punch","Kick","Bite","Tackle","Push","Cut"]
+		self.effect_string = ""
+		self.name = random.choice(name_list)
+		self.cost = temp_cost
+		self.total_cost = temp_total_cost;
+		self.damage = temp_total_cost*(10+(index*5))*pokemon.stage;
+		self.cost_string = self.cost_to_string(temp_cost)
 		
 	
 			
@@ -36,6 +46,7 @@ class pokemon():
 	symbol = "⬜️";
 	color_id = 0
 	symbol_char = "%"
+	stage = 0 
 	supertype = "Basic";
 	supertype_list = ["Basic","Stage 1","Stage 2"]
 	HP = 1;
@@ -44,7 +55,8 @@ class pokemon():
 	rarity = 0;
 	rarity_list = ["Common","Uncommon","Rare","Holo Rare", "Reverse Holo", "Full Art", "Secret Rare", "Rainbow Rare", "Promo"]
 	energy = [0,0,0,0,0,0,0,0,0]
-	move_list = [];
+	temp_cost = [0,0,0,0,0,0,0,0,0];
+	temp_total_cost=0;
 	
 	def __init__(self):
 		
@@ -53,36 +65,26 @@ class pokemon():
 		self.name=self.gen_name()
 		self.rarity = random.randint(0,3)
 		# Initialise card symbol >>
-		pokemons_symbols = ["⬜️","🟪","🟦","⬛️","🟥","🟩","🟧","🟫","🟨"];
-		self.color_id = random.randint(0,len(pokemons_symbols)-1)
+		symbol_list = ["⬜️","🟪","🟦","⬛️","🟥","🟩","🟧","🟫","🟨"];
+		self.symbol=symbol_list[self.color_id];
+		self.color_id = random.randint(0,len(symbol_list)-1)
 		# Resistance and Weakness add or substract 20 damage to an attack.
-		self.resistance_type = random.randint(0,len(pokemons_symbols)-1)
-		self.weakness_type = random.randint(0,len(pokemons_symbols)-1)
-		self.symbol = pokemons_symbols[self.color_id]
+		self.resistance_type = random.randint(0,len(symbol_list)-1)
+		self.weakness_type = random.randint(0,len(symbol_list)-1)
+		self.symbol = symbol_list[self.color_id]
+		self.stage = random.randint(1,3)
+		self.supertype = self.supertype_list[self.stage-1]
+		self.gen_move()
 		
 		# Set move_list
 		
+
+		
+	def gen_move(self):
+		
 		## First move
-		temp_cost = [0,0,0,0,0,0,0,0,0]
-		temp_total_cost=0;
-		if self.color_id != 0:
-			temp_cost[0] = random.randint(0,3)
-			temp_total_cost = temp_cost[0]
-		temp_cost[self.color_id] = random.randint(1,4-temp_cost[0])
-		temp_total_cost += temp_cost[self.color_id]
-		self.move_list.append(move("Kick",temp_cost,temp_total_cost*10))
-		
-		## Second move
-		temp_cost = [0,0,0,0,0,0,0,0,0]
-		temp_total_cost=0;
-		if self.color_id != 0:
-			temp_cost[0] = random.randint(0,4)
-			temp_total_cost = temp_cost[0]
-		temp_cost[self.color_id] = random.randint(1,5-temp_cost[0])
-		temp_total_cost += temp_cost[self.color_id]
-		self.move_list.append(move("Punch",temp_cost,temp_total_cost*15))
-		
-		
+		self.move_list=[move(self, 0),move(self, 1)]
+		print(self.move_list)
 			
 	#pokemon name generator
 	def gen_name(self):
@@ -104,7 +106,10 @@ class pokemon():
 			
 	def info(self):
 		#card_info += color_name[self.color_id] + color_symbol[self.color_id] + "\n"
-		card_info = "Name:"+ str(self.name) + "\n" 
+		card_info = "";
+		card_info = "Stage: "+str(self.supertype)+"\n";
+		card_info += "Name: "+str(self.name) + "\n" 
+		card_info +=	"type: "+self.symbol+ "\n"
 		card_info += "HP:[" + str(self.HP) + "]\n"
 		card_info += "Rarity:" + str(self.rarity) + "\n"
 		
@@ -112,8 +117,13 @@ class pokemon():
 		# Maybe consider effect like card zone, like object in an array maybe?
 		# So we store the effect object in an array variable in the pokemon object... ?
 		
-		card_info += "Moves:\n  ["+str(self.move_list[0].cost_string)+"] "+str(self.move_list[0].name)+" "+str(self.move_list[0].damage)+"\n"
-		card_info += "  ["+str(self.move_list[1].cost_string)+"] "+str(self.move_list[1].name)+" "+str(self.move_list[1].damage)+"\n"		
+		# Moves
+		card_info += "Moves:\n  ["
+		card_info += str(self.move_list[0].cost_string)+"] "+str(self.move_list[0].name)+" "+str(self.move_list[0].damage)+"\n  ["
+		card_info += str(self.move_list[0].effect_string)
+		card_info += str(self.move_list[1].cost_string)+"] "+str(self.move_list[1].name)+" "+str(self.move_list[1].damage)+"\n"		
+		card_info += str(self.move_list[1].effect_string)
+				
 		return card_info
 
 class Energy():
