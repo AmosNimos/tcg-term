@@ -34,6 +34,7 @@ from key_input.key_input import Input
 deck_size = 60;
 initial_health = 20;
 max_hand_size = 7;
+room = "menu"
 
 ## Return keypress input
 def get_input():
@@ -43,6 +44,9 @@ def get_input():
 			return e
 
 def initialisation():
+
+	menu = classes.menu();
+
 	# gen player 
 	player = classes.Player("test", initial_health);
 	player.gen_deck();
@@ -54,7 +58,7 @@ def initialisation():
 	ai.draw(7)
 	# gen ai
 	
-	return player, ai
+	return player, ai, menu
 
 
 # This function is for displaying the field page on the screen	
@@ -69,7 +73,10 @@ def field():
 		#display_ai(ai,player,cursor_symbol);
 
 		# display Player side of the field & the cursor -->
-		player.display_field();
+		if menu.room == 0:
+			menu.display(player)
+		else:
+			player.display_field();
 		
 		
 		key_pressed = get_input();
@@ -94,7 +101,7 @@ def field():
 		if key_pressed == "j":	
 			selected = player.draw();
 	
-player, ai = initialisation();
+player, ai, menu = initialisation();
 field();
 
 

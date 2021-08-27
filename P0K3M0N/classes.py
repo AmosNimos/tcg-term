@@ -406,7 +406,50 @@ class Player:
 		self.debug()
 					
 
+class menu():
+
+	room=0;
+	#⮕➤👉
+	cursor_symbol="👉"; # Their should be a single cursor_symbol variable inside the player class
+	max_y = 2
+	battle_y = 2;
+	shop_y=1;
+	collection_y=0;
+	min_y = 0
+	def display(self,player):
+		print()
+		#wrap y cursor
+		if player.cursor_y>self.max_y:
+			player.cursor_y = self.min_y;
+		elif player.cursor_y<self.min_y:
+			player.cursor_y = self.max_y;
+				
+		if player.cursor_y == self.battle_y:
+			print("   "+self.cursor_symbol+" Battle")
+			#room=1;
+		else:
+			print("   "+"Battle")
 			
+		if player.cursor_y == self.shop_y:
+			print("   "+self.cursor_symbol+" Shop")
+		else:
+			print("   "+"Shop")
+			
+		if player.cursor_y == self.collection_y:
+			print("   "+self.cursor_symbol+" Collection")
+		else:
+			print("   "+"Collection")
+
+class shop:
+	def gen_booster(self):
+		# This is just a temporary solution.
+		pokemon_count = 200;
+		booster=[]
+		for x in range(pokemon_count):
+			card = pokemon()
+			booster.append(card)
+		random.shuffle(self.booster)
+		return booster		
 			
 class AI:
 	#side_board = []
