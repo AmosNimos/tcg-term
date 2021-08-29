@@ -48,7 +48,7 @@ class pokemon():
 	symbol_char = "%"
 	stage = 0 
 	supertype = "Basic";
-	supertype_list = ["Basic","Stage 1","Stage 2"]
+	supertype_list = ["Basic","First","Final"]
 	HP = 1;
 	taughness = 1;
 	type_line = supertype+" ─ "+name;
@@ -58,21 +58,32 @@ class pokemon():
 	temp_cost = [0,0,0,0,0,0,0,0,0];
 	temp_total_cost=0;
 	
-	def __init__(self):
+	def __init__(self,stage,evo_from,color_id,rarity):
 		
 		random.Random();
 			
 		self.name=self.gen_name()
-		self.rarity = random.randint(0,3)
+		if rarity == None:
+			self.rarity = random.randint(0,3);
+		else:
+			self.rarity = rarity;
 		# Initialise card symbol >>
 		symbol_list = ["⬜️","🟪","🟦","⬛️","🟥","🟩","🟧","🟫","🟨"];
+		if color_id == None:
+			self.color_id = random.randint(0,len(symbol_list)-1)
+		else: 
+			self.color_id = color_id
 		self.symbol=symbol_list[self.color_id];
-		self.color_id = random.randint(0,len(symbol_list)-1)
 		# Resistance and Weakness add or substract 20 damage to an attack.
 		self.resistance_type = random.randint(0,len(symbol_list)-1)
 		self.weakness_type = random.randint(0,len(symbol_list)-1)
 		self.symbol = symbol_list[self.color_id]
-		self.stage = random.randint(1,3)
+		self.stage = stage
+		if stage>1:
+			self.evo_from = evo_from;
+		else:
+			self.evo_from = None;
+		
 		self.supertype = self.supertype_list[self.stage-1]
 		self.gen_move()
 		
@@ -89,7 +100,7 @@ class pokemon():
 	#pokemon name generator
 	def gen_name(self):
 		Vowels = ["a","e","i","o","u"];
-		Consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+		Consonants = ['b', 'c', 'ch', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
 		temp_name = ""
 		name_size = random.randint(2,6)
 		x = random.randint(0,1)
@@ -107,7 +118,9 @@ class pokemon():
 	def info(self):
 		#card_info += color_name[self.color_id] + color_symbol[self.color_id] + "\n"
 		card_info = "";
-		card_info = "Stage: "+str(self.supertype)+"\n";
+		card_info += "Stage: "+str(self.supertype)+"\n";
+		if self.evo_from != None:
+			card_info += "Evolve from "+str(evo_from);
 		card_info += "Name: "+str(self.name) + "\n" 
 		card_info +=	"type: "+self.symbol+ "\n"
 		card_info += "HP:[" + str(self.HP) + "]\n"
@@ -443,50 +456,25 @@ class menu():
 class shop:
 	def gen_booster(self):
 		# This is just a temporary solution.
-		pokemon_count = 200;
+		pokemon_count = 10;
 		booster=[]
 		for x in range(pokemon_count):
-			card = pokemon()
+			# gen Basic stage
+			card = pokemon(1,None,None,None)
+			basic_stage = card.name
+			basic_color_id = card.color_id
+			basic_rarity = card.rarity
 			booster.append(card)
+			# gen first stage of evolution
+			card = pokemon(2,basic_stage,basic_color_id,basic_rarity)
+			first_stage = card.name
+			booster.append(card)
+			# gen first stage of evolution
+			card = pokemon(3,first_stage,basic_color_id,basic_rarity)
+			booster.append(card)
+			
 		random.shuffle(self.booster)
 		return booster		
-			
-class AI:
-	#side_board = []
-	collection = [];
-	coin = 0;
-	hand = [];
-	bench_zone = [];
-	permanents_zone = []; # for artefacts, enchantments, plainwalkers?, non-pokemon.
-	graveyard = [];
-	deck=[];
-	cursor_x = 0;
-	cursor_y = 2;
-	card_back="?"
-	
-	def __init__(self, name, health):
-		self.name = "BOT",
-		self.health = health,
-		
-	def shuffle_deck():
-		random.shuffle(self.deck)
-		
-	def draw(self,amounth):
-		for x in range(amounth):
-			draw = self.deck[-1]
-			self.deck.pop()
-			self.hand.append(draw)
-		
-	def gen_deck(self):
-		# This is just a temporary solution.
-		Energy_count = 30;
-		pokemon_count = 30;
-		
-		for x in range(Energy_count):
-			self.deck.append(Energy())
-		for x in range(pokemon_count):
-			self.deck.append(Energy())
-		random.shuffle(self.deck)
 		
 		
 ## All pokemon effect go here

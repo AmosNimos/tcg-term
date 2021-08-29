@@ -49,14 +49,13 @@ def initialisation():
 
 	# gen player 
 	player = classes.Player("test", initial_health);
-	player.gen_deck();
+	#player.gen_deck();
 	player.draw(7)
 	
 	# gen ai
-	ai = classes.AI("test", initial_health);
-	ai.gen_deck();
-	ai.draw(7)
-	# gen ai
+	## ai = classes.AI("test", initial_health);
+	## ai.gen_deck();
+	## ai.draw(7)
 	
 	return player, ai, menu
 
