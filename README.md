@@ -1,5 +1,7 @@
 # TCG-TERM
 ## Project state:
+<a href="https://www.youtube.com/watch?v=MHhM3nhg4s4">Last update: Dec 27, 2023</a>
+
 🔧 🚧🚧🚧 Incomplete, In development 🚧🚧🚧 👷
 
 (Keep in mind that at the moment, This project is currently undone, and will not work, if you try to lunch it.)
