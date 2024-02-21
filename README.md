@@ -1,6 +1,6 @@
 # TCG-TERM
 ## Project state:
-<a href="https://www.youtube.com/watch?v=MHhM3nhg4s4">Last update: Dec 27, 2023</a>
+<a href="https://www.youtube.com/watch?v=MHhM3nhg4s4"><img src="https://s3.amazonaws.com/content.newsok.com/newsok/images/mobile/play_button.png"></br>Last update: Dec 27, 2023</a>
 
 🔧 🚧🚧🚧 Incomplete, In development 🚧🚧🚧 👷
 
